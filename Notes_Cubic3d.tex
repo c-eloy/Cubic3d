@@ -219,9 +219,13 @@
 \section*{Scalar fields}
 The scalar Kaluza-Klein fluctuations of the $\SO(8,4+m)$ exceptional field theory~\cite{Hohm:2017wtr} are labelled by pair of indices $\Phi^{\alpha,\Sigma}$~\cite{Eloy:2020uix}, with $\alpha$ the index of non-compact generators of $\SO(8,4+m)$ (or equivalently the fields within the $3d$ truncation) and $\Sigma$ labelling the scalar harmonic ${\cal Y}^{\Sigma}$ on $S^{3}$. They transform in the symmetric vector representation $\big(\nicefrac{n}{2},\nicefrac{n}{2};0,0\big)$ of $\SO(4)_{\rm gauge} \times \SO(4)_{\rm global} \times \SO(m)$. Under
 \begin{equation}
-	\SO(8,4+m) \longrightarrow \SO(4)_{\rm gauge} \times \SO(4)_{\rm global} \times \SO(m),
+	\begin{split}
+	\SO(8,4+m) & \longrightarrow \SO(8) \times \SO(4 + m) \\
+						 & \longrightarrow \SO(4)_{\rm global} \times \SO(4)_{1} \times \times \SO(4)_{2} \times \SO(m) \\
+						 & \longrightarrow \SO(4)_{\rm global} \times \SO(4)_{\rm gauge} \times \SO(m),
+	\end{split}
 \end{equation}
-the non-compact generators $t_{\alpha}$ of $\SO(8,4+m)$ decompose as
+with $\SO(4)_{gauge}  =  \mathrm{diag}(\SO(4)_{1}, \SO(4)_{2})$, the non-compact generators $t_{\alpha}$ of $\SO(8,4+m)$ decompose as
 \begin{equation}
 	\begin{aligned}
 		t_{\alpha} &\longrightarrow \big(0,0;0,0\big) \oplus \big(1,0;0,0\big) \oplus \big(0,1;0,0\big) \oplus \big(1,1;0,0\big) \\
@@ -362,6 +366,18 @@ XX terms ($\Theta \Theta$)
 \item $f_{\alpha\beta\gamma} = t_{\alpha M}\,^{L} t_{\beta L}\,^{K} t_{\gamma K}\,^{M} = 0$
 \end{itemize}
 
+\section*{Ajj/ AAj cubics}
+
+Those cubics couplings can be extracted from the kinetic terms. For this we compute $D_\mu M_{MN}$ 
+
+\begin{equation}
+	\begin{split}
+	D_\mu \mathcal{M}_{MN} &= U_{(M}\,^{\bar M} U_{N)}\,^{\bar N} \Big(\mathcal{Y}^\Sigma \Big(\partial_\mu j_{\bar{M}\bar{N}}\,^{\Sigma} + 4 A_\mu\,^{\bar{K}\bar{L} \Delta} \Delta_{\bar N}\,^{\bar P} (\Theta_{\bar{K}\bar{L}\bar{M}\bar{P}}\delta^{\Sigma \Omega}-4\eta_{\bar K [ \bar M}\mathcal{T}_{\bar P]\bar L}\,^{\Delta \Sigma})\Big) \\ 
+	&\mathcal{Y}^\Sigma \mathcal{Y}^\Omega \Big(\partial_\mu J_{\bar{M}\bar{N}}\,^{\Sigma \Omega}+ 4 A_\mu\,^{\bar{K}\bar{L}\Delta}j_{\bar{N}}\,^{\bar{P}\Gamma}\Big(\Theta_{\bar{K}\bar{L}\bar{M}\bar{P}}\delta^{\Sigma\Delta}\delta^{\Gamma\Omega} - 4\eta_{\bar{K}[\bar M}\mathcal{T}_{\bar P]\bar L}\,^{\Delta\Sigma}\delta^{\Gamma \Omega}+2\eta_{\bar{M}\bar{P}}\mathcal{T}_{\bar{K}\bar{L}}\,^{\Gamma\Omega}\delta^{\Sigma\Delta}\Big)\Big)
+	\end{split}
+\end{equation}
+
+There is no order 2 fluctuations in vectors cause we expand in order 1 and inject in the SS ansatz directly. There are order fluctuations for the scalars because we develop and exponential. So we should see them more as double ordre 1. 
 \bibliography{references}
 
 
