@@ -1,0 +1,195 @@
+{
+	"cell_id": 10940523710875194960,
+	"cells": [
+		{
+			"cell_id": 4725445047146261164,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "{K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,R#,RR}::Indices(name=\"SO84pm\",position=independent).\n\n{A,F,C,D,E,F,G,H,I,J,A#}::Indices(name=\"SO4m\",position=independent).\n{\\alpha,\\beta,\\delta,\\gamma,\\alpha#}::Indices(name=\"GL4\",position=independent).\n\n{\\Sigma,\\Omega, \\Lambda, \\Delta, \\Sigma#, \\Gamma}::Indices(name=\"harmonics\",position=independent)."
+		},
+		{
+			"cell_id": 3043805611292284245,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 12490836100325108877,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 525008497111178983,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "c^{\\Sigma \\Omega \\Gamma} (-3\\Theta_{K L M N} \\Delta^{K P} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}^{N} j^{L R \\Omega} \\Delta_{R S} j^{S Q \\Gamma} + 6\\Theta_{K L M N} \\Delta^{K P} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} j_{U}^{N \\Delta} j^{L Q \\Omega} + 2\\Theta_{K L M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} \\Delta_{U}^{N} j^{K P \\Delta} j^{L Q \\Omega}-2\\Theta_{K L M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}^{N} j^{K P \\Gamma} j^{L Q \\Omega}-3(\\Theta_{K L} + \\Theta \\eta_{K L}) T_{P Q}^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K R \\Omega} \\Delta_{R S} j^{S P \\Gamma} + 3\\Theta_{K L M N} (\\eta^{K P} \\eta^{L Q}-\\Delta^{K P} \\Delta^{L Q}) T_{P Q}^{\\Delta \\Sigma} \\Delta_{R S} j^{M U \\Delta} j_{U}^{R \\Omega} j^{S N \\Gamma})"
+						}
+					],
+					"source": "\\begin{dmath*}{}c^{\\Sigma \\Omega \\Gamma} \\left(-3\\Theta_{K L M N} \\Delta^{K P} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}\\,^{N} j^{L R \\Omega} \\Delta_{R S} j^{S Q \\Gamma}+6\\Theta_{K L M N} \\Delta^{K P} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Gamma} j_{U}\\,^{N \\Delta} j^{L Q \\Omega}+2\\Theta_{K L M N} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Gamma} \\Delta_{U}\\,^{N} j^{K P \\Delta} j^{L Q \\Omega}-2\\Theta_{K L M N} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}\\,^{N} j^{K P \\Gamma} j^{L Q \\Omega}-3\\left(\\Theta_{K L}+\\Theta \\eta_{K L}\\right) T_{P Q}\\,^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K R \\Omega} \\Delta_{R S} j^{S P \\Gamma}+3\\Theta_{K L M N} \\left(\\eta^{K P} \\eta^{L Q}-\\Delta^{K P} \\Delta^{L Q}\\right) T_{P Q}\\,^{\\Delta \\Sigma} \\Delta_{R S} j^{M U \\Delta} j_{U}\\,^{R \\Omega} j^{S N \\Gamma}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "XTheta:=c^{\\Sigma \\Omega \\Gamma}*(-3 \\Theta_{K L M N} \\Delta^{K P} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}^{N} j^{L R \\Omega} \\Delta_{R S} j^{S Q \\Gamma}\n+6 \\Theta_{K L M N} \\Delta^{K P} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} j_{U}^{N \\Delta} j^{L Q \\Omega}\n+2 \\Theta_{K L M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} \\Delta_{U}^{N} j^{K P \\Delta} j^{L Q \\Omega}\n-2 \\Theta_{K L M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} \\Delta_{U}^{N} j^{K P \\Gamma} j^{L Q \\Omega}\n-3 (\\Theta_{K L}+\\Theta \\eta_{K L}) T_{P Q}^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K R \\Omega} \\Delta_{R S} j^{S P \\Gamma}\n+3 \\Theta_{K L M N} (\\eta^{K P} \\eta^{L Q}- \\Delta^{K P} \\Delta^{L Q}) T_{P Q}^{\\Delta \\Sigma} \\Delta_{R S} j^{M U \\Delta} j_{U}^{R \\Omega} j^{S N \\Gamma});"
+		},
+		{
+			"cell_id": 14650304060495815723,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8451718811240932176,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 15748356264003382062,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "c^{\\Sigma \\Omega \\Gamma} (\\gamma T_{K L}^{\\Delta \\Omega} T_{P Q}^{\\Lambda \\Sigma} ( 3/4 \\Delta^{K P} j^{M N \\Lambda} j_{M N}^{\\Delta} j^{L Q \\Gamma} + \\Delta^{K P} j^{L R \\Lambda} j_{R S}^{\\Gamma} j^{S Q \\Delta}-j^{K U \\Lambda} \\Delta_{U}^{L} j^{P R \\Delta} j_{R}^{Q \\Gamma} +  3/2 j^{K U \\Lambda} \\Delta_{U}^{L} j^{P R \\Gamma} j_{R}^{Q \\Delta}-j^{L Q \\Gamma} j^{K R \\Lambda} \\Delta_{R S} j^{S P \\Delta}) + \\gamma T_{K L}^{\\Delta \\Lambda} T_{P Q}^{\\Lambda \\Sigma} (\\Delta^{K P} j^{L R \\Gamma} j_{R S}^{\\Delta} j^{S Q \\Omega}-\\Delta^{K P} j^{L R \\Delta} j_{R S}^{\\Omega} j^{S Q \\Gamma}-2\\Delta_{R S} j^{L Q \\Omega} j^{K R \\Gamma} j^{S P \\Delta} + 2\\Delta^{K P} j^{L R \\Omega} j_{R S}^{\\Gamma} j^{S Q \\Delta}-2\\Delta_{R S} j^{L Q \\Delta} j^{K R \\Omega} j^{S P \\Gamma}))"
+						}
+					],
+					"source": "\\begin{dmath*}{}c^{\\Sigma \\Omega \\Gamma} \\left(\\gamma T_{K L}\\,^{\\Delta \\Omega} T_{P Q}\\,^{\\Lambda \\Sigma} \\left(\\frac{3}{4}\\Delta^{K P} j^{M N \\Lambda} j_{M N}\\,^{\\Delta} j^{L Q \\Gamma}+\\Delta^{K P} j^{L R \\Lambda} j_{R S}\\,^{\\Gamma} j^{S Q \\Delta}-j^{K U \\Lambda} \\Delta_{U}\\,^{L} j^{P R \\Delta} j_{R}\\,^{Q \\Gamma}+\\frac{3}{2}j^{K U \\Lambda} \\Delta_{U}\\,^{L} j^{P R \\Gamma} j_{R}\\,^{Q \\Delta}-j^{L Q \\Gamma} j^{K R \\Lambda} \\Delta_{R S} j^{S P \\Delta}\\right)+\\gamma T_{K L}\\,^{\\Delta \\Lambda} T_{P Q}\\,^{\\Lambda \\Sigma} \\left(\\Delta^{K P} j^{L R \\Gamma} j_{R S}\\,^{\\Delta} j^{S Q \\Omega}-\\Delta^{K P} j^{L R \\Delta} j_{R S}\\,^{\\Omega} j^{S Q \\Gamma}-2\\Delta_{R S} j^{L Q \\Omega} j^{K R \\Gamma} j^{S P \\Delta}+2\\Delta^{K P} j^{L R \\Omega} j_{R S}\\,^{\\Gamma} j^{S Q \\Delta}-2\\Delta_{R S} j^{L Q \\Delta} j^{K R \\Omega} j^{S P \\Gamma}\\right)\\right)\\end{dmath*}"
+				}
+			],
+			"source": "ThetaTheta:=c^{\\Sigma \\Omega \\Gamma}*(\\gamma T_{K L}^{\\Delta \\Omega} T_{P Q}^{\\Lambda \\Sigma} (3/4 \\Delta^{K P} j^{M N \\Lambda} j_{M N}^{\\Delta} j^{L Q \\Gamma}\n+\\Delta^{K P} j^{L R \\Lambda} j_{R S}^{\\Gamma} j^{S Q \\Delta}\n-j^{K U \\Lambda} \\Delta_{U}^{L} j^{P R \\Delta} j_{R}^{Q \\Gamma}\n+3/2 j^{K U \\Lambda} \\Delta_{U}^{L} j^{P R \\Gamma} j_{R}^{Q \\Delta}\n-j^{L Q \\Gamma} j^{K R \\Lambda} \\Delta_{R S} j^{S P \\Delta})\n+\\gamma T_{K L}^{\\Delta \\Lambda} T_{P Q}^{\\Lambda \\Sigma}*(\\Delta^{K P} j^{L R \\Gamma} j_{R S}^{\\Delta} j^{S Q \\Omega}\n-\\Delta^{K P} j^{L R \\Delta} j_{R S}^{\\Omega} j^{S Q \\Gamma}\n-2\\Delta_{R S} j^{L Q \\Omega} j^{K R \\Gamma} j^{S P \\Delta}\n+2\\Delta^{K P} j^{L R \\Omega} j_{R S}^{\\Gamma} j^{S Q \\Delta}\n-2\\Delta_{R S} j^{L Q \\Delta} j^{K R \\Omega} j^{S P \\Gamma}));"
+		},
+		{
+			"cell_id": 18235855261257660225,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 14168300966359490101,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11523096359389000503,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C D} -> 2\\epsilon_{A B C D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C D} \\rightarrow 2\\epsilon_{A B C D}\\end{dmath*}"
+				},
+				{
+					"cell_id": 17518006465182680761,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 1813770032675138651,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C}^{D} -> \\epsilon_{A B C E} \\delta^{E D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C}\\,^{D} \\rightarrow \\epsilon_{A B C E} \\delta^{E D}\\end{dmath*}"
+				}
+			],
+			"source": "rlThetaABCD:=\\Theta_{A B C D}->2 \\epsilon_{A B C D};\nrlThetaABCDup:=\\Theta_{A B C}^{D}-> \\epsilon_{A B C E} \\delta^{E D};"
+		},
+		{
+			"cell_id": 10490784031259341182,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11527777066116341257,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 7764273079535112814,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T_{C D}^{A B} -> -\\epsilon_{C D E F} \\delta^{A E} \\delta^{B F}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T_{C D}\\,^{A B} \\rightarrow -\\epsilon_{C D E F} \\delta^{A E} \\delta^{B F}\\end{dmath*}"
+				},
+				{
+					"cell_id": 14436954697747607979,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 17200751927355933152,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T_{M N P Q}^{S T} -> T_{M N P}^{S} \\delta_{Q}^{T} + T_{M N Q}^{S} \\delta_{P}^{T}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T_{M N P Q}\\,^{S T} \\rightarrow T_{M N P}\\,^{S} \\delta_{Q}\\,^{T}+T_{M N Q}\\,^{S} \\delta_{P}\\,^{T}\\end{dmath*}"
+				},
+				{
+					"cell_id": 1021734121293199384,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 15008537471093742996,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T_{M N P Q R}^{S T U} -> T_{M N P}^{S} \\delta_{Q}^{T} \\delta_{R}^{U}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T_{M N P Q R}\\,^{S T U} \\rightarrow T_{M N P}\\,^{S} \\delta_{Q}\\,^{T} \\delta_{R}\\,^{U}\\end{dmath*}"
+				}
+			],
+			"source": "rlT1:=T_{C D}^{A B} -> - \\epsilon_{C D E F}*\\delta^{A E}*\\delta^{B F};\nrlT3:=T_{M N P Q}^{S T}-> (T_{M N P}^{S}*\\delta_{Q}^{T}+T_{M N Q}^{S}*\\delta_{P}^{T});\nrlT3:=T_{M N P Q R}^{S T U}-> T_{M N P}^{S}*\\delta_{Q}^{T}*\\delta_{R}^{U};"
+		},
+		{
+			"cell_id": 5478265631127952886,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8508467252170739212,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "split_index($T^M T_M$,$M,A,\\alpha$,repeat=True);"
+		},
+		{
+			"cell_id": 16010444155502092925,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\Delta^{M N}::KroneckerDelta.\n\\Delta_{M N}::KroneckerDelta.\n\\Delta_{M}^{N}::KroneckerDelta.\n\\Delta^{M}_{N}::KroneckerDelta."
+		},
+		{
+			"cell_id": 13093162292071081027,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 9904848520198580497,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9005542573364070643,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "c^{\\Sigma \\Omega \\Gamma}(-3\\Theta^{P}_{L M U} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} j^{L}_{S}^{\\Omega} j^{S Q \\Gamma} + 6\\Theta^{P}_{L M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} j_{U}^{N \\Delta} j^{L Q \\Omega} + 2\\Theta_{K L M U} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Gamma} j^{K P \\Delta} j^{L Q \\Omega}-2\\Theta_{K L M U} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} j^{K P \\Gamma} j^{L Q \\Omega}-3\\Theta_{K L} T_{P Q}^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K}_{S}^{\\Omega} j^{S P \\Gamma}-3\\Theta \\eta_{K L} T_{P Q}^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K}_{S}^{\\Omega} j^{S P \\Gamma} + 3\\Theta_{K L M N} \\eta^{K P} \\eta^{L Q} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} j_{U S}^{\\Omega} j^{S N \\Gamma}-3\\Theta^{P Q}_{M N} T_{P Q}^{\\Delta \\Sigma} j^{M U \\Delta} j_{U S}^{\\Omega} j^{S N \\Gamma})"
+						}
+					],
+					"source": "\\begin{dmath*}{}c^{\\Sigma \\Omega \\Gamma}\\left(-3\\Theta^{P}\\,_{L M U} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} j^{L}\\,_{S}\\,^{\\Omega} j^{S Q \\Gamma}+6\\Theta^{P}\\,_{L M N} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Gamma} j_{U}\\,^{N \\Delta} j^{L Q \\Omega}+2\\Theta_{K L M U} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Gamma} j^{K P \\Delta} j^{L Q \\Omega}-2\\Theta_{K L M U} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} j^{K P \\Gamma} j^{L Q \\Omega}-3\\Theta_{K L} T_{P Q}\\,^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K}\\,_{S}\\,^{\\Omega} j^{S P \\Gamma}-3\\Theta \\eta_{K L} T_{P Q}\\,^{\\Delta \\Sigma} j^{L Q \\Delta} j^{K}\\,_{S}\\,^{\\Omega} j^{S P \\Gamma}+3\\Theta_{K L M N} \\eta^{K P} \\eta^{L Q} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} j_{U S}\\,^{\\Omega} j^{S N \\Gamma}-3\\Theta^{P Q}\\,_{M N} T_{P Q}\\,^{\\Delta \\Sigma} j^{M U \\Delta} j_{U S}\\,^{\\Omega} j^{S N \\Gamma}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "distribute(XTheta)\neliminate_kronecker(XTheta);"
+		},
+		{
+			"cell_id": 16768667290792203893,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15675767549461898684,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		}
+	],
+	"description": "Cadabra JSON notebook format",
+	"version": 1.0
+}

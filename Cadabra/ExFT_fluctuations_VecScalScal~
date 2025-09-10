@@ -1,0 +1,1069 @@
+{
+	"cell_id": 17926146138047801870,
+	"cells": [
+		{
+			"cell_id": 9515353480593626466,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Indices #####\n\n{M,N,K,L,G,P,Q,R,M#,MM,NN}::Indices(name=\"fundamental\",position=independent).\n{M,N,K,L,G,P,Q,R,M#,MM,NN}::Integer(1..Fund).\n\n{S,T,U,V,W,S#,X,Y,Z,SS,TT,RR}::Indices(name=\"fundamental_yind\",position=independent).\n{S,T,U,V,W,S#,X,Y,Z,SS,TT,RR}::Integer(1..Fund).\n\n{A,B,C,D,E,F,A#}::Indices(name=\"GL4up\",position=independent).\n{A,B,C,D,E,F,A#}::Integer(1..4).\n\n{a,b,c,d,e,f,a#}::Indices(name=\"GL4down\",position=independent).\n{a,b,c,d,e,f,a#}::Integer(1..4)\n\n{\\Sigma,\\Omega, \\Lambda, \\Delta, \\Gamma, \\Sigma#}::Indices(name=\"harmonics\",position=independent).\n{\\alpha, \\beta, \\gamma, \\delta, \\alpha#}::Indices(name=\"adjointnc\",position=fixed).\n{\\alpha, \\beta, \\gamma, \\delta, \\alpha#}::Integer(1..NComp).\n{\\tau,\\tau#}::Indices(name=\"temp\",position=independent).\n{\\mu,\\nu,\\mu#}::Indices(name=\"autre\",position=independent)."
+		},
+		{
+			"cell_id": 15115716986049288374,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Pertubative dev #####\n\n{\\phi{#},A{#},j{#}}::Weight(label=field, value=1)."
+		},
+		{
+			"cell_id": 14316403726911260852,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10820845022472563201,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10948878205954928610,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{V_{M}^{T} -> U_{M}^{S} (\\delta_{S}^{T} + j_{S}^{T \\Sigma} Y^{\\Sigma} +  1/2 j_{S}^{Y \\Sigma} j_{Y}^{T \\Omega} Y^{\\Sigma} Y^{\\Omega}), V_{T}^{M} -> U_{S}^{M} (\\delta_{T}^{S}-j_{T}^{S \\Sigma} Y^{\\Sigma} +  1/2 j_{T}^{Y \\Sigma} j_{Y}^{S \\Omega} Y^{\\Sigma} Y^{\\Omega})}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[V_{M}\\,^{T} \\rightarrow U_{M}\\,^{S} \\left(\\delta_{S}\\,^{T}+j_{S}\\,^{T \\Sigma} Y^{\\Sigma}+\\frac{1}{2}j_{S}\\,^{Y \\Sigma} j_{Y}\\,^{T \\Omega} Y^{\\Sigma} Y^{\\Omega}\\right),~\\discretionary{}{}{} V_{T}\\,^{M} \\rightarrow U_{S}\\,^{M} \\left(\\delta_{T}\\,^{S}-j_{T}\\,^{S \\Sigma} Y^{\\Sigma}+\\frac{1}{2}j_{T}\\,^{Y \\Sigma} j_{Y}\\,^{S \\Omega} Y^{\\Sigma} Y^{\\Omega}\\right)\\right]\\end{dmath*}"
+				}
+			],
+			"source": "rlV := {V_{M}^{T} -> U_{M}^{S} (\\delta_{S}^{T} + \\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V S}^{T} \n+ 1/2 \\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V S}^{Y} t_{W X Y}^{T}), \nV_{T}^{M} -> U_{S}^{M} (\\delta_{T}^{S} - \\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V T}^{S} \n+ 1/2 \\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V T}^{Y} t_{W X Y}^{S})}.\nrlVj := {V_{M}^{T} -> U_{M}^{S} (\\delta_{S}^{T} + j_{S}^{T \\Sigma} Y^{\\Sigma}  \n+ 1/2 j_{S}^{Y \\Sigma} j_{Y}^{T \\Omega} Y^{\\Sigma} Y^{\\Omega}), \nV_{T}^{M} -> U_{S}^{M} (\\delta_{T}^{S} - j_{T}^{S \\Sigma} Y^{\\Sigma}\n+ 1/2 j_{T}^{Y \\Sigma} j_{Y}^{S \\Omega} Y^{\\Sigma} Y^{\\Omega};\nrlA := {A_{\\mu}^{M N} -> \\rho**{-1} U_{S}^{M} U_{T}^{N} A_{\\mu}^{S T \\Sigma} Y^{\\Sigma}}.\nrlB := B_{\\mu M N} -> -1/4*\\rho^{-1} U_{K S}*\\nabla_{M N}{U_{T}^{K}} A_{\\mu}^{T S \\Sigma} Y^{\\Sigma}."
+		},
+		{
+			"cell_id": 12955801456332164056,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "A_{A? B?}^{\\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).\nA^{A? B? \\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}). "
+		},
+		{
+			"cell_id": 9026608726517238639,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Derivative #####\n\n\\partial{#}::Derivative.\n\\partial{#}::WeightInherit(label=all, type=multiplicative).\n\nD{#}::Derivative.\nD{#}::WeightInherit(label=all, type=multiplicative).\n\n\\nabla{#}::Derivative.\n\\nabla{#}::WeightInherit(label=all, type=multiplicative).\n#partial will be use for space-time derivative\n#nabal will be used for internal derivative\n\n\n\\phi^{#}::Depends(\\partial{#}).\nA^{#}::Depends(\\partial{#}).\nj^{#}::Depends(\\partial{#}).\n\nU{#}::Depends(\\nabla{#}).\nY{#}::Depends(\\nabla{#}).\n\\rho{#}::Depends(\\nabla{#}).\nA^{#}::Depends(\\nabla{#}).\n\nrlcovder_to_A := D_{\\mu}{V_{M}^{S}} -> \\partial_{\\mu}{V_{M}^{S}} \n+ (A_{\\mu}^{K L} \\nabla_{K L}{V_{M}^{S}} \n+ 2 (\\nabla^{K N}{A_{\\mu K M}} - \\nabla_{K M}{A_{\\mu}^{K N}} + 2 B_{\\mu}^{N}_{M}) V_{N}^{S}))."
+		},
+		{
+			"cell_id": 14702454526409444791,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6835811118881429957,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Metrics and Kroneckers #####\n\n\\eta_{\\alpha? \\beta?}::Metric.\n\\eta^{\\alpha? \\beta?}::InverseMetric.\n\\eta_{\\alpha?}^{\\beta?}::KroneckerDelta.\n\\eta^{\\alpha?}_{\\beta?}::KroneckerDelta.\n\ng_{\\mu \\nu}::Metric.\ng^{\\mu \\nu}::InverseMetric.\ng_{\\mu}^{\\nu}::KroneckerDelta.\ng^{\\mu}_{\\nu}::KroneckerDelta.\n\n\\delta_{A?}^{B?}::KroneckerDelta.\n\\delta^{A?}_{B?}::KroneckerDelta.\n\n#The ? allows \\delta to be a kronecker in any set on indices \n\nrldeltametric := {\\delta_{A? B?} \\delta^{B? C?} -> \\delta_{A?}^{C?},\n\\delta_{A? B?} \\delta^{C? B?} -> \\delta_{A?}^{C?},\n\\delta_{B? A?} \\delta^{B? C?} -> \\delta_{A?}^{C?},\n\\delta_{B? A?} \\delta^{C? B?} -> \\delta_{A?}^{C?},\n\\delta^{A? B?} \\delta_{B? C?} -> \\delta^{A?}_{C?},\n\\delta^{B? A?} \\delta_{B? C?} -> \\delta^{A?}_{C?},\n\\delta^{A? B?} \\delta_{C? B?} -> \\delta^{A?}_{C?},\n\\delta^{B? A?} \\delta_{C? B?} -> \\delta^{A?}_{C?}}.\n"
+		},
+		{
+			"cell_id": 16832546803261866180,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Variation stuff ##### \n\n\\epsilon{#}::Accent.\nrlvary := {cM_{M N} -> - cM_{M K}*\\epsilon{cM^{K L}}*cM_{L N},cM^{M N} -> \\epsilon{cM^{M N}}}.\n"
+		},
+		{
+			"cell_id": 12263739888732437965,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Tensors with symmetries #####\n\n\\phi^{K? L? \\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\n\\phi_{K? L?}^{\\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\n\n\\varphi^{K? L? \\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).\n\\varphi_{K? L?}^{\\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).\n\n\\eta^{K? L?}::Symmetric.\n\\eta_{K? L?}::Symmetric.\n\n\\delta^{K? L?}::Symmetric.\n\\delta_{K? L?}::Symmetric.\n\nT_{S T}^{\\Sigma \\Omega}::TableauSymmetry(shape={1,1},indices={0,1}).\n\nc^{\\Sigma \\Omega \\Delta}::TableauSymmetry(shape={3},indices={0,1,2}).\n\n\\Gamma_{S T U}^{V}::TableauSymmetry(shape={1,1},indices={0,1})."
+		},
+		{
+			"cell_id": 9304769084921201505,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Ordering properties #####\n\n{T{#},c{#},phi^{#},U{#},\\rho{#},Y{#},\\Gamma{#},\\delta{#},t{#}}::SortOrder. \n{\\epsilon{cM{#}},\\partial{#},cM{#},cg{#},\\alpha{#}}::SortOrder.\n"
+		},
+		{
+			"cell_id": 5689200525229545206,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 5698136390500844437,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 2062014922465902626,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{U_{N}^{U} U_{M}^{W} \\eta^{N M} -> \\eta^{U W}, U_{U}^{N} U_{W}^{M} \\eta_{N M} -> \\eta_{U W}}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[U_{N}\\,^{U} U_{M}\\,^{W} \\eta^{N M} \\rightarrow \\eta^{U W},~\\discretionary{}{}{} U_{U}\\,^{N} U_{W}\\,^{M} \\eta_{N M} \\rightarrow \\eta_{U W}\\right]\\end{dmath*}"
+				}
+			],
+			"source": "##### Rule SS ansatz and fluctutations #####\nrlnablaindex := \\nabla_{M N}{A??} -> \\rho U_{M}^{S} U_{N}^{T} \\nabla_{S T}{A??}.\nrldownnablaindices:=\\nabla^{M N}{A??} -> \\eta^{M P} \\eta^{N Q} \\nabla_{P Q}{A??}.\n\nrlUU := {U_{R?}^{M?} U_{M?}^{S?} -> \\delta_{R?}^{S?},U_{M}^{S} U^{M T}->\\eta^{S T}}.\nrlUetaU:={U_{N}^{U} U_{M}^{W} \\eta^{N M}-> \\eta^{U W},\nU_{U}^{N} U_{W}^{M} \\eta_{N M}-> \\eta_{U W}};\n\nrlharmT := {\\nabla_{M N}{Y^{\\Sigma}} -> - \\rho U_{M}^{S} U_{N}^{T} T_{S T}^{\\Sigma \\Omega} Y^{\\Omega},\n\\nabla_{S T}{Y^{\\Sigma}} -> - T_{S T}^{\\Sigma \\Omega} Y^{\\Omega}}.\nrlGamma := {\\nabla_{S T}{U_{M}^{U}} -> U_{M}^{V} \\Gamma_{S T V}^{U},\n\\nabla_{S T}{U_{U}^{M}} -> - \\Gamma_{S T U}^{V} U_{V}^{M},\n\\nabla_{S T}{\\rho} -> \\gamma \\rho \\Gamma_{U S T}^{U},\n\\nabla_{S T}{\\rho**{-1}} -> - \\gamma \\rho**{-1} \\Gamma_{U S T}^{U}}.\n#rlGamma := {\\partial_{R}{U_{M}^{S}} = U_{M}^{Q} \\Gamma_{R Q}^{S},\n#\\partial_{R}{U_{S}^{M}} -> - \\Gamma_{R S}^{Q} U_{Q}^{M},\n#\\partial_{R}{\\rho} -> -1/(D-1) \\rho \\Gamma_{S R}^{S}}.\n#rlgammatogammaadj := \\Gamma_{Q R}^{S} -> \\Gamma^{a}_{Q} t_{a R}^{S}.\n\nrlpartialindex := \\nabla_{M N}{A??} -> \\rho U_{M}^{S} U_{N}^{T} \\nabla_{S T}{A??}.\n\nrlpartialrho := {\\nabla_{S T}{\\rho**{2}}->2 \\rho \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{3}}->3 \\rho**{2} \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{4}}->3 \\rho**{3} \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{-1}}->- \\rho**{-2} \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{-2}}->-2 \\rho**{-3} \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{-3}}->-3 \\rho**{-4} \\nabla_{S T}{\\rho},\n\\nabla_{S T}{\\rho**{-4}}->-4 \\rho**{-5} \\nabla_{S T}{\\rho}}.\n"
+		},
+		{
+			"cell_id": 16519182837521464906,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 12327563628604945171,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "pr:= {\\nabla_{G? P?}{A?? B??} -> \\nabla_{G? P?}{A??} B?? \n\t\t+ A?? \\nabla_{G? P?}{B??},\n\\nabla_{G? P?}{A?? B?? C??} -> \\nabla_{G? P?}{A??} B?? C??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? + A?? B?? \\nabla_{G? P?}{C??},\n\\nabla_{G? P?}{A?? B?? C?? D??} -> \\nabla_{G? P?}{A??} B?? C?? D??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? + A?? B?? \\nabla_{G? P?}{C??} D?? +A?? B?? C?? \\nabla_{G? P?}{D??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E?? F??} -> \\nabla_{G? P?}{A??} B?? C?? D?? E?? F??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? E?? F?? + A?? B?? \\nabla_{G? P?}{C??} D?? E?? F??+\n\t\t+ A?? B?? C?? \\nabla_{G? P?}{D??} E?? F??+ A?? B?? C?? D?? \\nabla_{G? P?}{E??} F??+ A?? B?? C?? D?? E?? \\nabla_{G? P?}{F??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E??} -> \\nabla_{G? P?}{A??} B?? C?? D?? E??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? E?? + A?? B?? \\nabla_{G? P?}{C??} D?? E??+\n\t\t+ A?? B?? C?? \\nabla_{G? P?}{D??} E??+ A?? B?? C?? D?? \\nabla_{G? P?}{E??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E?? F?? G??} -> \\nabla_{G? P?}{A??} B?? C?? D?? E?? F?? G??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? E?? F?? G?? + A?? B?? \\nabla_{G? P?}{C??} D?? E?? F?? G??\n\t\t+ A?? B?? C?? \\nabla_{G? P?}{D??} E?? F?? G?? + A?? B?? C?? D?? \\nabla_{G? P?}{E??} F?? G?? \n\t\t+ A?? B?? C?? D?? E?? \\nabla_{G? P?}{F??} G?? + A?? B?? C?? D?? E?? F?? \\nabla_{G? P?}{G??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H??} -> \\nabla_{G? P?}{A??} B?? C?? D?? E?? F?? G?? H??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? E?? F?? G?? H?? + A?? B?? \\nabla_{G? P?}{C??} D?? E?? F?? G?? H??\n\t\t+ A?? B?? C?? \\nabla_{G? P?}{D??} E?? F?? G?? H?? + A?? B?? C?? D?? \\nabla_{G? P?}{E??} F?? G?? H?? \n\t\t+ A?? B?? C?? D?? E?? \\nabla_{G? P?}{F??} G?? H?? + A?? B?? C?? D?? E?? F?? \\nabla_{G? P?}{G??} H??\n\t\t+ A?? B?? C?? D?? E?? F?? G?? \\nabla_{G? P?}{H??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H?? I??} -> \\nabla_{G? P?}{A??} B?? C?? D?? E?? F?? G?? H?? I??\n\t\t+ A?? \\nabla_{G? P?}{B??} C?? D?? E?? F?? G?? H?? I?? + A?? B?? \\nabla_{G? P?}{C??} D?? E?? F?? G?? H?? I??\n\t\t+ A?? B?? C?? \\nabla_{G? P?}{D??} E?? F?? G?? H?? I?? + A?? B?? C?? D?? \\nabla_{G? P?}{E??} F?? G?? H?? I??\n\t\t+ A?? B?? C?? D?? E?? \\nabla_{G? P?}{F??} G?? H?? I?? + A?? B?? C?? D?? E?? F?? \\nabla_{G? P?}{G??} H?? I??\n\t\t+ A?? B?? C?? D?? E?? F?? G?? \\nabla_{G? P?}{H??} I?? + A?? B?? C?? D?? E?? F?? G?? H?? \\nabla_{G? P?}{I??},\n\\nabla_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H?? I?? L?? M?? N??}->\\nabla_{G? P?}{A??} B?? C?? D?? E?? G?? F?? H?? I?? L?? M?? N??+\n\t\tA?? \\nabla_{G? P?}{B??} C?? D?? E?? F?? G?? H?? I?? L?? M?? N??+\n\t\tA?? B?? \\nabla_{G? P?}{C??} D?? E?? F?? G?? H?? I?? L?? M?? N??+\n\t\tA?? B?? C?? \\nabla_{G? P?}{D??} E?? F?? G?? H?? I?? L?? M?? N??+\n\t\tA?? B?? C?? D?? \\nabla_{G? P?}{E??} F?? G?? H?? I?? L?? M?? N??+\n\t\tA?? B?? C?? D?? E?? \\nabla_{G? P?}{F??} G?? H?? I?? L?? M?? N??+\n\t\tA?? B?? C?? D?? E?? F?? \\nabla_{G? P?}{G??} H?? I?? L?? M?? N??+\n\t\tA?? B?? C?? D?? E?? F?? G?? \\nabla_{G? P?}{H??} I?? L?? M?? N??+\n\t\tA?? B?? C?? D?? E?? F?? G?? H?? \\nabla_{G? P?}{I??} L?? M?? N??+\n\t\tA?? B?? C?? D?? E?? F?? G?? H?? I?? \\nabla_{G? P?}{L??} M?? N??+\n\t\tA?? B?? C?? D?? E?? F?? G?? H?? I?? L?? \\nabla_{G? P?}{M??} N??+\n\t\tA?? B?? C?? D?? E?? F?? G?? H?? I?? L?? M?? \\nabla_{G? P?}{N??},\n\\nabla^{G? P?}{A?? B??} -> \\nabla^{G? P?}{A??} B?? \n\t\t+ A?? \\nabla^{G? P?}{B??},\n\\nabla^{G? P?}{A?? B?? C??} -> \\nabla^{G? P?}{A??} B?? C??\n\t\t+ A?? \\nabla^{G? P?}{B??} C?? + A?? B?? \\nabla^{G? P?}{C??},\n\\nabla^{G? P?}{A?? B?? C?? D??} -> \\nabla^{G? P?}{A??} B?? C?? D??\n\t\t+ A?? \\nabla^{G? P?}{B??} C?? D?? + A?? B?? \\nabla^{G? P?}{C??} D?? +A?? B?? C?? \\nabla^{G? P?}{D??},\n\\nabla^{G? P?}{A?? B?? C?? D?? E?? F??} -> \\nabla^{G? P?}{A??} B?? C?? D?? E?? F??\n\t\t+ A?? \\nabla^{G? P?}{B??} C?? D?? E?? F?? + A?? B?? \\nabla^{G? P?}{C??} D?? E?? F??+\n\t\t+ A?? B?? C?? \\nabla^{G? P?}{D??} E?? F??+ A?? B?? C?? D?? \\nabla^{G? P?}{E??} F??+ A?? B?? C?? D?? E?? \\nabla^{G? P?}{F??},\n\\nabla^{G? P?}{A?? B?? C?? D?? E??} -> \\nabla^{G? P?}{A??} B?? C?? D?? E??\n\t\t+ A?? \\nabla^{G? P?}{B??} C?? D?? E?? + A?? B?? \\nabla^{G? P?}{C??} D?? E??+\n\t\t+ A?? B?? C?? \\nabla^{G? P?}{D??} E??+ A?? B?? C?? D?? \\nabla^{G? P?}{E??}}.\nipp:={A??*\\partial_{K L}{\\epsilon{cM^{M N}}}*B??-> - \\partial_{K L}{A??*B??} \\epsilon{cM^{M N}},\nA??*\\partial_{K L}{\\epsilon{cM^{M N}}}-> - \\partial_{K L}{A??} \\epsilon{cM^{M N}},\n\\partial_{K L}{\\epsilon{cM^{M N}}}*A??-> - \\partial_{K L}{A??} \\epsilon{cM^{M N}}.\nnopartialdelta:={\\partial_{M N}{\\delta_{K? L?}}->0,\\partial_{M N}{\\delta^{K? L?}}->0}."
+		},
+		{
+			"cell_id": 6379429235958300960,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "A_{\\mu}^{S T \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA_{\\mu S T}^{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\n\nB_{\\mu}^{S T \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nB_{\\mu S T}^{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\n\n\\nabla_{S T}::TableauSymmetry(shape={1,1},indices={1,2}).\n\\nabla^{S T}::TableauSymmetry(shape={1,1},indices={1,2})."
+		},
+		{
+			"cell_id": 15841164070020104224,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### DM #####"
+		},
+		{
+			"cell_id": 12142492211056886699,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2350185304196794671,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 16800748778617797727,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D_{\\mu}(V_{M}^{T}) V_{N}^{S} \\delta_{S T} + D_{\\mu}(V_{N}^{S}) V_{M}^{T} \\delta_{S T}"
+						}
+					],
+					"source": "\\begin{dmath*}{}D_{\\mu}{V_{M}\\,^{T}} V_{N}\\,^{S} \\delta_{S T}+D_{\\mu}{V_{N}\\,^{S}} V_{M}\\,^{T} \\delta_{S T}\\end{dmath*}"
+				}
+			],
+			"source": "DM:= D_{\\mu}{V_{M}^{T}} V_{N}^{S} \\delta_{S T} + D_{\\mu}{V_{N}^{S}} V_{M}^{T} \\delta_{S T};"
+		},
+		{
+			"cell_id": 9838814562808593113,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DM,rlcovder_to_A)"
+		},
+		{
+			"cell_id": 4121498593392384918,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 14204333880078398828,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 18284020852227744449,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{V_{M}^{T} -> U_{M}^{S} (\\delta_{S}^{T} + \\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V S}^{T} +  1/2 \\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V S}^{Y} t_{W X Y}^{T}), V_{T}^{M} -> U_{S}^{M} (\\delta_{T}^{S}-\\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V T}^{S} +  1/2 \\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V T}^{Y} t_{W X Y}^{S})}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[V_{M}\\,^{T} \\rightarrow U_{M}\\,^{S} \\left(\\delta_{S}\\,^{T}+\\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V S}\\,^{T}+\\frac{1}{2}\\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V S}\\,^{Y} t_{W X Y}\\,^{T}\\right),~\\discretionary{}{}{} V_{T}\\,^{M} \\rightarrow U_{S}\\,^{M} \\left(\\delta_{T}\\,^{S}-\\phi^{U V \\Sigma} Y^{\\Sigma} t_{U V T}\\,^{S}+\\frac{1}{2}\\phi^{U V \\Sigma} \\phi^{W X \\Omega} Y^{\\Sigma} Y^{\\Omega} t_{U V T}\\,^{Y} t_{W X Y}\\,^{S}\\right)\\right]\\end{dmath*}"
+				}
+			],
+			"source": "rlV;"
+		},
+		{
+			"cell_id": 7504842086275131575,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DM,$A_{\\mu M N}->A_{\\mu}^{K L} \\eta_{M K} \\eta_{N L}$)\nsubstitute(DM,$B_{\\mu}^{M}_{N}->B_{\\mu K N} \\eta^{M K}$)\nsubstitute(DM,rlVj)\nsubstitute(DM,rlA)\nsubstitute(DM,rlB)\ndistribute(DM)\nunwrap(DM)\nsubstitute(DM,pr)\ndistribute(DM)\neliminate_kronecker(DM,repeat=True) "
+		},
+		{
+			"cell_id": 16161988110822093072,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 3340932668735069156,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}246\\end{verbatim}"
+				}
+			],
+			"source": "substitute(DM,$\\partial_{\\mu}{U{#}}->0$)\nsubstitute(DM,$\\partial_{\\mu}{\\delta{#}}->0$)\nsort_product(DM)\nrename_dummies(DM)\nlen(DM);"
+		},
+		{
+			"cell_id": 5264817204589517787,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DM,$\\partial_{\\mu}{\\phi^{S T \\Sigma} \\phi^{U V \\Delta}}->\\partial_{\\mu}{\\phi^{S T \\Sigma}} \\phi^{U V \\Delta}+\\partial_{\\mu}{\\phi^{U V \\Delta}} \\phi^{S T \\Sigma}}$)\nsubstitute(DM,rlUU,repeat=True)\neliminate_kronecker(DM) "
+		},
+		{
+			"cell_id": 3531787417160600509,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "for i in range(2):\n\tsubstitute(DM,rlnablaindex,repeat=True)\n\tsubstitute(DM,rldownnablaindices,repeat=True)\n\tsubstitute(DM,$\\nabla_{S T}{A{#}}->0$,repeat=True)\n\tsubstitute(DM,rlharmT,repeat=True)\n\tsubstitute(DM,rlGamma,repeat=True)\n\tdistribute(DM)\n\tsort_product(DM)\n\trename_dummies(DM)\n\tsubstitute(DM,rlUU,repeat=True)\n\teliminate_kronecker(DM)\n\tsort_product(DM)\n\trename_dummies(DM)\n\tsubstitute(DM,rlUU,repeat=True)\n\teliminate_kronecker(DM)\n\tsort_product(DM)\n\trename_dummies(DM)"
+		},
+		{
+			"cell_id": 13176790220545951174,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DM,${\\eta_{M? N?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(DM,${\\eta_{N? M?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(DM,${\\eta_{M? N?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\nsubstitute(DM,${\\eta_{N? M?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\neliminate_kronecker(DM,repeat=True)"
+		},
+		{
+			"cell_id": 5085814908185423940,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "collect_factors(DM)\nsort_product(DM)\nrename_dummies(DM)\nsubstitute(DM,$U_{N}^{U} U^{N W}-> \\eta^{U W}$)\nsubstitute(DM,$U_{M T}->U_{M}^{S} \\eta_{S T}$)\nsubstitute(DM,$U_{V M}->U_{V}^{N} \\eta_{M N}$)\nsort_product(DM)\nrename_dummies(DM)\nsubstitute(DM,rlUU)\neliminate_kronecker(DM,repeat=True)\nsort_product(DM)\nrename_dummies(DM)\nsubstitute(DM,rlUetaU)"
+		},
+		{
+			"cell_id": 17874587672878752018,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "collect_factors(DM)\nsort_product(DM)\nrename_dummies(DM)"
+		},
+		{
+			"cell_id": 3983074050489154875,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 3310124322705788595,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 15379276582860681632,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "U_{M}^{S} U_{N}^{T} Y^{\\Sigma} \\delta_{T U} \\partial_{\\mu}(j_{S}^{U \\Sigma}) + A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{S T U}^{W} \\delta_{V W}-2A_{\\mu}^{S T \\Sigma} U_{T}^{K} U_{N}^{U} Y^{\\Sigma} \\Gamma_{V S W}^{V} \\delta_{U S1} \\eta^{S1 W} \\eta_{M K}-2A_{\\mu}^{S T \\Sigma} U_{T}^{K} U_{N}^{U} Y^{\\Sigma} \\Gamma_{V W S}^{V} \\delta_{U S1} \\eta^{S1 W} \\eta_{M K}-2A_{\\mu}^{S T \\Sigma} U_{U}^{K} U_{N}^{V} Y^{\\Sigma} \\Gamma_{S W T}^{U} \\delta_{V S1} \\eta^{S1 W} \\eta_{M K}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{N}^{V} Y^{\\Omega} \\delta_{V W} \\eta^{W U} \\eta_{M K} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{W S U}^{W} \\delta_{V T} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{W U S}^{W} \\delta_{V T} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{S U T}^{W} \\delta_{V W} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{U} U_{N}^{V} Y^{\\Omega} \\delta_{V T} + A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} \\eta^{S2 W} \\eta_{S1 T} \\rho \\rho^{-1} Y^{\\Sigma} \\Gamma_{W U S}^{S1} \\delta_{V S2} + U_{M}^{S} U_{N}^{T} Y^{\\Sigma} \\delta_{U S} \\partial_{\\mu}(j_{T}^{U \\Sigma}) + A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{S T V}^{W} \\delta_{W U}-2A_{\\mu}^{S T \\Sigma} U_{T}^{K} U_{M}^{U} Y^{\\Sigma} \\Gamma_{V S W}^{V} \\delta_{S1 U} \\eta^{S1 W} \\eta_{N K}-2A_{\\mu}^{S T \\Sigma} U_{T}^{K} U_{M}^{U} Y^{\\Sigma} \\Gamma_{V W S}^{V} \\delta_{S1 U} \\eta^{S1 W} \\eta_{N K}-2A_{\\mu}^{S T \\Sigma} U_{U}^{K} U_{M}^{V} Y^{\\Sigma} \\Gamma_{S W T}^{U} \\delta_{S1 V} \\eta^{S1 W} \\eta_{N K}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{M}^{V} Y^{\\Omega} \\delta_{W V} \\eta^{W U} \\eta_{N K} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{W S V}^{W} \\delta_{T U} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{W V S}^{W} \\delta_{T U} + 2A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\delta_{W U} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{V} U_{N}^{U} Y^{\\Omega} \\delta_{T V} + A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} \\eta^{S2 W} \\eta_{S1 T} \\rho \\rho^{-1} Y^{\\Sigma} \\Gamma_{W V S}^{S1} \\delta_{S2 U}"
+						}
+					],
+					"source": "\\begin{dmath*}{}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} \\delta_{T U} \\partial_{\\mu}{j_{S}\\,^{U \\Sigma}}+A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{S T U}\\,^{W} \\delta_{V W}-2A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{K} U_{N}\\,^{U} Y^{\\Sigma} \\Gamma_{V S W}\\,^{V} \\delta_{U {S_{1}}} \\eta^{{S_{1}} W} \\eta_{M K}-2A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{K} U_{N}\\,^{U} Y^{\\Sigma} \\Gamma_{V W S}\\,^{V} \\delta_{U {S_{1}}} \\eta^{{S_{1}} W} \\eta_{M K}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{K} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{S W T}\\,^{U} \\delta_{V {S_{1}}} \\eta^{{S_{1}} W} \\eta_{M K}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{N}\\,^{V} Y^{\\Omega} \\delta_{V W} \\eta^{W U} \\eta_{M K}+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{W S U}\\,^{W} \\delta_{V T}+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{W U S}\\,^{W} \\delta_{V T}+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{S U T}\\,^{W} \\delta_{V W}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} \\delta_{V T}+A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} \\eta^{{S_{2}} W} \\eta_{{S_{1}} T} \\rho \\rho^{-1} Y^{\\Sigma} \\Gamma_{W U S}\\,^{{S_{1}}} \\delta_{V {S_{2}}}+U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} \\delta_{U S} \\partial_{\\mu}{j_{T}\\,^{U \\Sigma}}+A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{S T V}\\,^{W} \\delta_{W U}-2A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{K} U_{M}\\,^{U} Y^{\\Sigma} \\Gamma_{V S W}\\,^{V} \\delta_{{S_{1}} U} \\eta^{{S_{1}} W} \\eta_{N K}-2A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{K} U_{M}\\,^{U} Y^{\\Sigma} \\Gamma_{V W S}\\,^{V} \\delta_{{S_{1}} U} \\eta^{{S_{1}} W} \\eta_{N K}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{K} U_{M}\\,^{V} Y^{\\Sigma} \\Gamma_{S W T}\\,^{U} \\delta_{{S_{1}} V} \\eta^{{S_{1}} W} \\eta_{N K}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{M}\\,^{V} Y^{\\Omega} \\delta_{W V} \\eta^{W U} \\eta_{N K}+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{W S V}\\,^{W} \\delta_{T U}+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{W V S}\\,^{W} \\delta_{T U}%\n+2A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\delta_{W U}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} U_{N}\\,^{U} Y^{\\Omega} \\delta_{T V}+A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} \\eta^{{S_{2}} W} \\eta_{{S_{1}} T} \\rho \\rho^{-1} Y^{\\Sigma} \\Gamma_{W V S}\\,^{{S_{1}}} \\delta_{{S_{2}} U}\\end{dmath*}"
+				}
+			],
+			"source": "DM1 := @(DM).\nkeep_weight(DM1,$field=1$)\nsubstitute(DM1,$\\gamma->1$)\nsort_product(DM1)\nrename_dummies(DM1)\nmeld(DM1)\ncollect_factors(DM1)\ncollect_terms(DM1); "
+		},
+		{
+			"cell_id": 5846891837096276011,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13199322279351031188,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10904457823556299883,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "U_{M}^{S} U_{N}^{T} Y^{\\Sigma} \\delta_{T U} \\partial_{\\mu}(j_{S}^{U \\Sigma})-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{N}^{V} Y^{\\Omega} \\delta_{V W} \\eta^{W U} \\eta_{M K} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{U} U_{N}^{V} Y^{\\Omega} \\delta_{V T} + U_{M}^{S} U_{N}^{T} Y^{\\Sigma} \\delta_{U S} \\partial_{\\mu}(j_{T}^{U \\Sigma})-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{M}^{V} Y^{\\Omega} \\delta_{W V} \\eta^{W U} \\eta_{N K} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{V} U_{N}^{U} Y^{\\Omega} \\delta_{T V}"
+						}
+					],
+					"source": "\\begin{dmath*}{}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} \\delta_{T U} \\partial_{\\mu}{j_{S}\\,^{U \\Sigma}}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{N}\\,^{V} Y^{\\Omega} \\delta_{V W} \\eta^{W U} \\eta_{M K}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} \\delta_{V T}+U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} \\delta_{U S} \\partial_{\\mu}{j_{T}\\,^{U \\Sigma}}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{M}\\,^{V} Y^{\\Omega} \\delta_{W V} \\eta^{W U} \\eta_{N K}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} U_{N}\\,^{U} Y^{\\Omega} \\delta_{T V}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(DM1,$\\Gamma{#}->0$);"
+		},
+		{
+			"cell_id": 17957598251240396807,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "DM2 := @(DM).\nkeep_weight(DM2,$field=2$)\nsubstitute(DM2,$\\gamma->1$)\nsort_product(DM2)\nrename_dummies(DM2)\nmeld(DM2)\ncollect_factors(DM2)\ncollect_terms(DM2)"
+		},
+		{
+			"cell_id": 3550027012207932902,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 4019410803896729530,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11873867382027925168,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U V} \\partial_{\\mu}(j_{S}^{V \\Omega}) j_{T}^{U \\Sigma} +  1/2 U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{T U} \\partial_{\\mu}(j_{S}^{V \\Omega}) j_{V}^{U \\Sigma} +  1/2 U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{T U} \\partial_{\\mu}(j_{V}^{U \\Sigma}) j_{S}^{V \\Omega}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} U_{M}^{U} U_{N}^{V} Y^{\\Lambda} Y^{\\Sigma} \\delta_{V W} j_{U}^{W \\Omega}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{N}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W S1} \\eta^{S1 U} \\eta_{M K} j_{V}^{W \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{N}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{V W} \\eta^{S1 U} \\eta_{M K} j_{S1}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{U} U_{N}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W T} j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{U} U_{N}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{V W} j_{T}^{W \\Lambda} + U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U V} \\partial_{\\mu}(j_{T}^{U \\Omega}) j_{S}^{V \\Sigma} +  1/2 U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U S} \\partial_{\\mu}(j_{T}^{V \\Omega}) j_{V}^{U \\Sigma} +  1/2 U_{M}^{S} U_{N}^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U S} \\partial_{\\mu}(j_{V}^{U \\Sigma}) j_{T}^{V \\Omega}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} U_{M}^{U} U_{N}^{V} Y^{\\Lambda} Y^{\\Sigma} \\delta_{W U} j_{V}^{W \\Omega}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{M}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W S1} \\eta^{W U} \\eta_{N K} j_{V}^{S1 \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{K} U_{M}^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W V} \\eta^{S1 U} \\eta_{N K} j_{S1}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{V} U_{N}^{U} Y^{\\Lambda} Y^{\\Omega} \\delta_{T W} j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{M}^{V} U_{N}^{U} Y^{\\Lambda} Y^{\\Omega} \\delta_{W V} j_{T}^{W \\Lambda}"
+						}
+					],
+					"source": "\\begin{dmath*}{}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U V} \\partial_{\\mu}{j_{S}\\,^{V \\Omega}} j_{T}\\,^{U \\Sigma}+\\frac{1}{2}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{T U} \\partial_{\\mu}{j_{S}\\,^{V \\Omega}} j_{V}\\,^{U \\Sigma}+\\frac{1}{2}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{T U} \\partial_{\\mu}{j_{V}\\,^{U \\Sigma}} j_{S}\\,^{V \\Omega}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Sigma} \\delta_{V W} j_{U}\\,^{W \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W {S_{1}}} \\eta^{{S_{1}} U} \\eta_{M K} j_{V}\\,^{W \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{V W} \\eta^{{S_{1}} U} \\eta_{M K} j_{{S_{1}}}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W T} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{V W} j_{T}\\,^{W \\Lambda}+U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U V} \\partial_{\\mu}{j_{T}\\,^{U \\Omega}} j_{S}\\,^{V \\Sigma}+\\frac{1}{2}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U S} \\partial_{\\mu}{j_{T}\\,^{V \\Omega}} j_{V}\\,^{U \\Sigma}+\\frac{1}{2}U_{M}\\,^{S} U_{N}\\,^{T} Y^{\\Sigma} Y^{\\Omega} \\delta_{U S} \\partial_{\\mu}{j_{V}\\,^{U \\Sigma}} j_{T}\\,^{V \\Omega}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Lambda} Y^{\\Sigma} \\delta_{W U} j_{V}\\,^{W \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W {S_{1}}} \\eta^{W U} \\eta_{N K} j_{V}\\,^{{S_{1}} \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{K} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\delta_{W V} \\eta^{{S_{1}} U} \\eta_{N K} j_{{S_{1}}}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} U_{N}\\,^{U} Y^{\\Lambda} Y^{\\Omega} \\delta_{T W} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} U_{N}\\,^{U} Y^{\\Lambda} Y^{\\Omega} \\delta_{W V} j_{T}\\,^{W \\Lambda}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(DM2,$\\Gamma{#}->0$)\nproduct_rule(DM2)\ndistribute(DM2)\nsort_product(DM2)\nrename_dummies(DM2)\nmeld(DM2);"
+		},
+		{
+			"cell_id": 8230354007956843120,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 16346400865384457095,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15655134017520547073,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### DV #####"
+		},
+		{
+			"cell_id": 16426423408419756934,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8951625262062016993,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9547867662581139744,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D_{\\mu}(V_{M}^{T})"
+						}
+					],
+					"source": "\\begin{dmath*}{}D_{\\mu}\\left(V_{M}\\,^{T}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "DV:=D_{\\mu}{V_{M}^{T}};"
+		},
+		{
+			"cell_id": 17102821785530372295,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 5918159190560202795,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11187000000175160371,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\partial_{\\mu}(V_{M}^{T}) + A_{\\mu}^{K L} \\nabla_{K L}(V_{M}^{T}) + 2(\\nabla^{K N}(A_{\\mu K M})-\\nabla_{K M}(A_{\\mu}^{K N}) + 2B_{\\mu}^{N}_{M}) V_{N}^{T}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\partial_{\\mu}{V_{M}\\,^{T}}+A_{\\mu}\\,^{K L} \\nabla_{K L}{V_{M}\\,^{T}}+2\\left(\\nabla^{K N}{A_{\\mu K M}}-\\nabla_{K M}{A_{\\mu}\\,^{K N}}+2B_{\\mu}\\,^{N}\\,_{M}\\right) V_{N}\\,^{T}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(DV,rlcovder_to_A);"
+		},
+		{
+			"cell_id": 3963014362170412950,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DV,$A_{\\mu M N}->A_{\\mu}^{K L} \\eta_{M K} \\eta_{N L}$)\nsubstitute(DV,$B_{\\mu}^{M}_{N}->B_{\\mu K N} \\eta^{M K}$)\nsubstitute(DV,rlV)\nsubstitute(DV,rlA)\nsubstitute(DV,rlB)\ndistribute(DV)\nunwrap(DV)\nsubstitute(DV,pr)\ndistribute(DV)\neliminate_kronecker(DV,repeat=True)"
+		},
+		{
+			"cell_id": 4886093081514108218,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 7061979487089341533,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}41\\end{verbatim}"
+				}
+			],
+			"source": "substitute(DV,$\\partial_{\\mu}{U{#}}->0$)\nsubstitute(DV,$\\partial_{\\mu}{\\delta{#}}->0$)\nsort_product(DV)\nrename_dummies(DV)\nlen(DV);"
+		},
+		{
+			"cell_id": 2331096842486286409,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DV,$\\partial_{\\mu}{\\phi^{S T \\Sigma} \\phi^{U V \\Delta}}->\\partial_{\\mu}{\\phi^{S T \\Sigma}} \\phi^{U V \\Delta}+\\partial_{\\mu}{\\phi^{U V \\Delta}} \\phi^{S T \\Sigma}}$)\nsubstitute(DV,rlUU,repeat=True)\neliminate_kronecker(DV) "
+		},
+		{
+			"cell_id": 1050589069096284325,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DV,rlnablaindex,repeat=True)\nsubstitute(DV,rldownnablaindices,repeat=True)\nsubstitute(DV,$\\nabla_{S T}{A{#}}->0$,repeat=True)\nsubstitute(DV,rlharmT,repeat=True)\nsubstitute(DV,rlGamma,repeat=True)"
+		},
+		{
+			"cell_id": 11036807995967792324,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "distribute(DV)\nsort_product(DV)\nrename_dummies(DV)\nsubstitute(DV,rlUU,repeat=True)\neliminate_kronecker(DV)\nsort_product(DV)\nrename_dummies(DV)\nsubstitute(DV,rlUU,repeat=True)\neliminate_kronecker(DV)\nsort_product(DV)\nrename_dummies(DV)"
+		},
+		{
+			"cell_id": 1959457124547412220,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "  "
+		},
+		{
+			"cell_id": 883363977469834502,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(DV,${\\eta_{M? N?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(DV,${\\eta_{N? M?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(DV,${\\eta_{M? N?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\nsubstitute(DV,${\\eta_{N? M?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\neliminate_kronecker(DV,repeat=True)"
+		},
+		{
+			"cell_id": 15449466347397837800,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "collect_factors(DV)\nsort_product(DV)\nrename_dummies(DV)\nsubstitute(DV,$U_{N}^{U} U^{N W}-> \\eta^{U W}$)\nsubstitute(DV,$U_{M T}->U_{M}^{S} \\eta_{S T}$)\nsubstitute(DV,$U_{V M}->U_{V}^{N} \\eta_{M N}$)\nsort_product(DV)\nrename_dummies(DV)\nsubstitute(DV,rlUU)\neliminate_kronecker(DV,repeat=True)\nsort_product(DV)\nrename_dummies(DV)\nsubstitute(DV,rlUetaU)"
+		},
+		{
+			"cell_id": 13533624288979655183,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "collect_factors(DV)\nsort_product(DV)\nrename_dummies(DV)"
+		},
+		{
+			"cell_id": 18155618442093991597,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 9572668296694507669,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 6706511001425808493,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D_{\\mu}(V_{M}^{S} V_{N}^{T} \\delta_{T S})"
+						}
+					],
+					"source": "\\begin{dmath*}{}D_{\\mu}\\left(V_{M}\\,^{S} V_{N}\\,^{T} \\delta_{T S}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "DV1 := @(DV).\nkeep_weight(DV1,$field=1$)\nsubstitute(DV1,$\\gamma->1$)\nsort_product(DV1)\nrename_dummies(DV1)\nmeld(DV1)\ncollect_factors(DV1)\ncollect_terms(DV1);"
+		},
+		{
+			"cell_id": 6148316412439689051,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1022214332715961727,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 14052894677719006479,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D_{\\mu}(V_{M}^{S} V_{N}^{T} \\delta_{T S})"
+						}
+					],
+					"source": "\\begin{dmath*}{}D_{\\mu}\\left(V_{M}\\,^{S} V_{N}\\,^{T} \\delta_{T S}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "substitute(DV1,$\\Gamma{#} ->0$);"
+		},
+		{
+			"cell_id": 17369140539982089590,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11892108804204975658,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 2228372301340717276,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " 1/2 U_{M}^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}(\\phi^{U V \\Sigma}) \\phi^{W S1 \\Omega} t_{U V S}^{S2} t_{W S1 S2}^{T} +  1/2 U_{M}^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}(\\phi^{U V \\Omega}) \\phi^{W S1 \\Sigma} t_{U V S2}^{T} t_{W S1 S}^{S2} + A_{\\mu}^{S U \\Sigma} U_{M}^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{S U V}^{W} \\phi^{S1 S2 \\Omega} t_{S1 S2 W}^{T}-A_{\\mu}^{S U \\Sigma} T_{S U}^{\\Omega \\Lambda} U_{M}^{V} Y^{\\Lambda} Y^{\\Sigma} \\phi^{W S1 \\Omega} t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{S}^{N} U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}((\\rho)**(-1)) \\phi^{W S1 \\Omega} t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(U_{S}^{N}) U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{S}^{N} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(U_{U}^{K}) U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T} + 2U_{S}^{N} U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(A_{\\mu}^{S U \\Sigma}) \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T}-2A_{\\mu}^{S U \\Sigma} T_{S V}^{\\Sigma \\Omega} U_{U}^{N} Y^{\\Lambda} Y^{\\Omega} \\eta^{W V} \\eta_{M N} \\phi^{S1 S2 \\Lambda} t_{S1 S2 W}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{M}^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W S V}^{W} \\phi^{S1 S2 \\Omega} t_{S1 S2 U}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{M}^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W V S}^{W} \\phi^{S1 S2 \\Omega} t_{S1 S2 U}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{M}^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{S V U}^{W} \\phi^{S1 S2 \\Omega} t_{S1 S2 W}^{T} + 2A_{\\mu}^{S U \\Sigma} T_{S V}^{\\Sigma \\Omega} U_{M}^{V} Y^{\\Lambda} Y^{\\Omega} \\phi^{W S1 \\Lambda} t_{W S1 U}^{T} + A_{\\mu}^{S U \\Sigma} U_{M}^{V} \\eta^{S2 W} \\eta_{S1 U} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W V S}^{S1} \\phi^{S3 S4 \\Omega} t_{S3 S4 S2}^{T}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\frac{1}{2}U_{M}\\,^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}{\\phi^{U V \\Sigma}} \\phi^{W {S_{1}} \\Omega} t_{U V S}\\,^{{S_{2}}} t_{W {S_{1}} {S_{2}}}\\,^{T}+\\frac{1}{2}U_{M}\\,^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}{\\phi^{U V \\Omega}} \\phi^{W {S_{1}} \\Sigma} t_{U V {S_{2}}}\\,^{T} t_{W {S_{1}} S}\\,^{{S_{2}}}+A_{\\mu}\\,^{S U \\Sigma} U_{M}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{S U V}\\,^{W} \\phi^{{S_{1}} {S_{2}} \\Omega} t_{{S_{1}} {S_{2}} W}\\,^{T}-A_{\\mu}\\,^{S U \\Sigma} T_{S U}\\,^{\\Omega \\Lambda} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{S}\\,^{N} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{{\\rho}^{-1}} \\phi^{W {S_{1}} \\Omega} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{U_{S}\\,^{N}} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{S}\\,^{N} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{U_{U}\\,^{K}} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}+2U_{S}\\,^{N} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{A_{\\mu}\\,^{S U \\Sigma}} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}-2A_{\\mu}\\,^{S U \\Sigma} T_{S V}\\,^{\\Sigma \\Omega} U_{U}\\,^{N} Y^{\\Lambda} Y^{\\Omega} \\eta^{W V} \\eta_{M N} \\phi^{{S_{1}} {S_{2}} \\Lambda} t_{{S_{1}} {S_{2}} W}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{M}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W S V}\\,^{W} \\phi^{{S_{1}} {S_{2}} \\Omega} t_{{S_{1}} {S_{2}} U}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{M}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W V S}\\,^{W} \\phi^{{S_{1}} {S_{2}} \\Omega} t_{{S_{1}} {S_{2}} U}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{M}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{S V U}\\,^{W} \\phi^{{S_{1}} {S_{2}} \\Omega} t_{{S_{1}} {S_{2}} W}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} T_{S V}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\phi^{W {S_{1}} \\Lambda} t_{W {S_{1}} U}\\,^{T}+A_{\\mu}\\,^{S U \\Sigma} U_{M}\\,^{V} \\eta^{{S_{2}} W} \\eta_{{S_{1}} U} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Sigma} \\Gamma_{W V S}\\,^{{S_{1}}} \\phi^{{S_{3}} {S_{4}} \\Omega} t_{{S_{3}} {S_{4}} {S_{2}}}\\,^{T}\\end{dmath*}"
+				}
+			],
+			"source": "DV2 := @(DV).\nkeep_weight(DV2,$field=2$)\nsubstitute(DV2,$\\gamma->1$)\nsort_product(DV2)\nrename_dummies(DV2)\nmeld(DV2)\ncollect_factors(DV2)\ncollect_terms(DV2);"
+		},
+		{
+			"cell_id": 2603399284670989180,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2814295812891266416,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 5660637868463616405,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " 1/2 U_{M}^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}(\\phi^{U V \\Sigma}) \\phi^{W S1 \\Omega} t_{U V S}^{S2} t_{W S1 S2}^{T} +  1/2 U_{M}^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}(\\phi^{U V \\Omega}) \\phi^{W S1 \\Sigma} t_{U V S2}^{T} t_{W S1 S}^{S2}-A_{\\mu}^{S U \\Sigma} T_{S U}^{\\Omega \\Lambda} U_{M}^{V} Y^{\\Lambda} Y^{\\Sigma} \\phi^{W S1 \\Omega} t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{S}^{N} U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}((\\rho)**(-1)) \\phi^{W S1 \\Omega} t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(U_{S}^{N}) U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T} + 2A_{\\mu}^{S U \\Sigma} U_{S}^{N} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(U_{U}^{K}) U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T} + 2U_{S}^{N} U_{U}^{K} U_{L}^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}(A_{\\mu}^{S U \\Sigma}) \\phi^{W S1 \\Omega} (\\rho)**(-1) t_{W S1 V}^{T}-2A_{\\mu}^{S U \\Sigma} T_{S V}^{\\Sigma \\Omega} U_{U}^{N} Y^{\\Lambda} Y^{\\Omega} \\eta^{W V} \\eta_{M N} \\phi^{S1 S2 \\Lambda} t_{S1 S2 W}^{T} + 2A_{\\mu}^{S U \\Sigma} T_{S V}^{\\Sigma \\Omega} U_{M}^{V} Y^{\\Lambda} Y^{\\Omega} \\phi^{W S1 \\Lambda} t_{W S1 U}^{T}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\frac{1}{2}U_{M}\\,^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}{\\phi^{U V \\Sigma}} \\phi^{W {S_{1}} \\Omega} t_{U V S}\\,^{{S_{2}}} t_{W {S_{1}} {S_{2}}}\\,^{T}+\\frac{1}{2}U_{M}\\,^{S} Y^{\\Sigma} Y^{\\Omega} \\partial_{\\mu}{\\phi^{U V \\Omega}} \\phi^{W {S_{1}} \\Sigma} t_{U V {S_{2}}}\\,^{T} t_{W {S_{1}} S}\\,^{{S_{2}}}-A_{\\mu}\\,^{S U \\Sigma} T_{S U}\\,^{\\Omega \\Lambda} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{S}\\,^{N} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{{\\rho}^{-1}} \\phi^{W {S_{1}} \\Omega} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{U_{S}\\,^{N}} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} U_{S}\\,^{N} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{U_{U}\\,^{K}} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}+2U_{S}\\,^{N} U_{U}\\,^{K} U_{L}\\,^{V} Y^{\\Omega} Y^{\\Sigma} \\eta_{M K} \\eta^{L G} \\nabla_{N G}{A_{\\mu}\\,^{S U \\Sigma}} \\phi^{W {S_{1}} \\Omega} {\\rho}^{-1} t_{W {S_{1}} V}\\,^{T}-2A_{\\mu}\\,^{S U \\Sigma} T_{S V}\\,^{\\Sigma \\Omega} U_{U}\\,^{N} Y^{\\Lambda} Y^{\\Omega} \\eta^{W V} \\eta_{M N} \\phi^{{S_{1}} {S_{2}} \\Lambda} t_{{S_{1}} {S_{2}} W}\\,^{T}+2A_{\\mu}\\,^{S U \\Sigma} T_{S V}\\,^{\\Sigma \\Omega} U_{M}\\,^{V} Y^{\\Lambda} Y^{\\Omega} \\phi^{W {S_{1}} \\Lambda} t_{W {S_{1}} U}\\,^{T}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(DV2,$\\Gamma{#} ->0$);"
+		},
+		{
+			"cell_id": 14451556349716387089,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "### En utilisant le résultat de Camille, on a tout D_mu M_{MN} et D^\\mu M^{MN}"
+		},
+		{
+			"cell_id": 3485727323997445288,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 5199947959598698067,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9955092958476360104,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D_{\\mu}(M_{M N}) ->  1/2 (U_{M}^{S} U_{N}^{T} + U_{N}^{S} U_{M}^{T}) Y^{\\Sigma} (\\partial_{\\mu}(j_{S T}^{\\Sigma}) + 4A_{\\mu}^{U V \\Delta} \\Delta_{T}^{W} (\\Theta_{U V S W} \\delta^{\\Sigma \\Delta}-2\\eta_{U S} T_{W V}^{\\Delta \\Sigma} + 2\\eta_{U W} T_{S V}^{\\Delta \\Sigma}))"
+						}
+					],
+					"source": "\\begin{dmath*}{}D_{\\mu}{M_{M N}} \\rightarrow \\frac{1}{2}\\left(U_{M}\\,^{S} U_{N}\\,^{T}+U_{N}\\,^{S} U_{M}\\,^{T}\\right) Y^{\\Sigma} \\left(\\partial_{\\mu}{j_{S T}\\,^{\\Sigma}}+4A_{\\mu}\\,^{U V \\Delta} \\Delta_{T}\\,^{W} \\left(\\Theta_{U V S W} \\delta^{\\Sigma \\Delta}-2\\eta_{U S} T_{W V}\\,^{\\Delta \\Sigma}+2\\eta_{U W} T_{S V}\\,^{\\Delta \\Sigma}\\right)\\right)\\end{dmath*}"
+				},
+				{
+					"cell_id": 6585825092313336237,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 2778263578811522910,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "D^{\\mu}(M^{M N}) ->  1/2 \\eta^{M K} \\eta^{N L} (U_{K}^{S} U_{L}^{T} + U_{L}^{S} U_{K}^{T}) Y^{\\Sigma} (\\partial^{\\mu}(j_{S T}^{\\Sigma}) + 4A^{\\mu U V \\Delta} \\Delta_{T}^{W} (\\Theta_{U V S W} \\delta^{\\Sigma \\Delta}-2\\eta_{U S} T_{W V}^{\\Delta \\Sigma} + 2\\eta_{U W} T_{S V}^{\\Delta \\Sigma}))"
+						}
+					],
+					"source": "\\begin{dmath*}{}D^{\\mu}{M^{M N}} \\rightarrow \\frac{1}{2}\\eta^{M K} \\eta^{N L} \\left(U_{K}\\,^{S} U_{L}\\,^{T}+U_{L}\\,^{S} U_{K}\\,^{T}\\right) Y^{\\Sigma} \\left(\\partial^{\\mu}{j_{S T}\\,^{\\Sigma}}+4A^{\\mu U V \\Delta} \\Delta_{T}\\,^{W} \\left(\\Theta_{U V S W} \\delta^{\\Sigma \\Delta}-2\\eta_{U S} T_{W V}\\,^{\\Delta \\Sigma}+2\\eta_{U W} T_{S V}\\,^{\\Delta \\Sigma}\\right)\\right)\\end{dmath*}"
+				}
+			],
+			"source": "rlDmuMMNdown := D_{\\mu}{M_{M N}} -> 1/2*(U_{M}^{S} U_{N}^{T}+U_{N}^{S} U_{M}^{T}) * (Y^\\Sigma*(\\partial_{\\mu}{j_{S T}^{\\Sigma}} + 4 * A_{\\mu}^{U V \\Delta} * \\Delta_{T}^{W}*(\\Theta_{U V S W} * \\delta^{\\Sigma \\Delta} - 2 * (\\eta_{U S}*T_{W V}^{\\Delta \\Sigma}-\\eta_{U W}*T_{S V}^{\\Delta \\Sigma})\n+\\partial_{\\mu;\nrlDmuMMNup := D^{\\mu}{M^{M N}} -> \\eta^{M K} * \\eta^{N L} * 1/2*(U_{K}^{S} U_{L}^{T}+U_{L}^{S} U_{K}^{T}) * (Y^\\Sigma*(\\partial^{\\mu}{j_{S T}^{\\Sigma}} + 4 * A^{\\mu U V \\Delta} * \\Delta_{T}^{W}*(\\Theta_{U V S W} * \\delta^{\\Sigma \\Delta} - 2 * (\\eta_{U S}*T_{W V}^{\\Delta \\Sigma}-\\eta_{U W}*T_{S V}^{\\Delta \\Sigma}));\nrlUetaSO := U_{M}^{S} * U_{N}^{T} * \\eta^{M N} -> \\eta^{S T}."
+		},
+		{
+			"cell_id": 17348768611197902,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "Kin := D_{\\mu}{M_{M N}} * D^{\\mu}{M^{M N}}.\nsubstitute(Kin,rlDmuMMNdown)\nsubstitute(Kin,rlDmuMMNup)"
+		},
+		{
+			"cell_id": 11724883289916115551,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "distribute(Kin)"
+		},
+		{
+			"cell_id": 10878083158898300603,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "sort_product(Kin)\nrename_dummies(Kin)\nsubstitute(Kin,rlUetaSO)\nsort_product(Kin)\nrename_dummies(Kin)\nmeld(Kin)\nsort_product(Kin)\nrename_dummies(Kin)\nsubstitute(Kin,rlUetaSO)\nsort_product(Kin)\nrename_dummies(Kin)\nmeld(Kin)"
+		},
+		{
+			"cell_id": 13598095098736287997,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 16287866418439325425,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 13538653610807174657,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " 1/2 Y^{\\Sigma} Y^{\\Omega} \\eta^{S T} \\eta^{U V} \\partial_{\\mu}(j_{U S}^{\\Sigma}) \\partial^{\\mu}(j_{V T}^{\\Omega}) + 2A^{\\mu S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}^{V} \\Theta_{S T W V} \\delta^{\\Lambda \\Sigma} \\eta^{S1 W} \\eta^{S2 U} \\partial_{\\mu}(j_{S1 S2}^{\\Omega})-4A^{\\mu S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{U} \\eta^{W S1} \\eta^{S2 V} \\eta_{S S1} \\partial_{\\mu}(j_{W S2}^{\\Lambda}) + 4A^{\\mu S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{W} \\eta^{S1 U} \\eta^{S2 V} \\eta_{S W} \\partial_{\\mu}(j_{S1 S2}^{\\Lambda}) +  1/2 Y^{\\Sigma} Y^{\\Omega} \\eta^{S T} \\eta^{U V} \\partial_{\\mu}(j_{U S}^{\\Sigma}) \\partial^{\\mu}(j_{T V}^{\\Omega}) + 2A^{\\mu S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}^{V} \\Theta_{S T W V} \\delta^{\\Lambda \\Sigma} \\eta^{S1 U} \\eta^{S2 W} \\partial_{\\mu}(j_{S1 S2}^{\\Omega})-4A^{\\mu S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{U} \\eta^{W V} \\eta^{S1 S2} \\eta_{S S2} \\partial_{\\mu}(j_{W S1}^{\\Lambda}) + 4A^{\\mu S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{W} \\eta^{S1 V} \\eta^{S2 U} \\eta_{S W} \\partial_{\\mu}(j_{S1 S2}^{\\Lambda}) + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}^{V} \\Theta_{S T W V} \\delta^{\\Omega \\Sigma} \\eta^{W S1} \\eta^{U S2} \\partial^{\\mu}(j_{S1 S2}^{\\Lambda}) + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}^{V} \\Theta_{S T W V} \\delta^{\\Omega \\Sigma} \\eta^{W S1} \\eta^{U S2} \\partial^{\\mu}(j_{S2 S1}^{\\Lambda})-4A_{\\mu}^{S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{U} \\eta^{W S1} \\eta^{V S2} \\eta_{S W} \\partial^{\\mu}(j_{S1 S2}^{\\Lambda})-4A_{\\mu}^{S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{U} \\eta^{W S1} \\eta^{V S2} \\eta_{S W} \\partial^{\\mu}(j_{S2 S1}^{\\Lambda}) + 4A_{\\mu}^{S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{W} \\eta^{U S1} \\eta^{V S2} \\eta_{S W} \\partial^{\\mu}(j_{S1 S2}^{\\Lambda}) + 4A_{\\mu}^{S T \\Sigma} T_{U T}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}^{W} \\eta^{U S1} \\eta^{V S2} \\eta_{S W} \\partial^{\\mu}(j_{S2 S1}^{\\Lambda})"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} \\eta^{S T} \\eta^{U V} \\partial_{\\mu}{j_{U S}\\,^{\\Sigma}} \\partial^{\\mu}{j_{V T}\\,^{\\Omega}}+2A^{\\mu S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}\\,^{V} \\Theta_{S T W V} \\delta^{\\Lambda \\Sigma} \\eta^{{S_{1}} W} \\eta^{{S_{2}} U} \\partial_{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Omega}}-4A^{\\mu S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{U} \\eta^{W {S_{1}}} \\eta^{{S_{2}} V} \\eta_{S {S_{1}}} \\partial_{\\mu}{j_{W {S_{2}}}\\,^{\\Lambda}}+4A^{\\mu S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{W} \\eta^{{S_{1}} U} \\eta^{{S_{2}} V} \\eta_{S W} \\partial_{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Lambda}}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} \\eta^{S T} \\eta^{U V} \\partial_{\\mu}{j_{U S}\\,^{\\Sigma}} \\partial^{\\mu}{j_{T V}\\,^{\\Omega}}+2A^{\\mu S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}\\,^{V} \\Theta_{S T W V} \\delta^{\\Lambda \\Sigma} \\eta^{{S_{1}} U} \\eta^{{S_{2}} W} \\partial_{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Omega}}-4A^{\\mu S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{U} \\eta^{W V} \\eta^{{S_{1}} {S_{2}}} \\eta_{S {S_{2}}} \\partial_{\\mu}{j_{W {S_{1}}}\\,^{\\Lambda}}+4A^{\\mu S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{W} \\eta^{{S_{1}} V} \\eta^{{S_{2}} U} \\eta_{S W} \\partial_{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Lambda}}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}\\,^{V} \\Theta_{S T W V} \\delta^{\\Omega \\Sigma} \\eta^{W {S_{1}}} \\eta^{U {S_{2}}} \\partial^{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Lambda}}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\Delta_{U}\\,^{V} \\Theta_{S T W V} \\delta^{\\Omega \\Sigma} \\eta^{W {S_{1}}} \\eta^{U {S_{2}}} \\partial^{\\mu}{j_{{S_{2}} {S_{1}}}\\,^{\\Lambda}}-4A_{\\mu}\\,^{S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{U} \\eta^{W {S_{1}}} \\eta^{V {S_{2}}} \\eta_{S W} \\partial^{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Lambda}}-4A_{\\mu}\\,^{S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{U} \\eta^{W {S_{1}}} \\eta^{V {S_{2}}} \\eta_{S W} \\partial^{\\mu}{j_{{S_{2}} {S_{1}}}\\,^{\\Lambda}}+4A_{\\mu}\\,^{S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{W} \\eta^{U {S_{1}}} \\eta^{V {S_{2}}} \\eta_{S W} \\partial^{\\mu}{j_{{S_{1}} {S_{2}}}\\,^{\\Lambda}}+4A_{\\mu}\\,^{S T \\Sigma} T_{U T}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Omega} \\Delta_{V}\\,^{W} \\eta^{U {S_{1}}} \\eta^{V {S_{2}}} \\eta_{S W} \\partial^{\\mu}{j_{{S_{2}} {S_{1}}}\\,^{\\Lambda}}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(Kin,$A{#}*A{#}->0$);"
+		},
+		{
+			"cell_id": 1137934440077816448,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 8106659348505122908,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 5447220557285670382,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 6570698346883141366,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 14379786619728392207,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 2816898525149511799,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 8981118597873016911,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 3888305663137935755,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 9238120112554506384,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 7322183795016474232,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 13746709888010982837,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 12559101538174956699,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 1668477593382646617,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 13167945839817629528,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 16321126940391838929,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 8136961485009097264,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 17811206524906367756,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 5076691070336821590,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 11160472904396072829,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 13168428004269391931,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 14389163392311361506,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "####################################################### Computation of RHS #######################################################"
+		},
+		{
+			"cell_id": 9113539920181746005,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 9568928095603315858,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9967466579452184764,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\eta^{\\mu \\nu} V_{S}^{M} (\\partial_{\\mu}(V_{M}^{T}) + A_{\\mu}^{K L} \\nabla_{K L}(V_{M}^{T}) + 2(\\nabla^{K G}(A_{\\mu K M})-\\nabla_{K M}(A_{\\mu}^{K G}) + 2B_{\\mu}^{G}_{M}) V_{G}^{T}) V_{T}^{N} (\\partial_{\\nu}(V_{N}^{S}) + A_{\\nu}^{P Q} \\nabla_{P Q}(V_{N}^{S}) + 2(\\nabla^{P R}(A_{\\nu P N})-\\nabla_{P N}(A_{\\nu}^{P R}) + 2B_{\\nu}^{R}_{N}) V_{R}^{S})"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\eta^{\\mu \\nu} V_{S}\\,^{M} \\left(\\partial_{\\mu}{V_{M}\\,^{T}}+A_{\\mu}\\,^{K L} \\nabla_{K L}{V_{M}\\,^{T}}+2\\left(\\nabla^{K G}{A_{\\mu K M}}-\\nabla_{K M}{A_{\\mu}\\,^{K G}}+2B_{\\mu}\\,^{G}\\,_{M}\\right) V_{G}\\,^{T}\\right) V_{T}\\,^{N} \\left(\\partial_{\\nu}{V_{N}\\,^{S}}+A_{\\nu}\\,^{P Q} \\nabla_{P Q}{V_{N}\\,^{S}}+2\\left(\\nabla^{P R}{A_{\\nu P N}}-\\nabla_{P N}{A_{\\nu}\\,^{P R}}+2B_{\\nu}\\,^{R}\\,_{N}\\right) V_{R}\\,^{S}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "PmuPmu := \\eta^{\\mu \\nu} V_{S}^{M} D_{\\mu}{V_{M}^{T}} V_{T}^{N} D_{\\nu}{V_{N}^{S}}.\nsubstitute(PmuPmu,rlcovder_to_A);"
+		},
+		{
+			"cell_id": 18062932294756050031,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,$A_{\\mu M N}->A_{\\mu}^{K L} \\eta_{M K} \\eta_{N L}$)\nsubstitute(PmuPmu,$B_{\\mu}^{M}_{N}->B_{\\mu K N} \\eta^{M K}$)"
+		},
+		{
+			"cell_id": 8289320744974349857,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,rlVj)\nsubstitute(PmuPmu,rlA)\nsubstitute(PmuPmu,rlB)\ndistribute(PmuPmu)\nunwrap(PmuPmu)\nsubstitute(PmuPmu,pr)\ndistribute(PmuPmu)\neliminate_kronecker(PmuPmu,repeat=True)"
+		},
+		{
+			"cell_id": 10889954655064887068,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,$\\partial_{\\mu}{U{#}}->0$)"
+		},
+		{
+			"cell_id": 7205492544619697851,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,$\\partial_{\\mu}{\\delta{#}}->0$)"
+		},
+		{
+			"cell_id": 12779244977931786264,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "keep_weight(PmuPmu,$field=3$)"
+		},
+		{
+			"cell_id": 3139059003677220070,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 15719984389590544179,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}702\\end{verbatim}"
+				}
+			],
+			"source": "len(PmuPmu);"
+		},
+		{
+			"cell_id": 667339979205939387,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 12527253669393660493,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}382\\end{verbatim}"
+				}
+			],
+			"source": "sort_product(PmuPmu)\nrename_dummies(PmuPmu)\nlen(PmuPmu);"
+		},
+		{
+			"cell_id": 11333499219576347484,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 7607763986453779541,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,$A{#}*A{#}->0$)"
+		},
+		{
+			"cell_id": 471541817121310490,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13179581535417574274,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}162\\end{verbatim}"
+				}
+			],
+			"source": "len(PmuPmu);"
+		},
+		{
+			"cell_id": 647023691177115808,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#substitute(PmuPmu,$\\partial_{\\mu}{\\phi^{S T \\Sigma} \\phi^{U V \\Delta}}->\\partial_{\\mu}{\\phi^{S T \\Sigma}} \\phi^{U V \\Delta}+\\partial_{\\mu}{\\phi^{U V \\Delta}} \\phi^{S T \\Sigma}}$)\nsubstitute(PmuPmu,$\\partial_{\\mu}{j_{S}^{T \\Sigma} j_{U}^{V \\Delta}}->\\partial_{\\mu}{j_{S}^{T \\Sigma}} j_{U}^{V \\Delta}+\\partial_{\\mu}{j_{U}^{V \\Delta}} j_{S}^{T \\Sigma}}$)"
+		},
+		{
+			"cell_id": 2497508402010443259,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "# 2 fois "
+		},
+		{
+			"cell_id": 8893746147082946817,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,rlUU,repeat=True)\neliminate_kronecker(PmuPmu) "
+		},
+		{
+			"cell_id": 715396405347530239,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 17803943690384978795,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(PmuPmu,rlnablaindex,repeat=True)\nsubstitute(PmuPmu,rldownnablaindices,repeat=True)\nsubstitute(PmuPmu,$\\nabla_{S T}{A{#}}->0$,repeat=True)\nsubstitute(PmuPmu,rlharmT,repeat=True)\nsubstitute(PmuPmu,rlGamma,repeat=True)"
+		},
+		{
+			"cell_id": 588698969212017926,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "distribute(PmuPmu)\nsort_product(PmuPmu)\nrename_dummies(PmuPmu)\nsubstitute(PmuPmu,rlUU,repeat=True)\neliminate_kronecker(PmuPmu)\nsort_product(PmuPmu)\nrename_dummies(PmuPmu)\nsubstitute(PmuPmu,rlUU,repeat=True)\neliminate_kronecker(PmuPmu)\nsort_product(PmuPmu)\nrename_dummies(PmuPmu)"
+		},
+		{
+			"cell_id": 5441967496104814344,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#eliminate_metric(PmuPmu,repeat=True)\nsubstitute(PmuPmu,${\\eta_{M? N?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(PmuPmu,${\\eta_{N? M?} \\eta^{M? K?}->\\delta_{N?}^{K?}$)\nsubstitute(PmuPmu,${\\eta_{M? N?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\nsubstitute(PmuPmu,${\\eta_{N? M?} \\eta^{K? M?}->\\delta_{N?}^{K?}$)\neliminate_kronecker(PmuPmu,repeat=True)"
+		},
+		{
+			"cell_id": 16681967747316893397,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "sort_product(PmuPmu)\nrename_dummies(PmuPmu) "
+		},
+		{
+			"cell_id": 14654263416586310810,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "# jusque là "
+		},
+		{
+			"cell_id": 3038673200466590692,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15472056415351999142,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8669344107505854542,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 16004162688192723642,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 13929169642902553083,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{T}^{U \\Lambda}) j_{U}^{S \\Omega} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{U}^{S \\Omega}) j_{T}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\partial_{\\nu}(j_{U}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Omega}-2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda}-2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta} + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta} + A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Omega} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Omega}) \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\eta^{M N} j_{U}^{S2 \\Lambda} -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{U}^{S \\Lambda}) j_{T}^{U \\Omega} -  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Omega}) (\\rho)**(-1) j_{W}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} U_{K}^{V} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{K L} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{V}^{S2 \\Omega}) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Omega}) (\\rho)**(-1) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Omega}) (\\rho)**(-1) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Lambda}) (\\rho)**(-1) j_{S1}^{V \\Delta}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{T}^{W \\Omega}) j_{W}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Omega}) (\\rho)**(-1) j_{W}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Omega}) (\\rho)**(-1) j_{W}^{U \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Lambda}) (\\rho)**(-1) j_{V}^{U \\Delta} -  1/2 A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{U}^{S2 \\Omega}) \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{S2}^{W \\Lambda} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Omega}) \\partial_{\\nu}(j_{T}^{U \\Lambda}) j_{U}^{S \\Sigma} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Lambda}) (\\rho)**(-1) j_{V}^{W \\Omega}-A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} U_{K}^{V} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{K L} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) j_{V}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) (\\rho)**(-1) j_{W}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) (\\rho)**(-1) j_{S1}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Delta}) (\\rho)**(-1) j_{W}^{S1 \\Lambda} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{W}^{V \\Lambda}) j_{T}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Lambda}) (\\rho)**(-1) j_{T}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Lambda}) (\\rho)**(-1) j_{V}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Delta}) (\\rho)**(-1) j_{T}^{V \\Lambda} +  1/2 A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Lambda}) \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{U}^{S2 \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Lambda} \\partial_{\\nu}(j_{U}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} U_{K}^{V} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{K L} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) j_{V}^{S2 \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} U_{K}^{V} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{K L} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{V}^{S2 \\Lambda}) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Delta}) (\\rho)**(-1) j_{S1}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) j_{W}^{V \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) j_{T}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{V \\Omega} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta} +  1/2 A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\eta^{M N} \\partial_{\\nu}(j_{U}^{S2 \\Lambda}) j_{S2}^{W \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\eta^{M N} \\partial_{\\nu}(j_{S2}^{W \\Omega}) j_{U}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta}-A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Omega}) \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{U}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{T}^{K} U_{L}^{W} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{N}^{V} U_{W}^{K} U_{L}^{S1} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} U_{K}^{U} U_{L}^{W} Y^{\\Lambda} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Delta}) (\\rho)**(-1) j_{S1}^{V \\Lambda}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{V \\Omega}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Lambda}-A_{\\mu}^{S T \\Sigma} U_{M}^{U} U_{N}^{V} Y^{\\Omega} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\eta^{M N} \\partial_{\\nu}(j_{U}^{S2 \\Lambda}) j_{S2}^{W \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{T}\\,^{U \\Lambda}} j_{U}\\,^{S \\Omega}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{U}\\,^{S \\Omega}} j_{T}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\partial_{\\nu}{j_{U}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}+A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\eta^{M N} j_{U}\\,^{{S_{2}} \\Lambda} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{U}\\,^{S \\Lambda}} j_{T}\\,^{U \\Omega} - \\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} U_{K}\\,^{V} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{K L} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{V}\\,^{{S_{2}} \\Omega}} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Omega}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Omega}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Lambda}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Delta}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Omega}} j_{W}\\,^{V \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{V \\Lambda}%\n-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{U \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Lambda}} {\\rho}^{-1} j_{V}\\,^{U \\Delta} - \\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Omega}} \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{{S_{2}}}\\,^{W \\Lambda}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Omega}} \\partial_{\\nu}{j_{T}\\,^{U \\Lambda}} j_{U}\\,^{S \\Sigma}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Lambda}} {\\rho}^{-1} j_{V}\\,^{W \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} U_{K}\\,^{V} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{K L} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} j_{V}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Delta}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Lambda}} j_{T}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Lambda}} {\\rho}^{-1} j_{T}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Lambda}} {\\rho}^{-1} j_{V}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Delta}} {\\rho}^{-1} j_{T}\\,^{V \\Lambda}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Lambda}} \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{U}\\,^{{S_{2}} \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Lambda} \\partial_{\\nu}{j_{U}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} U_{K}\\,^{V} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{K L} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} j_{V}\\,^{{S_{2}} \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} U_{K}\\,^{V} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{K L} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{V}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}%\n-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Delta}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} j_{W}\\,^{V \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} j_{T}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{V \\Omega}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\eta^{M N} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{W \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\eta^{M N} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} j_{U}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}%\n-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}-A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} \\rho^{-1} Y^{\\Sigma} \\eta^{M N} j_{U}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{T}\\,^{K} U_{L}\\,^{W} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{N}\\,^{V} U_{W}\\,^{K} U_{L}\\,^{{S_{1}}} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\eta^{L N} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} U_{K}\\,^{U} U_{L}\\,^{W} Y^{\\Lambda} \\eta^{\\mu \\nu} \\eta_{N M} \\eta^{L K} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Delta}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{V \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} U_{M}\\,^{U} U_{N}\\,^{V} Y^{\\Omega} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\eta^{M N} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{W \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(PmuPmu,$U_{N}^{U} U^{N W}-> \\eta^{U W}$)\nsubstitute(PmuPmu,$U_{M T}->U_{M}^{S} \\eta_{S T}$)\nsubstitute(PmuPmu,$U_{V M}->U_{V}^{N} \\eta_{M N}$)\nsort_product(PmuPmu)\nrename_dummies(PmuPmu)\nsubstitute(PmuPmu,rlUU)\neliminate_kronecker(PmuPmu,repeat=True)\nsort_product(PmuPmu)\nrename_dummies(PmuPmu);"
+		},
+		{
+			"cell_id": 17209581790488423313,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1581584194560098556,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 5106309783086589382,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{T}^{U \\Lambda}) j_{U}^{S \\Omega} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{U}^{S \\Omega}) j_{T}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\partial_{\\nu}(j_{U}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Omega}-2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda}-2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta} + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta} + A_{\\mu}^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Omega}) \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} j_{U}^{S2 \\Lambda} -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Sigma}) \\partial_{\\nu}(j_{U}^{S \\Lambda}) j_{T}^{U \\Omega} -  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Omega}) (\\rho)**(-1) j_{W}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{V}^{S2 \\Omega}) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Omega}) (\\rho)**(-1) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Omega}) (\\rho)**(-1) j_{S2}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Lambda}) (\\rho)**(-1) j_{S1}^{V \\Delta}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{T}^{W \\Omega}) j_{W}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Omega}) (\\rho)**(-1) j_{W}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Omega}) (\\rho)**(-1) j_{W}^{U \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Lambda}) (\\rho)**(-1) j_{V}^{U \\Delta} -  1/2 A_{\\mu}^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{U}^{S2 \\Omega}) \\rho^{-1} Y^{\\Sigma} j_{S2}^{W \\Lambda} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}(j_{S}^{T \\Omega}) \\partial_{\\nu}(j_{T}^{U \\Lambda}) j_{U}^{S \\Sigma} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Lambda}) (\\rho)**(-1) j_{V}^{W \\Omega}-A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) j_{V}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) (\\rho)**(-1) j_{W}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Lambda}) (\\rho)**(-1) j_{S1}^{S2 \\Omega}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Delta}) (\\rho)**(-1) j_{W}^{S1 \\Lambda} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{W}^{V \\Lambda}) j_{T}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Lambda}) (\\rho)**(-1) j_{T}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Lambda}) (\\rho)**(-1) j_{V}^{W \\Omega} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Delta}) (\\rho)**(-1) j_{T}^{V \\Lambda} +  1/2 A_{\\mu}^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Lambda}) \\rho^{-1} Y^{\\Sigma} j_{U}^{S2 \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Lambda} \\partial_{\\nu}(j_{U}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) j_{V}^{S2 \\Lambda} + A_{\\mu}^{S T \\Sigma} U_{T}^{M} U_{U}^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\gamma (\\rho)**(-1) \\rho \\Gamma_{S1 S W}^{S1} \\partial_{\\nu}(j_{V}^{S2 \\Lambda}) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega}-A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Delta}) (\\rho)**(-1) j_{S1}^{V \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) j_{W}^{V \\Omega} + A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma (\\rho)**(-1) \\rho \\Gamma_{U S V}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) j_{T}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{V \\Omega} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} + A_{\\mu}^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Lambda} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta} +  1/2 A_{\\mu}^{S T \\Sigma} \\eta^{U V} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{U}^{S2 \\Lambda}) j_{S2}^{W \\Omega} +  1/2 A_{\\mu}^{S T \\Sigma} \\eta^{U V} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Omega}) j_{U}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{W}^{S2 \\Lambda} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S2}^{U \\Omega}) (\\rho)**(-1) j_{S1}^{S2 \\Lambda} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{S1}^{V \\Lambda}) (\\rho)**(-1) j_{W}^{S1 \\Delta}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{W}^{V \\Omega}) (\\rho)**(-1) j_{T}^{W \\Lambda}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{W}^{U \\Omega}) (\\rho)**(-1) j_{V}^{W \\Lambda}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}(j_{V}^{U \\Lambda}) (\\rho)**(-1) j_{T}^{V \\Delta}-A_{\\mu}^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{S1 T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{S2}^{W \\Omega}) \\rho^{-1} Y^{\\Sigma} j_{U}^{S2 \\Lambda}-A_{\\mu}^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} \\Gamma_{S T U}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{T}^{K} \\eta^{W V} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S1 V S}^{S1} \\partial_{\\nu}(j_{W}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} U_{U}^{M} U_{W}^{K} \\eta^{S1 V} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}^{W} \\partial_{\\nu}(j_{S1}^{S2 \\Lambda}) (\\rho)**(-1) j_{S2}^{U \\Omega} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} U_{T}^{M} U_{V}^{N} \\eta^{W U} Y^{\\Lambda} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{W}^{S1 \\Delta}) (\\rho)**(-1) j_{S1}^{V \\Lambda}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}^{U} \\partial_{\\nu}(j_{T}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{V \\Omega}-2A_{\\mu}^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}^{V} \\partial_{\\nu}(j_{V}^{W \\Lambda}) (\\rho)**(-1) j_{W}^{U \\Omega}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}(j_{T}^{V \\Delta}) (\\rho)**(-1) j_{V}^{U \\Lambda}-A_{\\mu}^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} \\eta_{S1 T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}^{S1} \\partial_{\\nu}(j_{U}^{S2 \\Lambda}) j_{S2}^{W \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{T}\\,^{U \\Lambda}} j_{U}\\,^{S \\Omega}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{U}\\,^{S \\Omega}} j_{T}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} \\partial_{\\nu}{j_{U}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} Y^{\\Omega} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\nu \\mu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} j_{U}\\,^{{S_{2}} \\Lambda} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Sigma}} \\partial_{\\nu}{j_{U}\\,^{S \\Lambda}} j_{T}\\,^{U \\Omega} - \\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{V}\\,^{{S_{2}} \\Omega}} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Omega}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Omega}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Lambda}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Delta}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Omega}} j_{W}\\,^{V \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{V \\Lambda}%\n-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Omega}} {\\rho}^{-1} j_{W}\\,^{U \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Lambda}} {\\rho}^{-1} j_{V}\\,^{U \\Delta} - \\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Omega}} \\rho^{-1} Y^{\\Sigma} j_{{S_{2}}}\\,^{W \\Lambda}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\partial_{\\mu}{j_{S}\\,^{T \\Omega}} \\partial_{\\nu}{j_{T}\\,^{U \\Lambda}} j_{U}\\,^{S \\Sigma}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Lambda}} {\\rho}^{-1} j_{V}\\,^{W \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\eta_{N M} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} j_{V}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Lambda}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Omega}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Delta}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Lambda}} j_{T}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Lambda}} {\\rho}^{-1} j_{T}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Lambda}} {\\rho}^{-1} j_{V}\\,^{W \\Omega}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Delta}} {\\rho}^{-1} j_{T}\\,^{V \\Lambda}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Lambda}} \\rho^{-1} Y^{\\Sigma} j_{U}\\,^{{S_{2}} \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Lambda} \\partial_{\\nu}{j_{U}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} j_{V}\\,^{{S_{2}} \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} U_{T}\\,^{M} U_{U}\\,^{N} \\eta^{V W} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\eta_{N M} \\gamma {\\rho}^{-1} \\rho \\Gamma_{{S_{1}} S W}\\,^{{S_{1}}} \\partial_{\\nu}{j_{V}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}%\n-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}-A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Delta}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} j_{W}\\,^{V \\Omega}+A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\mu \\nu} \\gamma {\\rho}^{-1} \\rho \\Gamma_{U S V}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} j_{T}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{V \\Omega}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+A_{\\mu}\\,^{S T \\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Lambda}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{W \\Omega}+\\frac{1}{2}A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} j_{U}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} Y^{\\Sigma} \\eta^{\\nu \\mu} \\rho \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{W}\\,^{{S_{2}} \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\eta_{M K} \\rho Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{2}}}\\,^{U \\Omega}} {\\rho}^{-1} j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\eta_{N M} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{{S_{1}}}\\,^{V \\Lambda}} {\\rho}^{-1} j_{W}\\,^{{S_{1}} \\Delta}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{W}\\,^{V \\Omega}} {\\rho}^{-1} j_{T}\\,^{W \\Lambda}%\n-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Lambda} \\eta^{\\nu \\mu} \\rho Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{W}\\,^{U \\Omega}} {\\rho}^{-1} j_{V}\\,^{W \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} \\eta^{\\nu \\mu} \\rho Y^{\\Omega} \\partial_{\\nu}{j_{V}\\,^{U \\Lambda}} {\\rho}^{-1} j_{T}\\,^{V \\Delta}-A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} Y^{\\Lambda} \\eta_{{S_{1}} T} \\eta^{\\nu \\mu} \\rho \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{{S_{2}}}\\,^{W \\Omega}} \\rho^{-1} Y^{\\Sigma} j_{U}\\,^{{S_{2}} \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} Y^{\\Sigma} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} \\Gamma_{S T U}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{T}\\,^{K} \\eta^{W V} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{{S_{1}} V S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{W}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} U_{U}\\,^{M} U_{W}\\,^{K} \\eta^{{S_{1}} V} Y^{\\Omega} \\eta^{\\mu \\nu} \\eta_{M K} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S V T}\\,^{W} \\partial_{\\nu}{j_{{S_{1}}}\\,^{{S_{2}} \\Lambda}} {\\rho}^{-1} j_{{S_{2}}}\\,^{U \\Omega}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} U_{T}\\,^{M} U_{V}\\,^{N} \\eta^{W U} Y^{\\Lambda} \\eta^{\\mu \\nu} \\eta_{N M} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{W}\\,^{{S_{1}} \\Delta}} {\\rho}^{-1} j_{{S_{1}}}\\,^{V \\Lambda}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{U V S}\\,^{U} \\partial_{\\nu}{j_{T}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{V \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} Y^{\\Omega} \\eta^{\\mu \\nu} \\rho Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{S U T}\\,^{V} \\partial_{\\nu}{j_{V}\\,^{W \\Lambda}} {\\rho}^{-1} j_{W}\\,^{U \\Omega}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} \\eta^{\\mu \\nu} \\rho Y^{\\Delta} Y^{\\Omega} \\partial_{\\nu}{j_{T}\\,^{V \\Delta}} {\\rho}^{-1} j_{V}\\,^{U \\Lambda}-A_{\\mu}\\,^{S T \\Sigma} \\eta^{U V} Y^{\\Omega} \\eta_{{S_{1}} T} \\eta^{\\mu \\nu} \\rho \\rho^{-1} Y^{\\Lambda} Y^{\\Sigma} \\Gamma_{V W S}\\,^{{S_{1}}} \\partial_{\\nu}{j_{U}\\,^{{S_{2}} \\Lambda}} j_{{S_{2}}}\\,^{W \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(PmuPmu,rlUetaU);"
+		},
+		{
+			"cell_id": 9649968690442948172,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### T term #####"
+		},
+		{
+			"cell_id": 15426586646531835182,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "save:=@(PmuPmu)."
+		},
+		{
+			"cell_id": 6947972722564148397,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "T := @(save)."
+		},
+		{
+			"cell_id": 11438430241326208510,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 18382738370462085992,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10362907115647950345,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}(\\phi^{S T \\Sigma}) \\partial_{\\mu}(\\phi^{U V \\Lambda}) \\phi^{W S1 \\Omega} t_{S T S2}^{S3} t_{U V S3}^{S4} t_{W S1 S4}^{S2} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}(\\phi^{S T \\Sigma}) \\partial_{\\mu}(\\phi^{U V \\Omega}) \\phi^{W S1 \\Lambda} t_{S T S2}^{S3} t_{U V S4}^{S2} t_{W S1 S3}^{S4}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Lambda} Y^{\\Sigma} \\partial^{\\mu}(\\phi^{U V \\Delta}) \\phi^{W S1 \\Omega} t_{U V S2}^{S3} t_{W S1 S3}^{S2}-3A_{\\mu}^{S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{W S1 \\Delta}) \\phi^{S2 S3 \\Lambda} t_{S2 S3 U}^{S4} t_{W S1 S4}^{V} + 3A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{V W \\Delta}) \\phi^{S1 S2 \\Lambda} t_{S1 S2 T}^{S3} t_{V W S3}^{U} -  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}(\\phi^{S T \\Sigma}) \\partial_{\\mu}(\\phi^{U V \\Lambda}) \\phi^{W S1 \\Omega} t_{S T S2}^{S3} t_{U V S4}^{S2} t_{W S1 S3}^{S4} + A_{\\mu}^{S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{W S1 \\Lambda}) \\phi^{S2 S3 \\Delta} t_{S2 S3 S4}^{V} t_{W S1 U}^{S4}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} t_{S1 S2 S3}^{U} t_{V W T}^{S3} +  1/2 Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}(\\phi^{S T \\Omega}) \\partial_{\\mu}(\\phi^{U V \\Lambda}) \\phi^{W S1 \\Sigma} t_{S T S2}^{S3} t_{U V S3}^{S4} t_{W S1 S4}^{S2}-A^{\\mu S T \\Sigma} T_{S T}^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Lambda} Y^{\\Sigma} \\partial_{\\mu}(\\phi^{U V \\Delta}) \\phi^{W S1 \\Omega} t_{U V S2}^{S3} t_{W S1 S3}^{S2}-A^{\\mu S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{W S1 \\Delta}) \\phi^{S2 S3 \\Lambda} t_{S2 S3 S4}^{V} t_{W S1 U}^{S4}-A^{\\mu S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{W S1 \\Lambda}) \\phi^{S2 S3 \\Delta} t_{S2 S3 U}^{S4} t_{W S1 S4}^{V} + A^{\\mu S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{V W \\Delta}) \\phi^{S1 S2 \\Lambda} t_{S1 S2 S3}^{U} t_{V W T}^{S3} + A^{\\mu S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} t_{S1 S2 T}^{S3} t_{V W S3}^{U} + 2A_{\\mu}^{S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{W S1 \\Lambda}) \\phi^{S2 S3 \\Delta} t_{S2 S3 U}^{S4} t_{W S1 S4}^{V}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} t_{S1 S2 T}^{S3} t_{V W S3}^{U} + 2A^{\\mu S T \\Sigma} T_{S}^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{W S1 \\Lambda}) \\phi^{S2 S3 \\Delta} t_{S2 S3 S4}^{V} t_{W S1 U}^{S4}-2A^{\\mu S T \\Sigma} T_{S U}^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} t_{S1 S2 S3}^{U} t_{V W T}^{S3}"
+						}
+					],
+					"source": "\\begin{dmath*}{} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}{\\phi^{S T \\Sigma}} \\partial_{\\mu}{\\phi^{U V \\Lambda}} \\phi^{W {S_{1}} \\Omega} t_{S T {S_{2}}}\\,^{{S_{3}}} t_{U V {S_{3}}}\\,^{{S_{4}}} t_{W {S_{1}} {S_{4}}}\\,^{{S_{2}}}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}{\\phi^{S T \\Sigma}} \\partial_{\\mu}{\\phi^{U V \\Omega}} \\phi^{W {S_{1}} \\Lambda} t_{S T {S_{2}}}\\,^{{S_{3}}} t_{U V {S_{4}}}\\,^{{S_{2}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{4}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Lambda} Y^{\\Sigma} \\partial^{\\mu}{\\phi^{U V \\Delta}} \\phi^{W {S_{1}} \\Omega} t_{U V {S_{2}}}\\,^{{S_{3}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{2}}}-3A_{\\mu}\\,^{S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{W {S_{1}} \\Delta}} \\phi^{{S_{2}} {S_{3}} \\Lambda} t_{{S_{2}} {S_{3}} U}\\,^{{S_{4}}} t_{W {S_{1}} {S_{4}}}\\,^{V}+3A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{V W \\Delta}} \\phi^{{S_{1}} {S_{2}} \\Lambda} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U} - \\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}{\\phi^{S T \\Sigma}} \\partial_{\\mu}{\\phi^{U V \\Lambda}} \\phi^{W {S_{1}} \\Omega} t_{S T {S_{2}}}\\,^{{S_{3}}} t_{U V {S_{4}}}\\,^{{S_{2}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{4}}}+A_{\\mu}\\,^{S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{W {S_{1}} \\Lambda}} \\phi^{{S_{2}} {S_{3}} \\Delta} t_{{S_{2}} {S_{3}} {S_{4}}}\\,^{V} t_{W {S_{1}} U}\\,^{{S_{4}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}+\\frac{1}{2}Y^{\\Sigma} Y^{\\Omega} Y^{\\Lambda} \\partial^{\\mu}{\\phi^{S T \\Omega}} \\partial_{\\mu}{\\phi^{U V \\Lambda}} \\phi^{W {S_{1}} \\Sigma} t_{S T {S_{2}}}\\,^{{S_{3}}} t_{U V {S_{3}}}\\,^{{S_{4}}} t_{W {S_{1}} {S_{4}}}\\,^{{S_{2}}}-A^{\\mu S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} Y^{\\Delta} Y^{\\Lambda} Y^{\\Sigma} \\partial_{\\mu}{\\phi^{U V \\Delta}} \\phi^{W {S_{1}} \\Omega} t_{U V {S_{2}}}\\,^{{S_{3}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{2}}}-A^{\\mu S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{W {S_{1}} \\Delta}} \\phi^{{S_{2}} {S_{3}} \\Lambda} t_{{S_{2}} {S_{3}} {S_{4}}}\\,^{V} t_{W {S_{1}} U}\\,^{{S_{4}}}-A^{\\mu S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{W {S_{1}} \\Lambda}} \\phi^{{S_{2}} {S_{3}} \\Delta} t_{{S_{2}} {S_{3}} U}\\,^{{S_{4}}} t_{W {S_{1}} {S_{4}}}\\,^{V}+A^{\\mu S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{V W \\Delta}} \\phi^{{S_{1}} {S_{2}} \\Lambda} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}+A^{\\mu S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U}+2A_{\\mu}\\,^{S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{W {S_{1}} \\Lambda}} \\phi^{{S_{2}} {S_{3}} \\Delta} t_{{S_{2}} {S_{3}} U}\\,^{{S_{4}}} t_{W {S_{1}} {S_{4}}}\\,^{V}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial^{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U}+2A^{\\mu S T \\Sigma} T_{S}\\,^{U \\Sigma \\Omega} \\eta_{T V} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{W {S_{1}} \\Lambda}} \\phi^{{S_{2}} {S_{3}} \\Delta} t_{{S_{2}} {S_{3}} {S_{4}}}\\,^{V} t_{W {S_{1}} U}\\,^{{S_{4}}}-2A^{\\mu S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} Y^{\\Lambda} Y^{\\Delta} Y^{\\Omega} \\partial_{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(T,$\\Gamma{#}->0$)\ncollect_factors(T);"
+		},
+		{
+			"cell_id": 15522256566819282730,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(T,$\\partial^{\\mu}{\\phi^{S T \\Sigma}} \\partial_{\\mu}{\\phi^{U V \\Lambda}} \\phi^{W X \\Omega}->0$)"
+		},
+		{
+			"cell_id": 13480687986288357893,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(T,$A^{\\mu S T \\Sigma}->\\eta^{\\mu \\nu} A_{\\nu}^{S T \\Sigma}$)"
+		},
+		{
+			"cell_id": 836634302789425734,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(T,$T_{S}^{U \\Sigma \\Omega}->\\eta^{U V} T_{S U}^{\\Sigma \\Omega}$)"
+		},
+		{
+			"cell_id": 14747290265792364467,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(T,$Y^{\\Sigma} Y^{\\Omega} Y^{\\Delta}->c^{\\Sigma \\Omega \\Delta}$)"
+		},
+		{
+			"cell_id": 9381823233987558081,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 7320787717279733122,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11430585954113124151,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} \\partial^{\\mu}(\\phi^{U V \\Delta}) \\phi^{W S1 \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V S2}^{S3} t_{W S1 S3}^{S2}-A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T S1} \\partial^{\\mu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S4 S5 U}^{S6} t_{S2 S3 S6}^{S1} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\partial^{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S1 S2 T}^{S3} t_{V W S3}^{U} + A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T S1} \\partial^{\\mu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S4 S5 S6}^{S1} t_{S2 S3 U}^{S6}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\partial^{\\mu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S1 S2 S3}^{U} t_{V W T}^{S3}-A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} \\eta^{\\nu \\mu} \\partial_{\\nu}(\\phi^{U V \\Delta}) \\phi^{W S1 \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V S2}^{S3} t_{W S1 S3}^{S2} + A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T S1} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S4 S5 S6}^{S1} t_{S2 S3 U}^{S6}-A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T S1} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S4 S5 U}^{S6} t_{S2 S3 S6}^{S1}-A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\partial_{\\nu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S1 S2 S3}^{U} t_{V W T}^{S3} + A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\partial_{\\nu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S1 S2 T}^{S3} t_{V W S3}^{U}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} \\partial^{\\mu}{\\phi^{U V \\Delta}} \\phi^{W {S_{1}} \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V {S_{2}}}\\,^{{S_{3}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{2}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T {S_{1}}} \\partial^{\\mu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{4}} {S_{5}} U}\\,^{{S_{6}}} t_{{S_{2}} {S_{3}} {S_{6}}}\\,^{{S_{1}}}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\partial^{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U}+A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T {S_{1}}} \\partial^{\\mu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{4}} {S_{5}} {S_{6}}}\\,^{{S_{1}}} t_{{S_{2}} {S_{3}} U}\\,^{{S_{6}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\partial^{\\mu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} \\eta^{\\nu \\mu} \\partial_{\\nu}{\\phi^{U V \\Delta}} \\phi^{W {S_{1}} \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V {S_{2}}}\\,^{{S_{3}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{2}}}+A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T {S_{1}}} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{4}} {S_{5}} {S_{6}}}\\,^{{S_{1}}} t_{{S_{2}} {S_{3}} U}\\,^{{S_{6}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T {S_{1}}} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{4}} {S_{5}} U}\\,^{{S_{6}}} t_{{S_{2}} {S_{3}} {S_{6}}}\\,^{{S_{1}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\partial_{\\nu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}+A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\partial_{\\nu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U}\\end{dmath*}"
+				}
+			],
+			"source": "sort_product(T)\nrename_dummies(T)\nmeld(T);"
+		},
+		{
+			"cell_id": 16092400690628150505,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13881203084388714090,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 1642254915838677696,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-2A_{\\mu}^{S T \\Sigma} T_{S T}^{\\Omega \\Lambda} \\eta^{\\mu \\nu} \\partial_{\\nu}(\\phi^{U V \\Delta}) \\phi^{W S1 \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V S2}^{S3} t_{W S1 S3}^{S2}-A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T S1} \\eta^{\\mu \\nu} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S2 S3 S6}^{S1} t_{S4 S5 U}^{S6} + 2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\partial_{\\nu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S1 S2 T}^{S3} t_{V W S3}^{U} + A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T S1} \\eta^{\\mu \\nu} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S2 S3 U}^{S6} t_{S4 S5 S6}^{S1}-2A_{\\mu}^{S T \\Sigma} T_{S U}^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\partial_{\\nu}(\\phi^{V W \\Lambda}) \\phi^{S1 S2 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S1 S2 S3}^{U} t_{V W T}^{S3} + A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T S1} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Delta \\Lambda \\Omega} t_{S2 S3 U}^{S6} t_{S4 S5 S6}^{S1}-A_{\\mu}^{S T \\Sigma} T_{S W}^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T S1} \\partial_{\\nu}(\\phi^{S2 S3 \\Lambda}) \\phi^{S4 S5 \\Delta} c^{\\Lambda \\Delta \\Omega} t_{S2 S3 S6}^{S1} t_{S4 S5 U}^{S6}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-2A_{\\mu}\\,^{S T \\Sigma} T_{S T}\\,^{\\Omega \\Lambda} \\eta^{\\mu \\nu} \\partial_{\\nu}{\\phi^{U V \\Delta}} \\phi^{W {S_{1}} \\Omega} c^{\\Delta \\Lambda \\Sigma} t_{U V {S_{2}}}\\,^{{S_{3}}} t_{W {S_{1}} {S_{3}}}\\,^{{S_{2}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T {S_{1}}} \\eta^{\\mu \\nu} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{2}} {S_{3}} {S_{6}}}\\,^{{S_{1}}} t_{{S_{4}} {S_{5}} U}\\,^{{S_{6}}}+2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\partial_{\\nu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{1}} {S_{2}} T}\\,^{{S_{3}}} t_{V W {S_{3}}}\\,^{U}+A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{W V} \\eta_{T {S_{1}}} \\eta^{\\mu \\nu} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{2}} {S_{3}} U}\\,^{{S_{6}}} t_{{S_{4}} {S_{5}} {S_{6}}}\\,^{{S_{1}}}-2A_{\\mu}\\,^{S T \\Sigma} T_{S U}\\,^{\\Sigma \\Omega} \\eta^{\\mu \\nu} \\partial_{\\nu}{\\phi^{V W \\Lambda}} \\phi^{{S_{1}} {S_{2}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{1}} {S_{2}} {S_{3}}}\\,^{U} t_{V W T}\\,^{{S_{3}}}+A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T {S_{1}}} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Delta \\Lambda \\Omega} t_{{S_{2}} {S_{3}} U}\\,^{{S_{6}}} t_{{S_{4}} {S_{5}} {S_{6}}}\\,^{{S_{1}}}-A_{\\mu}\\,^{S T \\Sigma} T_{S W}\\,^{\\Sigma \\Omega} \\eta^{\\nu \\mu} \\eta^{W V} \\eta_{T {S_{1}}} \\partial_{\\nu}{\\phi^{{S_{2}} {S_{3}} \\Lambda}} \\phi^{{S_{4}} {S_{5}} \\Delta} c^{\\Lambda \\Delta \\Omega} t_{{S_{2}} {S_{3}} {S_{6}}}\\,^{{S_{1}}} t_{{S_{4}} {S_{5}} U}\\,^{{S_{6}}}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(T,$\\partial^{\\mu}{A??} -> \\eta^{\\mu \\nu} \\partial_{\\nu}{A??}$)\nsort_product(T)\nrename_dummies(T)\nmeld(T)\ncollect_terms(T);"
+		},
+		{
+			"cell_id": 17755732602604909188,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 15558239165973212808,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 6993439503935734900,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 14546262921881149819,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		}
+	],
+	"description": "Cadabra JSON notebook format",
+	"version": 1.0
+}

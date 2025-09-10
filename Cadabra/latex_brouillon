@@ -1,0 +1,1122 @@
+% This is the bit of LaTeX style information that DataCell.cc needs in
+% order to write notebooks out in standalone LaTeX form. It is very
+% similar to ../frontend/common/preamble.tex; keep them in sync.
+
+\documentclass[10pt]{article}
+\usepackage[scale=.8]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{ytableau}
+\usepackage{listings}
+\usepackage[fleqn]{amsmath}
+\usepackage{color}
+\usepackage{changepage}
+\usepackage[colorlinks=true, urlcolor=black, plainpages=false, pdfpagelabels]{hyperref}
+\usepackage{etoolbox}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx}
+%\usepackage{tableaux}
+\def\specialcolon{\mathrel{\mathop{:}}\hspace{-.5em}}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\algorithm}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\property}[2]{{\tt\Large\detokenize{#1}}\\[1ex]
+{\emph{#2}}\\[1ex]
+}
+\newcommand{\algo}[1]{{\tt \detokenize{#1}}}
+\newcommand{\prop}[1]{{\tt \detokenize{#1}}}
+\renewcommand{\author}[1]{{\bfseries #1}}
+\newcommand{\email}[1]{, {\tt #1}}
+%\makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+%\ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Math expressions wrapped in \brwrap will get typeset with
+% round brackets around them, which have the appropriate size.
+% The expression itself can still be broken over multiple lines.
+
+\newcommand\brwrap[3]{%
+  \setbox0=\hbox{$#2$}
+  \left#1\vbox to \the\ht0{\hbox to 0pt{}}\right.\kern-.2em
+  \begingroup #2\endgroup\kern-.15em
+  \left.\vbox to \the\ht0{\hbox to 0pt{}}\right#3
+}
+
+\renewcommand{\arraystretch}{1.2}
+\tolerance=10000
+\relpenalty=10
+\binoppenalty=10
+\hyphenpenalty=10
+\raggedright
+
+\lstnewenvironment{python}[1][]{\lstset{language=python,
+   columns=fullflexible,
+   xleftmargin=1em,
+   belowskip=0pt,
+   tabsize=3,
+   commentstyle={}, % otherwise {#} cadabra arguments look ugly
+   breaklines=true,   
+   basicstyle=\small\ttfamily\color{blue},
+   keywordstyle={}
+}}{}
+  
+
+\everymath{\displaystyle}
+
+% Page numbers
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[LE,RO]{{\small\thepage}}
+\fancyfoot[LO,RE]{{\tiny\href{http://cadabra.science}{{\tt http://cadabra.science}}}}
+
+% \makeatletter\def\old@comma{,}\catcode`\,=13 \def,{%
+% \ifmmode\old@comma\discretionary{}{}{}\else\old@comma\fi}\makeatother
+
+% Ensure that maths broken over multiple lines has a bit of spacing
+% between lines.
+\lineskiplimit=0mm
+\lineskip=1.5ex
+
+% % Typesetting Young tableaux, originally in a separate style
+% % file, now included to avoid path searching problems. 
+% % Some internals for the typesetting macros below; nothing
+% % user-servicable here; please read on.
+% 
+% \def\@tabforc#1#2#3{\expandafter\tabf@rc\expandafter#1{#2 \^}{#3}}
+% \def\tabf@@rc#1#2#3\tabf@@rc#4{\def#1{#2}#4\tabf@rc#1{#3}{#4}}
+% \long\def\ReturnAfterFi#1\fi{\fi#1}
+%     \def\tabf@rc#1#2#3{%
+%       \def\temp@ty{#2}%
+%       \ifx\@empty\temp@ty
+%       \else
+%         \ReturnAfterFi{%
+%           \tabf@@rc#1#2\tabf@@rc{#3}%
+%         }%
+%       \fi
+%     }%
+% 
+% % Sorry, some global registers for sizes and keeping track of
+% % measurements.
+%     
+% \newdimen\ytsize\ytsize=2mm
+% \newdimen\ytfsize\ytfsize=4mm
+% \newcount\repcnt
+% \newdimen\acchspace
+% \newdimen\accvspace
+% \newdimen\raiseh
+% \newdimen\maxw
+% 
+% \newcommand\phrule[1]{\hbox{\vbox to0pt{\hrule height .2pt width#1\vss}}}
+% 
+% % Typeset a Young tableau with filled boxes. Takes a single 
+% % argument which is a string of symbols for each row,
+% % separated by commas. Examples:
+% %
+% %   \ftableau{abc,de}
+% %   \ftableau{ab{d_2},f{g_3}}
+% 
+% \newcommand\ftableau[1]{%
+% \def\ctest{,}
+% \def\Ktest{\^}
+% \acchspace=0ex
+% \accvspace=0ex
+% \maxw=0ex
+% \vbox{\hbox{%
+% \@tabforc\thisel{#1}{%
+%  \ifx\thisel\Ktest{%
+%      \ifnum\maxw=0\maxw=\acchspace\fi%
+%      \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to
+% 		 0pt{\vrule height \ytfsize\hss}}}\kern\acchspace\kern-\maxw}
+%  \else\ifx\thisel\ctest
+%      \ifnum\maxw=0\maxw=\acchspace\fi%
+%      \raisebox{\accvspace}{\vbox to \ytfsize{\hbox to 0pt{\vrule height \ytfsize\hss}}}%
+%      \kern\acchspace\acchspace=0ex
+% 	  \advance\accvspace by -\ytfsize
+%  \else
+%      \setbox3=\hbox{$\thisel$}%
+% 	  \raiseh=\ytfsize%
+% 	  \advance\raiseh by -1ex%
+% 	  \divide\raiseh by 2%
+%      \advance\acchspace by-\ytfsize%
+%      \raisebox{\accvspace}{\vbox to \ytfsize{\hrule\hbox to%
+%         \ytfsize{\vrule height \ytfsize\hskip.5ex%
+%          \raisebox{\raiseh}{\tiny$\thisel$}\hss}\vss\phrule{\ytfsize}}}%
+%  \fi\fi}}}}
+% 
+% % Typeset a Young tableau with unlabelled boxes. Takes a single 
+% % argument which is a string of numbers, one for the length of
+% % each row of the tableau. Example:
+% %
+% %   \tableau{{10}{8}{3}}
+% %
+% % typesets a tableau with 10 boxes in the 1st row, 8 in the 2nd
+% % and 3 in the 3rd. Curly brackets can be omitted if numbers
+% % are less than 10.
+% 
+% \newcommand\tableau[1]{%
+% \def\stest{ }
+% \def\Ktest{\^}
+% \acchspace=0ex
+% \accvspace=0ex
+% \maxw=0ex
+% \hbox{%
+% \@tabforc\thisel{#1}{%
+%  \ifx\thisel\Ktest{}
+%  \else
+%      \repcnt=\thisel%
+%      \loop{}%
+%      \advance\acchspace by-\ytsize%
+%      \raisebox{\accvspace}{\vbox to \ytsize{\hrule \hbox to%
+% 			\ytsize{\vrule height \ytsize\hss}\vss\phrule{\ytsize}}}%
+%      \advance\repcnt by -1\ifnum\repcnt>1{}\repeat%
+%      \ifnum\maxw=0\maxw=\acchspace\fi%
+%      \raisebox{\accvspace}{\vbox to \ytsize{\hbox to 0pt{\vrule height \ytsize\hss}}}%
+%      \kern\acchspace\acchspace=0ex%
+% 	  \advance\accvspace by -\ytsize%
+%  \fi}\kern-\maxw}}
+ 
+\ytableausetup{centertableaux} % smalltableaux
+\begin{document}
+\begin{python}
+##### Indices #####
+
+{M,N,K,L,G,P,Q,R,M#}::Indices(name="fundamental",position=independent).
+{M,N,K,L,G,P,Q,R,M#}::Integer(1..Fund).
+#{R,S,Q,U,V,W,R#}::Indices(name="fundamental_yind",position=independent).
+#{R,S,Q,U,V,W,R#}::Integer(1..Fund).
+{S,T,U,V,W,S#,X,Y,SS,TT,RR}::Indices(name="fundamental_yind",position=independent).
+{S,T,U,V,W,S#,X,Y,SS,TT,RR}::Integer(1..Fund).
+#{A,B,C,D,E,F,A#}::Indices(name="flat",position=independent).
+{\Sigma,\Omega, \Lambda, \Delta, \Gamma, \Sigma#}::Indices(name="harmonics",position=independent).
+{\alpha, \beta, \gamma, \delta, \alpha#}::Indices(name="adjointnc",position=fixed).
+{\alpha, \beta, \gamma, \delta, \alpha#}::Integer(1..NComp).
+{a,b,c,d,e,f,a#}::Indices(name="adjoint",position=independent).
+{a,b,c,d,e,f,a#}::Integer(1..Adj)
+{i,j,k,l,m,n,i#}::Indices(name="adjointc",position=independent).
+{i,j,k,l,m,n,i#}::Integer(1..Comp)
+{\mu, \nu, \rho, \sigma, \mu#}::Indices(name="external",position=fixed).
+{\mu, \nu, \rho, \sigma, \mu#}::Integer(0..D-1).
+
+\end{python}
+\begin{python}
+##### Pertubative dev #####
+
+{\phi{#}}::Weight(label=field, value=1).
+\end{python}
+\begin{python}
+##### Derivative #####
+
+\partial{#}::Derivative.
+\partial{#}::WeightInherit(label=all, type=multiplicative).
+
+cM{#}::Depends(\partial{#}).
+cg{#}::Depends(\partial{#}).
+e::Depends(\partial{#}).
+
+U{#}::Depends(\partial{#}).
+\rho{#}::Depends(\partial{#}).
+Y{#}::Depends(\partial{#})
+
+\end{python}
+\begin{python}
+##### Metrics and Kroneckers #####
+
+\eta_{\alpha? \beta?}::Metric.
+\eta^{\alpha? \beta?}::InverseMetric.
+\eta_{\alpha?}^{\beta?}::KroneckerDelta.
+\eta^{\alpha?}_{\beta?}::KroneckerDelta.
+
+g_{\mu \nu}::Metric.
+g^{\mu \nu}::InverseMetric.
+g_{\mu}^{\nu}::KroneckerDelta.
+g^{\mu}_{\nu}::KroneckerDelta.
+
+\delta_{A?}^{B?}::KroneckerDelta.
+\delta^{A?}_{B?}::KroneckerDelta.
+
+#The ? allows \delta to be a kronecker in any set on indices 
+
+rldeltametric := {\delta_{A? B?} \delta^{B? C?} -> \delta_{A?}^{C?},
+\delta_{A? B?} \delta^{C? B?} -> \delta_{A?}^{C?},
+\delta_{B? A?} \delta^{B? C?} -> \delta_{A?}^{C?},
+\delta_{B? A?} \delta^{C? B?} -> \delta_{A?}^{C?},
+\delta^{A? B?} \delta_{B? C?} -> \delta^{A?}_{C?},
+\delta^{B? A?} \delta_{B? C?} -> \delta^{A?}_{C?},
+\delta^{A? B?} \delta_{C? B?} -> \delta^{A?}_{C?},
+\delta^{B? A?} \delta_{C? B?} -> \delta^{A?}_{C?}}.
+
+\end{python}
+\begin{python}
+##### Variation stuff ##### 
+
+\epsilon{#}::Accent.
+rlvary := {cM_{M N} -> - cM_{M K}*\epsilon{cM^{K L}}*cM_{L N},cM^{M N} -> \epsilon{cM^{M N}}}.
+
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+##### Tensors with symmetries #####
+
+\phi^{K? L? \Sigma}::TableauSymmetry(shape={2},indices={0,1}).
+\phi_{K? L?}^{\Sigma}::TableauSymmetry(shape={2},indices={0,1}).
+\phi^{\Sigma \Omega}::TableauSymmetry(shape={2},indices={0,1}).
+\varphi^{K? L? \Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).
+\varphi_{K? L?}^{\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).
+
+\eta^{K? L?}::Symmetric.
+\eta_{K? L?}::Symmetric.
+
+\delta^{K? L?}::Symmetric.
+\delta_{K? L?}::Symmetric.
+
+T_{S T}^{\Sigma \Omega}::TableauSymmetry(shape={1,1},indices={0,1}).
+
+c^{\Sigma \Omega \Delta}::TableauSymmetry(shape={3},indices={0,1,2}).
+
+\Gamma_{S T U}^{V}::TableauSymmetry(shape={1,1},indices={0,1}).
+\end{python}
+\begin{python}
+##### Ordering properties #####
+
+{\epsilon{cM{#}},\partial{#},cM{#},cg{#},\alpha{#}}::SortOrder.
+{U{#},\rho{#},Y{#},T{#},c{#},\Gamma{#},phi{#},\delta{#},t{#}}::SortOrder. 
+
+\end{python}
+\begin{python}
+##### Rule SS ansatz and fluctutations #####
+
+rlcM2ndo := cM_{M N} -> U_{M}^{S} U_{N}^{T} ( \delta_{S T} + \phi_{S T}^{\Sigma}*Y^{\Sigma} + Y^{\Sigma}*Y^{\Omega}*1/2*\phi_{S}^{U \Sigma}*\phi_{T U}^{\Omega}).
+rlcIM2ndo := cM^{M N} -> U_{S}^{M} U_{T}^{N} ( \delta^{S T} - \phi^{S T \Sigma}*Y^{\Sigma} + Y^{\Sigma}*Y^{\Omega}*1/2*\phi^{S U \Sigma}*\phi_{U}^{T \Omega}).
+rlcMdownup2ndo := cM_{M}^{N} -> U_{M}^{S} U^{N T} ( \delta_{S T} + \phi_{S T}^{\Sigma}*Y^{\Sigma} + Y^{\Sigma}*Y^{\Omega}*1/2*\phi_{S}^{U \Sigma}*\phi_{T U}^{\Omega}).
+rlgmunu := {cg_{\mu \nu} -> \rho**{-2} g_{\mu \nu},
+cg^{\mu \nu} -> \rho**2 g^{\mu \nu}}.
+rlg := {cg -> \rho**{-3} g,
+e -> \rho**{-3} g**{1/2},
+cg**{-1} -> \rho**{3} g**{-1}}.
+rlUU := {U_{R?}^{M?} U_{M?}^{S?} -> \delta_{R?}^{S?},U_{M}^{S} U^{M T}->\eta^{S T}}.
+
+rlharmT := {\partial_{M N}{Y^{\Sigma}} -> - \rho U_{M}^{S} U_{N}^{T} T_{S T}^{\Sigma \Omega} Y^{\Omega},
+\partial_{S T}{Y^{\Sigma}} -> - T_{S T}^{\Sigma \Omega} Y^{\Omega}}.
+rlGamma := {\partial_{S T}{U_{M}^{U}} -> U_{M}^{V} \Gamma_{S T V}^{U},
+\partial_{S T}{U_{U}^{M}} -> - \Gamma_{S T U}^{V} U_{V}^{M},
+\partial_{S T}{\rho} -> \gamma \rho \Gamma_{U S T}^{U}}.
+#rlGamma := {\partial_{R}{U_{M}^{S}} = U_{M}^{Q} \Gamma_{R Q}^{S},
+#\partial_{R}{U_{S}^{M}} -> - \Gamma_{R S}^{Q} U_{Q}^{M},
+#\partial_{R}{\rho} -> -1/(D-1) \rho \Gamma_{S R}^{S}}.
+#rlgammatogammaadj := \Gamma_{Q R}^{S} -> \Gamma^{a}_{Q} t_{a R}^{S}.
+
+rlpartialindex := \partial_{M N}{A??} -> \rho U_{M}^{S} U_{N}^{T} \partial_{S T}{A??}.
+
+rlpartialrho := {\partial_{S T}{\rho**{2}}->2 \rho \partial_{S T}{\rho},
+\partial_{S T}{\rho**{3}}->3 \rho**{2} \partial_{S T}{\rho},
+\partial_{S T}{\rho**{4}}->3 \rho**{3} \partial_{S T}{\rho},
+\partial_{S T}{\rho**{-1}}->- \rho**{-2} \partial_{S T}{\rho},
+\partial_{S T}{\rho**{-2}}->-2 \rho**{-3} \partial_{S T}{\rho},
+\partial_{S T}{\rho**{-3}}->-3 \rho**{-4} \partial_{S T}{\rho},
+\partial_{S T}{\rho**{-4}}->-4 \rho**{-5} \partial_{S T}{\rho}}.
+
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+pr:= {\partial_{G? P?}{A?? B??} -> \partial_{G? P?}{A??} B?? 
+		+ A?? \partial_{G? P?}{B??},
+\partial_{G? P?}{A?? B?? C??} -> \partial_{G? P?}{A??} B?? C??
+		+ A?? \partial_{G? P?}{B??} C?? + A?? B?? \partial_{G? P?}{C??},
+\partial_{G? P?}{A?? B?? C?? D??} -> \partial_{G? P?}{A??} B?? C?? D??
+		+ A?? \partial_{G? P?}{B??} C?? D?? + A?? B?? \partial_{G? P?}{C??} D?? +A?? B?? C?? \partial_{G? P?}{D??},
+\partial_{G? P?}{A?? B?? C?? D?? E?? F??} -> \partial_{G? P?}{A??} B?? C?? D?? E?? F??
+		+ A?? \partial_{G? P?}{B??} C?? D?? E?? F?? + A?? B?? \partial_{G? P?}{C??} D?? E?? F??+
+		+ A?? B?? C?? \partial_{G? P?}{D??} E?? F??+ A?? B?? C?? D?? \partial_{G? P?}{E??} F??+ A?? B?? C?? D?? E?? \partial_{G? P?}{F??},
+\partial_{G? P?}{A?? B?? C?? D?? E??} -> \partial_{G? P?}{A??} B?? C?? D?? E??
+		+ A?? \partial_{G? P?}{B??} C?? D?? E?? + A?? B?? \partial_{G? P?}{C??} D?? E??+
+		+ A?? B?? C?? \partial_{G? P?}{D??} E??+ A?? B?? C?? D?? \partial_{G? P?}{E??},
+\partial_{G? P?}{A?? B?? C?? D?? E?? F?? G??} -> \partial_{G? P?}{A??} B?? C?? D?? E?? F?? G??
+		+ A?? \partial_{G? P?}{B??} C?? D?? E?? F?? G?? + A?? B?? \partial_{G? P?}{C??} D?? E?? F?? G??
+		+ A?? B?? C?? \partial_{G? P?}{D??} E?? F?? G?? + A?? B?? C?? D?? \partial_{G? P?}{E??} F?? G?? 
+		+ A?? B?? C?? D?? E?? \partial_{G? P?}{F??} G?? + A?? B?? C?? D?? E?? F?? \partial_{G? P?}{G??},
+\partial_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H??} -> \partial_{G? P?}{A??} B?? C?? D?? E?? F?? G?? H??
+		+ A?? \partial_{G? P?}{B??} C?? D?? E?? F?? G?? H?? + A?? B?? \partial_{G? P?}{C??} D?? E?? F?? G?? H??
+		+ A?? B?? C?? \partial_{G? P?}{D??} E?? F?? G?? H?? + A?? B?? C?? D?? \partial_{G? P?}{E??} F?? G?? H?? 
+		+ A?? B?? C?? D?? E?? \partial_{G? P?}{F??} G?? H?? + A?? B?? C?? D?? E?? F?? \partial_{G? P?}{G??} H??
+		+ A?? B?? C?? D?? E?? F?? G?? \partial_{G? P?}{H??},
+\partial_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H?? I??} -> \partial_{G? P?}{A??} B?? C?? D?? E?? F?? G?? H?? I??
+		+ A?? \partial_{G? P?}{B??} C?? D?? E?? F?? G?? H?? I?? + A?? B?? \partial_{G? P?}{C??} D?? E?? F?? G?? H?? I??
+		+ A?? B?? C?? \partial_{G? P?}{D??} E?? F?? G?? H?? I?? + A?? B?? C?? D?? \partial_{G? P?}{E??} F?? G?? H?? I??
+		+ A?? B?? C?? D?? E?? \partial_{G? P?}{F??} G?? H?? I?? + A?? B?? C?? D?? E?? F?? \partial_{G? P?}{G??} H?? I??
+		+ A?? B?? C?? D?? E?? F?? G?? \partial_{G? P?}{H??} I?? + A?? B?? C?? D?? E?? F?? G?? H?? \partial_{G? P?}{I??},
+\partial_{G? P?}{A?? B?? C?? D?? E?? F?? G?? H?? I?? L?? M?? N??}->\partial_{G? P?}{A??} B?? C?? D?? E?? G?? F?? H?? I?? L?? M?? N??+
+		A?? \partial_{G? P?}{B??} C?? D?? E?? F?? G?? H?? I?? L?? M?? N??+
+		A?? B?? \partial_{G? P?}{C??} D?? E?? F?? G?? H?? I?? L?? M?? N??+
+		A?? B?? C?? \partial_{G? P?}{D??} E?? F?? G?? H?? I?? L?? M?? N??+
+		A?? B?? C?? D?? \partial_{G? P?}{E??} F?? G?? H?? I?? L?? M?? N??+
+		A?? B?? C?? D?? E?? \partial_{G? P?}{F??} G?? H?? I?? L?? M?? N??+
+		A?? B?? C?? D?? E?? F?? \partial_{G? P?}{G??} H?? I?? L?? M?? N??+
+		A?? B?? C?? D?? E?? F?? G?? \partial_{G? P?}{H??} I?? L?? M?? N??+
+		A?? B?? C?? D?? E?? F?? G?? H?? \partial_{G? P?}{I??} L?? M?? N??+
+		A?? B?? C?? D?? E?? F?? G?? H?? I?? \partial_{G? P?}{L??} M?? N??+
+		A?? B?? C?? D?? E?? F?? G?? H?? I?? L?? \partial_{G? P?}{M??} N??+
+		A?? B?? C?? D?? E?? F?? G?? H?? I?? L?? M?? \partial_{G? P?}{N??}}.
+ipp:={A??*\partial_{K L}{\epsilon{cM^{M N}}}*B??-> - \partial_{K L}{A??*B??} \epsilon{cM^{M N}},
+A??*\partial_{K L}{\epsilon{cM^{M N}}}-> - \partial_{K L}{A??} \epsilon{cM^{M N}},
+\partial_{K L}{\epsilon{cM^{M N}}}*A??-> - \partial_{K L}{A??} \epsilon{cM^{M N}}.
+nopartialdelta:={\partial_{M N}{\delta_{K? L?}}->0,\partial_{M N}{\delta^{K? L?}}->0}.
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+####################################################### Computation of RHS #######################################################
+\end{python}
+\begin{python}
+####################### Lagrangian #######################
+RHS := \int{e (- 1/8*\partial_{K L}{cM_{M N}}*\partial_{P Q}{cM^{M N}}*cM^{K P}*cM^{L Q}
+- \partial_{M K}{cM^{N P}}*\partial_{N L}{cM^{M Q}}*cM_{P Q}*cM^{K L}
++ 1/4*\partial_{M N}{cM^{P K}}*\partial_{K L}{cM^{M Q}}*cM_{P}^{L}*cM_{Q}^{N}
++ \partial_{M K}{cM^{N K}}*\partial_{N L}{cM^{M L}}
+- e**{-1}*\partial_{M N}{e}*\partial_{K L}{cM^{M K}}*cM^{N L}
+- 1/4*e**{-2}*\partial_{M N}{e}*\partial_{K L}{e}*cM^{N L}*cM^{M K}
+- 1/4*e**{-2}*\partial_{M N}{cg^{\mu \nu}}*\partial_{K L}{cg_{\mu \nu}}*cM^{N L}*cM^{M K}
+)}.
+\end{python}
+\begin{python}
+####################### EOM #######################
+distribute(RHS)
+collect_factors(RHS)
+vary(RHS,rlvary)
+distribute(RHS)
+sort_product(RHS)
+rename_dummies(RHS)
+substitute(RHS,pr)
+distribute(RHS)
+substitute(RHS,ipp,repeat=True)
+sort_product(RHS)
+rename_dummies(RHS)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(RHS,$\epsilon{cM^{M N}}->A^{M N}$)
+sort_product(RHS)
+rename_dummies(RHS)
+factor_out(RHS,$A^{M N}$)
+\end{python}
+\begin{python}
+temp=RHS[0][1]
+\end{python}
+\begin{python}
+RHS=temp
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+####################### Pertubative developement #######################
+
+substitute(RHS,rlcM2ndo)
+substitute(RHS,rlcIM2ndo)
+substitute(RHS,rlcMdownup2ndo)
+\end{python}
+\begin{python}
+substitute(RHS,rlgmunu)
+substitute(RHS,rlg)
+distribute(RHS)
+\end{python}
+\begin{python}
+keep_weight(RHS,$field=2$)
+\end{python}
+\begin{python}
+####################### General manipulations #######################
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+for i in range(1):
+	temp=RHS
+	substitute(temp,pr,repeat=True)
+	distribute(temp)
+	substitute(temp,pr,repeat=True)
+	distribute(temp)
+	substitute(temp,pr)
+	distribute(temp)
+	substitute(temp,nopartialdelta)
+	substitute(temp,$\partial_{A? B?}{\phi{#}}->0$)
+	substitute(temp,$\partial_{A? B?}{g_{\mu \nu}}->0$)
+	substitute(temp,$\partial_{A? B?}{g^{\mu \nu}}->0$)
+	sort_product(temp)
+	rename_dummies(temp)
+	substitute(temp,pr)
+	distribute(temp)
+	substitute(temp,nopartialdelta)
+	sort_product(temp)
+	rename_dummies(temp)
+	substitute(temp,rldeltametric,repeat=True)
+	substitute(temp,rlharmT,repeat=True)
+	substitute(temp,rlpartialindex,repeat=True)
+	substitute(temp,rlpartialrho)
+	substitute(temp,$\partial_{A? B?}{g**{1/2}}->0$)
+	sort_product(temp)
+	rename_dummies(temp)
+	#substitute(temp,$\partial_{K? L?}{\Gamma_{S U V}^{S}}}->0$)
+	substitute(temp,rlUU,repeat=True)
+	substitute(temp,pr)
+	distribute(temp)
+	eliminate_kronecker(temp,repeat=True)
+	substitute(temp,rlGamma)
+	substitute(temp,pr)
+	distribute(temp)
+	sort_product(temp)
+	substitute(temp,rlUU,repeat=True)
+	eliminate_kronecker(temp,repeat=True)
+	substitute(temp,rlGamma)
+	substitute(temp,pr)
+	distribute(temp)
+	sort_product(temp)
+	substitute(temp,rlUU,repeat=True)
+	eliminate_kronecker(temp,repeat=True)
+	substitute(temp,$\partial_{K? L?}{\gamma}->0$)
+	substitute(temp,rlpartialrho)
+	substitute(temp,rlharmT)
+	substitute(temp,rlUU)
+	substitute(temp,pr)
+	distribute(temp)
+	eliminate_kronecker(temp,repeat=True)
+	substitute(temp,rlGamma)
+	substitute(temp,rlGamma)
+	substitute(temp,pr)
+	distribute(temp)
+	sort_product(temp)
+	substitute(temp,rlUU,repeat=True)
+	eliminate_kronecker(temp,repeat=True)
+
+	sort_product(temp)
+	rename_dummies(temp)
+	#substitute(temp,$U_{M}^{S} U_{N}^{T} -> A_{M N}^{S T}$)
+	temp1 := U_{X}^{M} U_{Y}^{N} @(temp).
+	distribute(temp1)
+	sort_product(temp1)
+	rename_dummies(temp1)
+	substitute(temp1,rlUU,repeat=True)
+	eliminate_kronecker(temp1)
+	substitute(temp1,rldeltametric,repeat=True)
+	substitute(temp1,rlUU,repeat=True)
+	#factor_out(temp,$A_{M N}^{S T}$)
+	#factor_out(temp,$U_{M?}^{S?}$)
+	substitute(temp1,$(\rho**{-3} \sqrt{g})**{-1}->\rho**{3} g**{-1}$)
+	distribute(temp1)
+	collect_factors(temp1)
+	substitute(temp1,$\partial_{U V}{\phi_{S T}^{\Sigma}}->0$)
+	factor_out(temp1,$\rho$)
+	factor_out(temp1,$\rho**{-1}$)
+	factor_out(temp1,$\rho**{-3}$)
+	factor_out(temp1,$\rho**{-4}$)
+	substitute(temp1,$(\rho**{-3} \sqrt{g})**{-1}->\rho**{3} g**{-1}$)
+
+	factor_out(temp1,$\sqrt{g}$)
+	collect_factors(temp1)
+\end{python}
+\begin{python}
+temp2:=\phi^{X Y \Gamma} Y^{\Gamma} @(temp1).
+distribute(temp2)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+save:=@(temp2).
+\end{python}
+\begin{python}
+temp2:=@(save).
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+with open("RHSraw.txt","w") as file:
+   file.write(temp2.input_form()+"\n" )
+\end{python}
+\begin{python}
+with open("RHSraw.txt", "r") as file:
+   temp2=Ex(file.readline())
+\end{python}
+\begin{python}
+##### TT #####
+\end{python}
+\begin{python}
+tempTT=substitute(temp2,$\Gamma{#}->0$)
+TT:=@(tempTT).
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(TT,$\partial_{K? L?}{T_{U V}^{\Sigma \Omega}}->0$)
+substitute(TT,rlharmT)
+substitute(TT,$\partial_{S T}{U{#}}->0$)
+TT:=\rho*g**{-1/2}*@(TT).
+\end{python}
+\begin{python}
+collect_factors(TT)
+sort_product(TT)
+rename_dummies(TT)
+collect_components(TT)
+substitute(TT,$\delta_{U V} \phi_{S}^{V \Sigma}->\phi_{S U}^{\Sigma}$)
+substitute(TT,$\delta_{V U} \phi_{S}^{V \Sigma}->\phi_{S U}^{\Sigma}$)
+substitute(TT,$\delta_{V U} \phi^{U S \Sigma}->\phi_{V}^{S \Sigma}$)
+substitute(TT,$\delta_{U V} \phi^{U S \Sigma}->\phi_{V}^{S \Sigma}$)
+#substitute(TT,rlUU,repeat=True);
+\end{python}
+\begin{python}
+sort_product(TT)
+rename_dummies(TT)
+meld(TT)
+distribute(TT)
+sort_product(TT)
+rename_dummies(TT)
+collect_factors(TT)
+\end{python}
+\begin{python}
+substitute(TT,$\delta_{U V} \phi^{S U \Sigma}->\phi_{V}^{S \Sigma}$)
+substitute(TT,$\delta_{V U} \phi^{S U \Sigma}->\phi_{V}^{S \Sigma}$)
+\end{python}
+\begin{python}
+distribute(TT)
+\end{python}
+\begin{python}
+substitute(TT,$\eta^{T W} \phi_{W}^{S \Sigma}->\varphi^{T S \Sigma}$)
+sort_product(TT)
+rename_dummies(TT)
+meld(TT)
+\end{python}
+\begin{python}
+substitute(TT,$Y^{\Delta} Y^{\Omega} Y^{\Gamma}->c^{\Delta \Omega \Gamma}$)
+\end{python}
+\begin{python}
+sort_product(TT)
+rename_dummies(TT)
+meld(TT)
+\end{python}
+\begin{python}
+substitute(TT,$\phi_{W S}^{\Sigma} \phi^{W U \Omega}->\phi_{S}^{T \Sigma} \phi_{T}^{U \Omega}$)
+substitute(TT,$\phi_{S W}^{\Sigma} \phi^{W U \Omega}->\phi_{S}^{T \Sigma} \phi_{T}^{U \Omega}$)
+substitute(TT,$\phi_{W S}^{\Sigma} \phi^{U W \Omega}->\phi_{S}^{T \Sigma} \phi_{T}^{U \Omega}$)
+substitute(TT,$\phi_{S W}^{\Sigma} \phi^{U W \Omega}->\phi_{S}^{T \Sigma} \phi_{T}^{U \Omega}$)
+\end{python}
+\begin{python}
+substitute(TT,$\eta^{W T} \phi_{W}^{S \Sigma}->\varphi{T S \Sigma}$)
+substitute(TT,$\eta^{T W} \phi_{W}^{S \Sigma}->\varphi^{T S \Sigma}$)
+\end{python}
+\begin{python}
+sort_product(TT)
+rename_dummies(TT)
+meld(TT)
+\end{python}
+\begin{python}
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Omega \Delta} c^{\Delta \Gamma \Lambda} \delta^{T V}   \phi^{U W \Gamma} \phi_{W}\,^{X \Sigma} \phi_{X}\,^{S \Lambda}$\end{adjustwidth}
+\begin{python}
+TTLatex:=1/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{U S} \phi_{W}^{X \Lambda} \phi_{X}^{W \Delta} \phi^{V T \Gamma} 
+- 1/8 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Sigma} \phi_{X}^{W \Gamma} \phi^{S U \Lambda}
+
+#+ 1/8 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{U S} \delta^{V T} \phi_{W}^{X \Delta} \phi_{X}^{Y \Gamma} \phi_{Y}^{W \Lambda}
+#+1/128 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{S U} \delta^{T V} \phi_{W}^{X \Lambda} \phi_{X}^{Y \Gamma} \phi_{Y}^{W \Sigma}
+
++1/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Gamma} \phi_{W}^{X \Sigma} \phi_{X}^{W \Lambda}
++2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \phi^{S W \Lambda} \phi^{T V \Gamma} c^{\Gamma \Delta \Omega}
++2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{S W \Lambda} \phi_{X}^{U \Delta} \phi_{W}^{X \Gamma}
++2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S W \Lambda} \phi_{X}^{U \Gamma} \phi_{W}^{X \Sigma}
++1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Delta} \phi_{X}^{S \Lambda} \phi^{U W \Gamma}
+
+#+1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Sigma} \phi_{X}^{S \Lambda} \phi^{U W \Gamma}
+#+1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Lambda} \phi_{X}^{S \Sigma} \phi^{U W \Gamma}
+-1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Omega \Delta} c^{\Delta \Gamma \Lambda} \delta^{T V} \phi^{U W \Gamma} \phi_{W}^{X \Sigma} \phi_{X}^{S \Lambda}
+
++1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Lambda} \phi_{X}^{S \Delta} \phi^{U W \Gamma}
++T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}^{X \Gamma} \phi_{X}^{S \Lambda} \phi^{U W \Sigma}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Lambda} \phi^{U W \Sigma} \phi^{V T \Gamma} c^{\Delta \Gamma \Omega}
++1/4 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
++1/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}
++1/4 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} 
+- 1/4 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} 
+- 1/4 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{S W \Lambda} \phi^{U T \Delta} \phi_{W}^{V \Gamma} c^{\Gamma \Delta \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{S W \Lambda} \phi^{U T \Gamma} \phi_{W}^{V \Sigma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{S W \Sigma} \phi^{U T \Gamma} \phi_{W}^{V \Lambda} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{S W \Delta} \phi^{U T \Gamma} \phi_{W}^{V \Lambda} c^{\Delta \Gamma \Omega}.
+sort_product(TTLatex)
+rename_dummies(TTLatex)
+meld(TTLatex);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{U S} \phi_{W}\,^{{S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Delta} \phi^{V T \Gamma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}\,^{{S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Gamma} \phi^{S U \Lambda}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Gamma} \phi_{W}\,^{{S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \phi^{S W \Lambda} \phi^{T V \Gamma} c^{\Gamma \Delta \Omega}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S W \Lambda} \phi_{W}\,^{{S_{1}} \Delta} \phi_{{S_{1}}}\,^{U \Gamma}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S W \Lambda} \phi_{W}\,^{{S_{1}} \Sigma} \phi_{{S_{1}}}\,^{U \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}\,^{{S_{1}} \Delta} \phi_{{S_{1}}}\,^{S \Lambda} \phi^{U W \Gamma} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Omega \Lambda} c^{\Lambda \Delta \Gamma} \delta^{T V} \phi^{U W \Delta} \phi_{W}\,^{{S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Gamma}  +\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}\,^{{S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Delta} \phi^{U W \Gamma}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{W}\,^{{S_{1}} \Gamma} \phi_{{S_{1}}}\,^{S \Lambda} \phi^{U W \Sigma}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Lambda} \phi^{U W \Sigma} \phi^{V T \Gamma} c^{\Delta \Gamma \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{S W \Lambda} \phi^{U T \Delta} \phi_{W}\,^{V \Gamma} c^{\Gamma \Delta \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{S W \Lambda} \phi^{U T \Gamma} \phi_{W}\,^{V \Sigma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{S W \Sigma} \phi^{U T \Gamma} \phi_{W}\,^{V \Lambda} c^{\Delta \Gamma \Omega}%
+-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{S W \Delta} \phi^{U T \Gamma} \phi_{W}\,^{V \Lambda} c^{\Delta \Gamma \Omega}$\end{adjustwidth}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(TTLatex,$\phi_{W}^{S \Sigma} \phi_{S}^{U \Omega}->\phi_{W}^{U \Sigma \Omega}$)
+substitute(TTLatex,$\phi_{S}^{U \Omega} \phi_{W}^{S \Sigma}->\phi_{W}^{U \Sigma \Omega}$)
+substitute(TTLatex,$\phi_{W}^{U \Omega} \phi^{S W \Sigma}->\phi^{S U \Sigma \Omega}$)
+substitute(TTLatex,$\phi^{S W \Lambda} \phi_{W}^{U \Delta \Gamma}->\phi^{S U \Lambda \Delta \Gamma}$);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{U S} \phi_{{S_{1}}}\,^{{S_{1}} \Delta \Lambda} \phi^{V T \Gamma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi_{{S_{1}}}\,^{{S_{1}} \Gamma \Sigma} \phi^{S U \Lambda}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Gamma} \phi_{{S_{1}}}\,^{{S_{1}} \Lambda \Sigma}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{S U \Lambda \Delta} \phi^{T V \Gamma} c^{\Gamma \Delta \Omega}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Delta \Gamma}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Gamma \Delta \Lambda} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Omega \Lambda} c^{\Lambda \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Sigma \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Gamma \Lambda \Delta}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U S \Sigma \Lambda} \phi^{V T \Gamma} c^{\Delta \Gamma \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Lambda \Gamma} c^{\Gamma \Delta \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Lambda \Sigma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}%
+-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Gamma} \phi^{S V \Delta \Lambda} c^{\Delta \Gamma \Omega}$\end{adjustwidth}
+\begin{python}
+sort_product(TTLatex)
+rename_dummies(TTLatex);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{U S} \phi^{V T \Delta} \phi_{W}\,^{W \Gamma \Lambda} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}\,^{W \Gamma \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Gamma} \phi_{W}\,^{W \Lambda \Sigma}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Delta \Gamma}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Omega \Lambda} c^{\Lambda \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Sigma \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Lambda \Gamma}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{V T \Gamma} \phi^{U S \Sigma \Lambda} c^{\Delta \Gamma \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Lambda \Gamma} c^{\Gamma \Delta \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Lambda \Sigma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}%
+-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega}$\end{adjustwidth}
+\begin{python}
+TTLatex:=#\frac{1}{32}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{U S} \phi^{V T \Delta} \phi_{W}^{W \Gamma \Lambda} 
+#- \frac{1}{8}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}^{W \Gamma \Sigma}
+#+\frac{1}{32}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Gamma} \phi_{W}^{W \Lambda \Sigma}
+	-5/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}^{W \Gamma \Sigma}
+#4 avec 11+2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}
+	+5/2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}
+# 5 avec 7 +2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Delta \Gamma}
++2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}
+# 7 avec 5 +\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
+	+5/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
+- \frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Omega \Lambda} c^{\Lambda \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Sigma \Gamma}
++\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Lambda \Gamma}
++T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}
+# 11 -T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{V T \Gamma} \phi^{U S \Sigma \Lambda} c^{\Delta \Gamma \Omega}
++\frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
++\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}
++\frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
+# 17 avec 4 -T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Lambda \Gamma} c^{\Gamma \Delta \Omega}
+# 18 avec 11 -T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Lambda \Sigma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}$\end{adjustwidth}
+\begin{python}
+TTLatex:=-5/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}^{W \Gamma \Sigma}
++5/2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}
++2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}
++5/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
+
+# 5 avec 6 - \frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Omega \Lambda} c^{\Lambda \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Sigma \Gamma}
+# 6 avec 5+\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Lambda \Gamma}
+
++T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}
+# 8 avec 10 +\frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Lambda} \varphi^{T W \Delta} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
++\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}
+# 10 avec 8 +\frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Gamma} \varphi^{T S \Lambda} \varphi^{V W \Sigma} c^{\Delta \Gamma \Omega} 
++\frac{-1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} 
+
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}\,^{W \Gamma \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}+2T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega}$\end{adjustwidth}
+\begin{python}
+TTLatex1:=-5/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}^{W \Gamma \Sigma}
++5/2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}
+#+2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}
+	+T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}
+#+5/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
+	+3/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
+#avec 3 et 4+T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{U S \Sigma \Gamma \Lambda}
++\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}
++\frac{-1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}\,^{W \Gamma \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{3}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega}$\end{adjustwidth}
+\begin{python}
+TTLatex2:=-5/32 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}^{W \Gamma \Sigma}
++T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}
++3/2 T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}
++5/2T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}
+-T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega}
++\frac{1}{2}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega}
++\frac{-1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Delta} \phi_{W}^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} 
+- \frac{1}{4}T_{S T}^{\Sigma \Omega} T_{U V}^{\Lambda \Sigma} \phi_{W}^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda} \phi_{W}\,^{W \Gamma \Sigma}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Delta \Gamma \Omega} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{3}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Gamma \Delta \Omega} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{U T \Gamma} \phi^{S V \Sigma \Lambda} c^{\Delta \Gamma \Omega}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{U T \Delta} \phi^{S V \Gamma \Lambda} c^{\Gamma \Delta \Omega}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{T S \Lambda} \varphi^{V W \Gamma} c^{\Gamma \Delta \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{U \Lambda} \varphi^{V W \Sigma} \varphi^{T S \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{V U \Gamma} c^{\Delta \Gamma \Omega}$\end{adjustwidth}
+\begin{python}
+sort_product(TTLatex2)
+rename_dummies(TTLatex2)
+meld(TTLatex2); 
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Sigma} \phi_{W}\,^{W \Gamma \Lambda}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{3}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Omega \Delta \Gamma}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{S V \Gamma} \phi^{U T \Lambda \Sigma} c^{\Omega \Delta \Gamma}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T U \Delta} \phi^{S V \Gamma \Lambda} c^{\Omega \Delta \Gamma} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{S T \Lambda} \varphi^{V W \Gamma} c^{\Omega \Delta \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}$\end{adjustwidth}
+\begin{python}
+T_{S T}^{\Sigma \Omega}::TableauSymmetry(shape={1,1},indices={2,3}).
+\end{python}
+\begin{python}
+sort_product(TTLatex2)
+rename_dummies(TTLatex2)
+meld(TTLatex2);  
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Sigma} \phi_{W}\,^{W \Gamma \Lambda}+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}+\frac{3}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Omega \Delta \Gamma}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{S V \Gamma} \phi^{U T \Lambda \Sigma} c^{\Omega \Delta \Gamma}-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T U \Delta} \phi^{S V \Gamma \Lambda} c^{\Omega \Delta \Gamma} - \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{S T \Lambda} \varphi^{V W \Gamma} c^{\Omega \Delta \Gamma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}$\end{adjustwidth}
+\begin{python}
+T_{S T}^{\Sigma \Omega}::TableauSymmetry(shape={1,1},indices={0,1}). 
+\end{python}
+\begin{python}
+##### Gamma T terms #####
+\end{python}
+\begin{python}
+tempGT=substitute(temp2,$\Gamma{#} \Gamma{#}->0$)
+substitute(tempGT,$T{#} T{#}->0$)
+GT:=@(tempGT).
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(GT,$\partial_{S T}{\Gamma{#}}->0$)
+substitute(GT,$\partial_{S T}{T{#}}->0$)
+\end{python}
+\begin{python}
+substitute(GT,$U^{K V}->\eta^{K M} U_{M}^{V}$)
+substitute(GT,pr)
+substitute(GT,$\partial_{A? B?}{\eta^{K M}}->0$) 
+substitute(GT,rlGamma)
+substitute(GT,$\Gamma{#} \Gamma{#}->0$)
+substitute(GT,$T{#} T{#}->0$)
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+\end{python}
+\begin{python}
+substitute(GT,$Y^{\Sigma} Y^{\Gamma} Y^{\Delta} -> c^{\Sigma \Gamma \Delta}$)
+\end{python}
+\begin{python}
+GT:=\rho g**{-1/2} @(GT).
+distribute(GT)
+collect_factors(GT)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(GT,$\delta_{S T} \phi^{U T \Lambda}->\phi_{S}^{U \Lambda}$)
+substitute(GT,$\delta_{T S} \phi^{U T \Lambda}->\phi_{S}^{U \Lambda}$)
+substitute(GT,$\delta_{S T} \phi^{T U \Lambda}->\phi_{S}^{U \Lambda}$)
+substitute(GT,$\delta_{T S} \phi^{T U \Lambda}->\phi_{S}^{U \Lambda}$)
+substitute(GT,$\delta^{S T} \phi_{U T}^{\Lambda}->\phi_{U}^{S \Lambda}$)
+substitute(GT,$\delta^{T S} \phi_{U T}^{\Lambda}->\phi_{U}^{S \Lambda}$)
+substitute(GT,$\delta^{S T} \phi_{T U}^{\Lambda}->\phi_{U}^{S \Lambda}$)
+substitute(GT,$\delta^{T S} \phi_{T U}^{\Lambda}->\phi_{U}^{S \Lambda}$)
+substitute(GT,$\phi_{S}^{T \Sigma} \phi_{T}^{U \Lambda}->\phi_{S}^{U \Sigma \Lambda}$)
+\end{python}
+\begin{python}
+rldeltaphi:={\delta_{S T} \phi^{U T \Lambda}->\phi_{S}^{U \Lambda},
+\delta_{T S} \phi^{U T \Lambda}->\phi_{S}^{U \Lambda},
+\delta_{S T} \phi^{T U \Lambda}->\phi_{S}^{U \Lambda},
+\delta_{T S} \phi^{T U \Lambda}->\phi_{S}^{U \Lambda},
+\delta^{S T} \phi_{U T}^{\Lambda}->\phi_{U}^{S \Lambda},
+\delta^{T S} \phi_{U T}^{\Lambda}->\phi_{U}^{S \Lambda},
+\delta^{S T} \phi_{T U}^{\Lambda}->\phi_{U}^{S \Lambda},
+\delta^{T S} \phi_{T U}^{\Lambda}->\phi_{U}^{S \Lambda},
+\delta^{S U} \phi_{U}^{T \Sigma}->\phi^{S T \Sigma},
+\delta^{U S} \phi_{U}^{T \Sigma}->\phi^{S T \Sigma},
+\delta_{S T} \phi^{W S \Sigma \Delta}->\phi_{T}^{W \Delta \Sigma},
+\delta_{T S} \phi^{W S \Sigma \Delta}->\phi_{T}^{W \Delta \Sigma},
+\delta^{W S} \phi_{S}^{T \Lambda \Delta \Sigma}->\phi^{W T \Lambda \Delta \Sigma},
+\delta^{S W} \phi_{S}^{T \Lambda \Delta \Sigma}->\phi^{W T \Lambda \Delta \Sigma},
+\delta_{S T} \phi^{U T \Sigma \Delta \Lambda}->\phi_{S}^{U \Lambda \Delta \Sigma}};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{\delta_{S T} \phi^{U T \Lambda} \rightarrow \phi_{S}\,^{U \Lambda},~\discretionary{}{}{} \delta_{T S} \phi^{U T \Lambda} \rightarrow \phi_{S}\,^{U \Lambda},~\discretionary{}{}{} \delta_{S T} \phi^{T U \Lambda} \rightarrow \phi_{S}\,^{U \Lambda},~\discretionary{}{}{} \delta_{T S} \phi^{T U \Lambda} \rightarrow \phi_{S}\,^{U \Lambda},~\discretionary{}{}{} \delta^{S T} \phi_{U T}\,^{\Lambda} \rightarrow \phi_{U}\,^{S \Lambda},~\discretionary{}{}{} \delta^{T S} \phi_{U T}\,^{\Lambda} \rightarrow \phi_{U}\,^{S \Lambda},~\discretionary{}{}{} \delta^{S T} \phi_{T U}\,^{\Lambda} \rightarrow \phi_{U}\,^{S \Lambda},~\discretionary{}{}{} \delta^{T S} \phi_{T U}\,^{\Lambda} \rightarrow \phi_{U}\,^{S \Lambda},~\discretionary{}{}{} \delta^{S U} \phi_{U}\,^{T \Sigma} \rightarrow \phi^{S T \Sigma},~\discretionary{}{}{} \delta^{U S} \phi_{U}\,^{T \Sigma} \rightarrow \phi^{S T \Sigma},~\discretionary{}{}{} \delta_{S T} \phi^{W S \Sigma \Delta} \rightarrow \phi_{T}\,^{W \Delta \Sigma},~\discretionary{}{}{} \delta_{T S} \phi^{W S \Sigma \Delta} \rightarrow \phi_{T}\,^{W \Delta \Sigma},~\discretionary{}{}{} \delta^{W S} \phi_{S}\,^{T \Lambda \Delta \Sigma} \rightarrow \phi^{W T \Lambda \Delta \Sigma},~\discretionary{}{}{} \delta^{S W} \phi_{S}\,^{T \Lambda \Delta \Sigma} \rightarrow \phi^{W T \Lambda \Delta \Sigma},~\discretionary{}{}{} \delta_{S T} \phi^{U T \Sigma \Delta \Lambda} \rightarrow \phi_{S}\,^{U \Lambda \Delta \Sigma}}{]}$\end{adjustwidth}
+\begin{python}
+rlprodphi:={\phi^{S T \Lambda} \phi_{U S}^{\Delta}->\phi_{U}^{T \Delta \Lambda},
+\phi^{T S \Lambda} \phi_{U S}^{\Delta}->\phi_{U}^{T \Delta \Lambda},
+\phi^{S T \Lambda} \phi_{S U}^{\Delta}->\phi_{U}^{T \Delta \Lambda},
+\phi^{T S \Lambda} \phi_{S U}^{\Delta}->\phi_{U}^{T \Delta \Lambda},
+\phi_{S}^{T \Sigma} \phi_{T}^{U \Delta \Lambda}->\phi_{S}^{U \Sigma \Delta \Lambda},
+\phi_{T}^{S \Sigma} \phi_{U}^{T \Delta \Lambda}->\phi_{U}^{S \Delta \Lambda \Sigma},
+\phi^{U S \Sigma} \phi_{S}^{T \Delta}->\phi^{U T \Sigma \Delta},
+\phi^{S W \Lambda} \phi_{S}^{T \Delta}-> \phi^{W T \Lambda \Delta},
+\phi^{W S \Lambda} \phi_{S}^{T \Delta}-> \phi^{W T \Lambda \Delta},
+\phi^{W S \Lambda \Delta} \phi_{T S}^{\Sigma}->\phi_{T}^{W \Sigma \Lambda \Delta},
+\phi^{U S \Lambda} \phi_{S}^{W \Sigma \Delta}->\phi^{U W \Lambda \Sigma \Delta},
+\phi^{S U \Lambda} \phi_{S}^{W \Sigma \Delta}->\phi^{U W \Lambda \Sigma \Delta},
+\phi_{S}^{W \Delta} \phi^{S U \Lambda \Sigma}->\phi^{U W \Sigma \Lambda \Delta},
+\phi_{S}^{T \Lambda} \phi_{U T}^{\Sigma}->\phi_{S U}^{\Lambda \Sigma}};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{\phi^{S T \Lambda} \phi_{U S}\,^{\Delta} \rightarrow \phi_{U}\,^{T \Delta \Lambda},~\discretionary{}{}{} \phi^{T S \Lambda} \phi_{U S}\,^{\Delta} \rightarrow \phi_{U}\,^{T \Delta \Lambda},~\discretionary{}{}{} \phi^{S T \Lambda} \phi_{S U}\,^{\Delta} \rightarrow \phi_{U}\,^{T \Delta \Lambda},~\discretionary{}{}{} \phi^{T S \Lambda} \phi_{S U}\,^{\Delta} \rightarrow \phi_{U}\,^{T \Delta \Lambda},~\discretionary{}{}{} \phi_{S}\,^{T \Sigma} \phi_{T}\,^{U \Delta \Lambda} \rightarrow \phi_{S}\,^{U \Sigma \Delta \Lambda},~\discretionary{}{}{} \phi_{T}\,^{S \Sigma} \phi_{U}\,^{T \Delta \Lambda} \rightarrow \phi_{U}\,^{S \Delta \Lambda \Sigma},~\discretionary{}{}{} \phi^{U S \Sigma} \phi_{S}\,^{T \Delta} \rightarrow \phi^{U T \Sigma \Delta},~\discretionary{}{}{} \phi^{S W \Lambda} \phi_{S}\,^{T \Delta} \rightarrow \phi^{W T \Lambda \Delta},~\discretionary{}{}{} \phi^{W S \Lambda} \phi_{S}\,^{T \Delta} \rightarrow \phi^{W T \Lambda \Delta},~\discretionary{}{}{} \phi^{W S \Lambda \Delta} \phi_{T S}\,^{\Sigma} \rightarrow \phi_{T}\,^{W \Sigma \Lambda \Delta},~\discretionary{}{}{} \phi^{U S \Lambda} \phi_{S}\,^{W \Sigma \Delta} \rightarrow \phi^{U W \Lambda \Sigma \Delta},~\discretionary{}{}{} \phi^{S U \Lambda} \phi_{S}\,^{W \Sigma \Delta} \rightarrow \phi^{U W \Lambda \Sigma \Delta},~\discretionary{}{}{} \phi_{S}\,^{W \Delta} \phi^{S U \Lambda \Sigma} \rightarrow \phi^{U W \Sigma \Lambda \Delta},~\discretionary{}{}{} \phi_{S}\,^{T \Lambda} \phi_{U T}\,^{\Sigma} \rightarrow \phi_{S U}\,^{\Lambda \Sigma}}{]}$\end{adjustwidth}
+\begin{python}
+rltrphi:=\phi_{S}^{S \Sigma \Lambda}->\phi^{\Sigma \Lambda};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\phi_{S}\,^{S \Sigma \Lambda} \rightarrow \phi^{\Sigma \Lambda}$\end{adjustwidth}
+\begin{python}
+substitute(GT,$\phi^{S T \Lambda} \phi_{U S}^{\Delta}->\phi_{U}^{T \Delta \Lambda}$)
+substitute(GT,$\phi^{T S \Lambda} \phi_{U S}^{\Delta}->\phi_{U}^{T \Delta \Lambda}$)
+substitute(GT,$\phi^{S T \Lambda} \phi_{S U}^{\Delta}->\phi_{U}^{T \Delta \Lambda}$)
+substitute(GT,$\phi^{T S \Lambda} \phi_{S U}^{\Delta}->\phi_{U}^{T \Delta \Lambda}$)
+
+substitute(GT,$\phi_{S}^{T \Sigma} \phi_{T}^{U \Delta \Lambda}->\phi_{S}^{U \Sigma \Delta \Lambda}$)
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi)
+substitute(GT,rldeltaphi)
+substitute(GT,rlprodphi,repeat=True)
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi)
+substitute(GT,rldeltaphi)
+substitute(GT,rlprodphi,repeat=True)
+\end{python}
+\begin{python}
+substitute(GT,rltrphi)
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi)
+\end{python}
+\begin{python}
+substitute(GT,rldeltaphi)
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi) 
+\end{python}
+\begin{python}
+substitute(GT,rldeltaphi)
+eliminate_kronecker(GT)
+\end{python}
+\begin{python}
+substitute(GT,rldeltaphi)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi) 
+\end{python}
+\begin{python}
+rletaphi:={\eta^{S T} \phi_{S}^{U \Sigma}->\varphi^{T U \Sigma},
+\eta^{T S} \phi_{S}^{U \Sigma}->\varphi^{T U \Sigma},
+\eta^{S T} \phi_{T}^{U \Sigma \Omega \Lambda}->\varphi^{S W \Sigma} \phi_{W}^{U \Omega \Lambda},
+\eta^{T S} \phi_{S}^{U \Sigma \Lambda}->\varphi^{T W \Sigma} \phi_{W}^{U \Lambda}};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\brwrap{[}{\eta^{S T} \phi_{S}\,^{U \Sigma} \rightarrow \varphi^{T U \Sigma},~\discretionary{}{}{} \eta^{T S} \phi_{S}\,^{U \Sigma} \rightarrow \varphi^{T U \Sigma},~\discretionary{}{}{} \eta^{S T} \phi_{T}\,^{U \Sigma \Omega \Lambda} \rightarrow \varphi^{S W \Sigma} \phi_{W}\,^{U \Omega \Lambda},~\discretionary{}{}{} \eta^{T S} \phi_{S}\,^{U \Sigma \Lambda} \rightarrow \varphi^{T W \Sigma} \phi_{W}\,^{U \Lambda}}{]}$\end{adjustwidth}
+\begin{python}
+substitute(GT,rletaphi)
+\end{python}
+\begin{python}
+len(GT);
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+len(GT);
+\end{python}
+\begin{verbatim}160\end{verbatim}
+\begin{verbatim}97\end{verbatim}
+\begin{python}
+collect_terms(GT)
+\end{python}
+\begin{python}
+substitute(GT,$\phi_{S}^{S \Sigma \Lambda \Delta}->0$)
+len(GT);
+\end{python}
+\begin{verbatim}93\end{verbatim}
+\begin{python}
+substitute(GT,rletaphi)
+\end{python}
+\begin{python}
+substitute(GT,rlprodphi) 
+\end{python}
+\begin{python}
+substitute(GT,$U_{M}^{S} U_{N}^{T} \eta^{M N}->\eta^{S T}$) 
+\end{python}
+\begin{python}
+rlprodphiANDeta:={\eta^{T S} \phi_{U S}^{\Lambda \Sigma}->\varphi^{T W \Sigma} \phi_{W U}^{\Lambda}};
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\eta^{T S}   \phi_{U S}\,^{\Lambda \Sigma} \rightarrow \varphi^{T W \Sigma} \phi_{W U}\,^{\Lambda}$\end{adjustwidth}
+\begin{python}
+substitute(GT,rlprodphiANDeta)
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+\end{python}
+\begin{python}
+substitute(GT,rletaphi)
+\end{python}
+\begin{python}
+test=GT[84]+GT[85]; 
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Lambda \Sigma} \varphi^{V U \Delta}$\end{adjustwidth}
+\begin{python}
+substitute(test,$T_{S T}^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \phi^{W S \Sigma \Lambda}+T_{S T}^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \phi^{W S \Lambda \Sigma}->-T_{S T}^{\Delta \Omega} c^{\Sigma \Lambda \Omega} \phi^{W S \Lambda \Sigma}$);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Lambda \Sigma} \varphi^{V U \Delta}$\end{adjustwidth}
+\begin{python}
+GT; 
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{7}{32}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S U} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{5}{64}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Sigma \Lambda \Delta}+\frac{9}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma} \phi^{V T \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Delta \Sigma}+\frac{7}{32}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \phi^{V T \Lambda} \phi_{{S_{1}}}\,^{W \Sigma \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \delta^{S U} \phi^{\Sigma \Lambda} \phi^{W V \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{512}\gamma - \frac{1}{64}}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \delta^{S V} \phi^{\Sigma \Lambda} \phi^{T W \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{64} - \frac{1}{512}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \delta^{S W} \phi^{\Sigma \Lambda} \phi^{T V \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \delta^{W V} \phi^{\Sigma \Lambda} \phi^{S U \Delta}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Sigma} \phi_{{S_{1}}}\,^{W \Lambda \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Sigma \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi^{U S \Lambda} \phi^{V T \Delta}+\frac{7}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{T V \Lambda} \phi^{U W \Delta \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+4T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U W \Lambda \Sigma \Delta}+5T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda \Delta \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U W \Lambda \Delta \Sigma}%
++T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}}}\,^{U \Sigma \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma} \phi^{T V \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{3 - \frac{37}{8}\gamma}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{V T \Lambda} \phi^{S W \Delta \Sigma}+3T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \phi^{V W \Lambda} \phi^{S U \Delta \Sigma}+6T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{V T \Lambda} \phi^{W U \Delta \Sigma} - \frac{53}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{W T \Lambda} \phi^{S V \Delta \Sigma}+4T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi^{S W \Lambda} \phi^{V T \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Sigma} \phi_{{S_{1}}}\,^{U \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{S W \Lambda \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{S U \Lambda \Delta \Sigma}+4T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{W U \Lambda \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{S V \Lambda \Delta \Sigma}+\frac{9}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{S W \Lambda} \phi_{{S_{1}}}\,^{U \Delta \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W U \Sigma \Lambda \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W U \Lambda \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W S \Sigma \Lambda \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U S \Sigma \Lambda \Delta}%
++\frac{11}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{U W \Sigma \Lambda \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V S \Sigma \Lambda \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W S \Lambda \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U S \Lambda \Sigma \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V S \Lambda \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}}}\,^{U \Lambda \Sigma \Delta}+\frac{9}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{V T \Lambda} \phi_{{S_{1}}}\,^{U \Delta \Sigma}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{V T \Lambda} \phi^{U W \Sigma \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \eta^{T {S_{2}}} \varphi^{V {S_{3}} \Sigma} \phi_{{S_{3}}}\,^{U \Delta} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \eta^{T W} \phi_{{S_{1}}}\,^{U \Lambda \Sigma} \varphi^{V {S_{1}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda \Sigma} \varphi^{V {S_{3}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \eta^{T W} \phi_{{S_{1}}}\,^{U \Lambda \Delta} \varphi^{V {S_{1}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda \Delta} \varphi^{V {S_{3}} \Sigma} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \varphi^{T {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Sigma} \varphi^{V U \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{S W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \varphi^{V {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi^{U W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{T S \Delta}+\frac{3}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \varphi^{V {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{U \Sigma} \varphi^{W S \Delta}+\frac{7}{32}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \varphi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{V \Sigma} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \varphi^{V {S_{3}} \Delta} \phi_{{S_{3}}}\,^{U \Sigma} \phi^{W S \Lambda}%
+ - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \varphi^{V {S_{2}} \Delta} \phi_{{S_{2}}}\,^{U \Sigma} \phi_{{S_{1}}}\,^{S \Lambda} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \varphi^{V {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{U \Delta} \varphi^{T W \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \varphi^{V {S_{3}} \Lambda} \phi_{{S_{3}}}\,^{U \Delta} \phi^{S W \Sigma}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{8}+\frac{1}{32}\gamma}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \varphi^{T {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Delta} \varphi^{V W \Sigma}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \varphi^{T {S_{3}} \Lambda} \phi_{{S_{3}}}\,^{S \Delta} \eta^{V {S_{2}}} \phi^{U W \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \varphi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Delta} \varphi^{V U \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \varphi^{T {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Delta} \varphi^{V U \Sigma} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \varphi^{V U \Sigma} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda \Delta} \varphi^{V U \Sigma}+\frac{3}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \varphi^{V {S_{3}} \Sigma} \phi_{{S_{3}}}\,^{U \Delta} \phi^{S W \Lambda} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \varphi^{T {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Sigma \Lambda} \varphi^{T S \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \varphi^{V {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \varphi^{V {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{U \Lambda} \varphi^{W S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \varphi^{W {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{V \Lambda} \gamma \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \varphi^{V {S_{2}} \Sigma} \phi_{{S_{2}}}\,^{U \Delta} \phi_{{S_{1}}}\,^{S \Lambda} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \varphi^{V {S_{3}} \Lambda} \phi_{{S_{3}}}\,^{U \Delta} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma}%
+ - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \varphi^{T {S_{2}} \Lambda} \phi_{{S_{2}}}\,^{S \Delta} \phi_{{S_{1}}}\,^{U \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Lambda \Sigma} \varphi^{V U \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda} \varphi^{T S \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{U T \Lambda} \phi^{W V \Sigma \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{V} \phi^{U T \Lambda} \phi^{S W \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+\frac{27}{8}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{W V \Lambda} \phi^{U T \Sigma \Delta} - \frac{37}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S W \Lambda} \phi^{V T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+8\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Delta \Sigma}$\end{adjustwidth}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+substitute(GT,$\delta_{U V} \phi^{U S \Lambda}->\phi_{V}^{S \Lambda}$)
+substitute(GT,$\delta_{U V} \phi^{S U \Lambda}->\phi_{V}^{S \Lambda}$)
+substitute(GT,$\delta^{U V} \phi_{U W}^{\Lambda}->\phi_{W}^{V \Lambda}$)
+substitute(GT,$\delta^{V U} \phi_{U W}^{\Lambda}->\phi_{W}^{V \Lambda}$)
+substitute(GT,$\delta^{U V} \phi_{W U}^{\Lambda}->\phi_{W}^{V \Lambda}$)
+substitute(GT,$\delta^{V U} \phi_{W U}^{\Lambda}->\phi_{W}^{V \Lambda}$)
+substitute(GT,$\phi^{V S \Lambda} \phi_{S T}^{\Delta}->\phi_{W}^{V \Lambda} \phi_{T}^{W \Delta}$)
+substitute(GT,$\phi^{S V \Lambda} \phi_{S T}^{\Delta}->\phi_{W}^{V \Lambda} \phi_{T}^{W \Delta}$)
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+\end{python}
+\begin{python}
+substitute(GT,$\eta^{T W} \phi_{W}^{S \Lambda}->\varphi^{T S \Lambda}$)
+substitute(GT,$\delta_{W S} \phi_{T}^{W \Delta}->\phi_{T S}^{\Delta}$)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+GT:=\rho g**{-1/2} @(GT).
+distribute(GT)
+collect_factors(GT)
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+\end{python}
+\begin{python}
+substitute(GT,$U_{M}^{S} U_{N}^{T} \eta^{M N} ->\eta^{S T}$)
+\end{python}
+\begin{python}
+len(GT);
+\end{python}
+\begin{verbatim}151\end{verbatim}
+\begin{python}
+substitute(GT,$\phi_{V}^{W \Sigma} \phi_{W}^{U \Delta}->\phi_{V}^{U \Sigma \Delta}$)
+substitute(GT,$\phi_{U}^{W \Omega \Sigma} \phi_{W}^{T \Delta}->\phi_{U}^{T \Omega \Sigma \Delta}$)
+substitute(GT,$\phi^{X W \Delta} \phi_{W}^{T \Sigma}->\phi_{W}^{X T \Delta \Sigma}$)
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+len(GT);
+\end{python}
+\begin{verbatim}143\end{verbatim}
+\begin{python}
+substitute(GT,$\delta_{S T} \phi^{W T \Sigma}->\phi_{S}^{W \Sigma}$)
+substitute(GT,$\phi^{S T \Lambda} \phi_{T}^{U \Sigma}->\phi^{S U \Lambda \Sigma}$)
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT)
+len(GT);
+\end{python}
+\begin{verbatim}143\end{verbatim}
+\begin{python}
+substitute(GT,$\delta_{S T} \phi_{U}^{T \Sigma \Delta}->\phi_{S T}^{\Sigma \Delta}$)
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S U} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}} {S_{2}}}\,^{\Delta \Sigma} \delta^{U S} \delta^{V T} \phi^{{S_{3}} W \Lambda}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda \Delta} \delta^{U S} \delta^{V T} \phi^{W {S_{3}} \Sigma}+\frac{5}{128}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Sigma \Lambda \Delta}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma} \phi^{V T \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Delta \Sigma}+\frac{3}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \phi^{W {S_{2}} \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \phi^{V T \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{S U} \phi^{W V \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{512}\gamma - \frac{1}{64}}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S V} \phi^{T W \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{64} - \frac{1}{512}\gamma}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S W} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{W V} \phi^{S U \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{W {S_{2}} \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \phi^{U S \Sigma}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi^{{S_{2}} W \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Sigma} \phi_{{S_{1}} {S_{3}}}\,^{\Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi^{{S_{2}} W \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Delta} \phi_{{S_{1}} {S_{3}}}\,^{\Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{S U} \delta^{W V} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Lambda \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{ - \frac{1}{2048}\gamma - \frac{1}{128}}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S V} \delta^{T W} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Lambda \Delta}%
++\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi^{U S \Lambda} \phi^{V T \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{U S \Lambda} \phi^{W {S_{2}} \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{U S \Lambda} \phi^{W {S_{2}} \Delta \Sigma}+\frac{1}{64}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}}}\,^{W \Sigma \Delta}+\frac{1}{64}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi^{S U \Lambda} \phi^{T V \Delta}+\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \phi^{W {S_{2}} \Sigma}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{{S_{2}} W} \delta^{T V} \phi^{S U \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Sigma} \phi_{{S_{1}} {S_{3}}}\,^{\Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{{S_{2}} W} \delta^{T V} \phi^{S U \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Delta} \phi_{{S_{1}} {S_{3}}}\,^{\Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{T V \Lambda} \phi^{U W \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \phi^{U {S_{2}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \phi^{U {S_{2}} \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{T V \Lambda} \phi^{W U \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma} \phi^{T V \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{V T \Lambda} \phi^{W S \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \phi^{V W \Lambda} \phi^{U S \Sigma \Delta}+6T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{V T \Lambda} \phi^{U W \Sigma \Delta}%
+-2T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{W T \Lambda} \phi^{V S \Sigma \Delta}+4T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi^{S W \Lambda} \phi^{V T \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{U \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Sigma} \phi_{{S_{1}}}\,^{U \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda \Delta}+\frac{7}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \delta^{W {S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}}}\,^{U \Sigma \Lambda \Delta}%
++\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \delta^{W {S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}}}\,^{U \Lambda \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{V T} \phi^{U {S_{2}} \Sigma} \phi_{{S_{2}}}\,^{{S_{1}} \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda \Delta} \delta^{V T} \phi^{U {S_{3}} \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{V T} \phi^{U {S_{2}} \Lambda} \phi_{{S_{2}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma \Delta} \delta^{V T} \phi^{U {S_{3}} \Lambda}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi_{{S_{2}}}\,^{U \Sigma} \phi^{{S_{2}} {S_{1}} \Lambda} \phi^{T V \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{{S_{1}} U \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{T V} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \phi^{{S_{3}} {S_{1}} \Delta} \phi^{U {S_{2}} \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{T V} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \phi^{{S_{3}} {S_{1}} \Lambda} \phi^{U {S_{2}} \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{U {S_{2}} \Sigma} \phi^{V T \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Delta \Sigma}%
+ - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \varphi^{V {S_{3}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \eta^{T {S_{1}}} \eta^{V {S_{2}}} \phi^{{S_{3}} U \Lambda} \phi_{{S_{3}}}\,^{{S_{4}} \Sigma} \phi_{{S_{2}} {S_{4}}}\,^{\Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi^{{S_{4}} U \Lambda} \phi_{{S_{4}}}\,^{{S_{5}} \Sigma} \phi_{{S_{3}} {S_{5}}}\,^{\Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \eta^{T {S_{1}}} \eta^{V {S_{2}}} \phi^{{S_{3}} U \Lambda} \phi_{{S_{3}}}\,^{{S_{4}} \Delta} \phi_{{S_{2}} {S_{4}}}\,^{\Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi^{{S_{4}} U \Lambda} \phi_{{S_{4}}}\,^{{S_{5}} \Delta} \phi_{{S_{3}} {S_{5}}}\,^{\Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{S W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{V U \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi^{U W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \eta^{W {S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda} \phi_{{S_{2}}}\,^{U \Sigma} \varphi^{V {S_{2}} \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma} \varphi^{T W \Delta}+\frac{3}{32}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \phi_{{S_{1}}}\,^{V \Lambda \Sigma} \varphi^{T S \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Sigma} \phi^{W S \Lambda} \varphi^{V {S_{3}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda} \phi_{{S_{2}}}\,^{U \Sigma} \varphi^{V {S_{2}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Delta} \varphi^{T W \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Sigma} \phi_{{S_{3}}}\,^{U \Lambda} \varphi^{V {S_{3}} \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi_{{S_{2}}}\,^{S \Lambda} \varphi^{T {S_{2}} \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Sigma} \phi_{{S_{3}}}\,^{S \Lambda} \varphi^{T {S_{3}} \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \eta^{W {S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda \Delta} \varphi^{V U \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi_{{S_{2}}}\,^{W \Lambda} \varphi^{T {S_{2}} \Delta} - \frac{1}{32}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \phi_{{S_{1}}}\,^{V \Sigma} \phi_{{S_{2}}}\,^{S \Lambda} \varphi^{T {S_{2}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \varphi^{V U \Sigma}%
+ - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda \Delta} \varphi^{V U \Sigma}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Lambda} \phi_{{S_{3}}}\,^{U \Delta} \varphi^{V {S_{3}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{T {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{W {S_{2}} \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{T {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{W {S_{2}} \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{W {S_{2}} \Sigma} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Sigma \Lambda} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{U {S_{2}} \Sigma} \varphi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \gamma \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{V {S_{2}} \Sigma} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{W {S_{2}} \Lambda} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{U {S_{2}} \Lambda} \varphi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \gamma \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{V {S_{2}} \Lambda} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi_{{S_{4}} {S_{3}}}\,^{\Lambda} \phi^{U {S_{4}} \Sigma} \phi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi_{{S_{4}} {S_{3}}}\,^{\Sigma} \phi^{U {S_{4}} \Lambda} \phi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi_{{S_{3}} {S_{2}}}\,^{\Lambda} \phi_{{S_{1}}}\,^{S \Delta} \phi^{U {S_{3}} \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi_{{S_{3}} {S_{2}}}\,^{\Sigma} \phi_{{S_{1}}}\,^{S \Lambda} \phi^{U {S_{3}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \varphi^{V {S_{3}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Sigma} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \varphi^{V U \Delta}%
+ - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{{S_{1}} W} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Sigma} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Lambda} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{{S_{1}} W} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Lambda} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \varphi^{V U \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi_{{S_{2}}}\,^{S \Lambda} \varphi^{T {S_{2}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \varphi^{V U \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda} \phi_{{S_{2}}}\,^{W \Delta} \varphi^{T {S_{2}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma \Lambda} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{V {S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda} \varphi^{T W \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \eta^{W {S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda} \phi_{{S_{2}}}\,^{U \Delta} \varphi^{V {S_{2}} \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \gamma \phi_{{S_{1}}}\,^{V \Sigma \Lambda} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda} \varphi^{T S \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{U T \Lambda} \phi^{W V \Sigma \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{U T \Lambda} \phi^{W V \Delta \Sigma}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{V} \phi^{U T \Lambda} \phi^{S W \Sigma \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{V} \phi^{U T \Lambda} \phi^{S W \Delta \Sigma}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+\frac{27}{8}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{W V \Lambda} \phi^{U T \Sigma \Delta}%
+ - \frac{37}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S W \Lambda} \phi^{V T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+\frac{27}{8}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Delta \Sigma}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{W V \Lambda} \phi^{U T \Delta \Sigma} - \frac{37}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S W \Lambda} \phi^{V T \Delta \Sigma}$\end{adjustwidth}
+\begin{python}
+substitute(GT,$\eta^{W S} \phi_{S}^{T \Sigma}->\varphi_{W T \Sigma}$)
+substitute(GT,$\eta^{W S} \phi_{S}^{T \Sigma \Lambda}->\varphi_{W U \Sigma} \phi_{U}^{T \Lambda}$)
+\end{python}
+\begin{python}
+sort_product(GT)
+rename_dummies(GT)
+meld(GT);
+\end{python}
+\begin{adjustwidth}{1em}{0cm}${}\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S U} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{4}}} \delta^{U S} \delta^{V T} \phi^{{S_{3}} W \Lambda} \phi_{{S_{4}} {S_{2}}}\,^{\Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Delta \Sigma}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{4}}} \delta^{U S} \delta^{V T} \phi^{W {S_{3}} \Sigma} \phi_{{S_{4}} {S_{2}}}\,^{\Lambda \Delta}+\frac{5}{128}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Sigma \Lambda \Delta}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma} \phi^{V T \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{U S \Delta \Sigma}+\frac{3}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \phi^{W {S_{2}} \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \phi^{V T \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{S U} \phi^{W V \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{512}\gamma - \frac{1}{64}}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S V} \phi^{T W \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{\frac{1}{64} - \frac{1}{512}\gamma}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S W} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{W V} \phi^{S U \Lambda} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{32}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{W {S_{2}} \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \phi^{U S \Sigma}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi^{{S_{2}} W \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Sigma} \phi_{{S_{1}} {S_{3}}}\,^{\Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{U S} \delta^{V T} \phi^{{S_{2}} W \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Delta} \phi_{{S_{1}} {S_{3}}}\,^{\Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{S U} \delta^{W V} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Lambda \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{ - \frac{1}{2048}\gamma - \frac{1}{128}}{)} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{S V} \delta^{T W} \phi_{{S_{1}}}\,^{{S_{1}} \Sigma \Lambda \Delta}%
++\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi^{U S \Lambda} \phi^{V T \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{U S \Lambda} \phi^{W {S_{2}} \Sigma \Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{U S \Lambda} \phi^{W {S_{2}} \Delta \Sigma}+\frac{1}{64}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}}}\,^{W \Sigma \Delta}+\frac{1}{64}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{W \Sigma} \phi^{S U \Lambda} \phi^{T V \Delta}+\frac{1}{16}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{U S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \phi^{W {S_{2}} \Sigma}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{{S_{2}} W} \delta^{T V} \phi^{S U \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Sigma} \phi_{{S_{1}} {S_{3}}}\,^{\Delta}+\frac{1}{128}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{{S_{2}} W} \delta^{T V} \phi^{S U \Lambda} \phi_{{S_{2}}}\,^{{S_{3}} \Delta} \phi_{{S_{1}} {S_{3}}}\,^{\Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{T V \Lambda} \phi^{U W \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{T V \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \phi^{U {S_{2}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{W \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{T V} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \phi^{U {S_{2}} \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{T V \Lambda} \phi^{W U \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma} \phi^{T V \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{V T \Lambda} \phi^{W S \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \phi^{V W \Lambda} \phi^{U S \Sigma \Delta}+6T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi^{V T \Lambda} \phi^{U W \Sigma \Delta}%
+-2T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi^{W T \Lambda} \phi^{V S \Sigma \Delta}+4T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi^{S W \Lambda} \phi^{V T \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{U \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Sigma} \phi_{{S_{1}}}\,^{U \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda \Delta}+\frac{7}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{S \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{T V} \phi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi^{S W \Lambda} \phi_{{S_{1}}}\,^{U \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{T V} \phi_{{S_{1}}}\,^{U \Lambda} \phi^{S W \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{V T} \phi^{W {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \delta^{V W} \phi^{U {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \delta^{W T} \phi^{V {S_{1}} \Lambda} \phi_{{S_{1}}}\,^{S \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \delta^{W {S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}}}\,^{U \Sigma \Lambda \Delta}%
++\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \delta^{W {S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}}}\,^{U \Lambda \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi^{U {S_{1}} \Sigma} \phi_{{S_{1}}}\,^{W \Lambda \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta^{V T} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{V T} \phi^{U {S_{2}} \Sigma} \phi_{{S_{2}}}\,^{{S_{1}} \Lambda \Delta}+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{4}}} \delta^{S W} \delta^{V T} \phi^{U {S_{3}} \Sigma} \phi_{{S_{4}} {S_{2}}}\,^{\Lambda \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{V T} \phi^{U {S_{2}} \Lambda} \phi_{{S_{2}}}\,^{{S_{1}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{4}}} \delta^{S W} \delta^{V T} \phi^{U {S_{3}} \Lambda} \phi_{{S_{4}} {S_{2}}}\,^{\Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi_{{S_{2}}}\,^{U \Sigma} \phi^{{S_{2}} {S_{1}} \Lambda} \phi^{T V \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{V T} \phi_{{S_{1}}}\,^{W \Lambda} \phi^{{S_{1}} U \Delta \Sigma}+2T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \delta^{V T} \phi^{S W \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{T V} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \phi^{{S_{3}} {S_{1}} \Delta} \phi^{U {S_{2}} \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \delta^{T V} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \phi^{{S_{3}} {S_{1}} \Lambda} \phi^{U {S_{2}} \Delta}+2T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \phi^{U {S_{2}} \Sigma} \phi^{V T \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \phi^{V T \Lambda} \phi^{U {S_{1}} \Delta \Sigma}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Sigma \Delta}+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \phi^{V T \Lambda} \phi^{U {S_{2}} \Delta \Sigma}%
+ - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \varphi^{V {S_{3}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \eta^{T {S_{1}}} \eta^{V {S_{2}}} \phi^{{S_{3}} U \Lambda} \phi_{{S_{3}}}\,^{{S_{4}} \Sigma} \phi_{{S_{2}} {S_{4}}}\,^{\Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi^{{S_{4}} U \Lambda} \phi_{{S_{4}}}\,^{{S_{5}} \Sigma} \phi_{{S_{3}} {S_{5}}}\,^{\Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \delta_{{S_{1}}}\,^{W} \eta^{T {S_{1}}} \eta^{V {S_{2}}} \phi^{{S_{3}} U \Lambda} \phi_{{S_{3}}}\,^{{S_{4}} \Delta} \phi_{{S_{2}} {S_{4}}}\,^{\Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{S W} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi^{{S_{4}} U \Lambda} \phi_{{S_{4}}}\,^{{S_{5}} \Delta} \phi_{{S_{3}} {S_{5}}}\,^{\Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{S W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{V U \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi^{U W \Sigma} \phi_{{S_{1}} {S_{2}}}\,^{\Lambda} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \phi_{{S_{1}}}\,^{U \Sigma} \varphi_{W S \Lambda} \varphi^{V {S_{1}} \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi_{{S_{1}}}\,^{U \Sigma} \varphi_{V {S_{1}} \Lambda} \varphi^{T W \Delta}+\frac{3}{32}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi_{{S_{1}}}\,^{V \Sigma} \varphi_{W {S_{1}} \Lambda} \varphi^{T S \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Sigma} \phi^{W S \Lambda} \varphi^{V {S_{3}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda} \phi_{{S_{2}}}\,^{U \Sigma} \varphi^{V {S_{2}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi_{{S_{1}}}\,^{U \Lambda} \varphi_{V {S_{1}} \Delta} \varphi^{T W \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Sigma} \phi_{{S_{3}}}\,^{U \Lambda} \varphi^{V {S_{3}} \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi_{{S_{1}}}\,^{S \Lambda} \varphi_{V W \Sigma} \varphi^{T {S_{1}} \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Sigma} \phi_{{S_{3}}}\,^{S \Lambda} \varphi^{T {S_{3}} \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{T} \phi_{{S_{1}}}\,^{S \Lambda} \varphi_{W {S_{1}} \Delta} \varphi^{V U \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi_{{S_{1}}}\,^{W \Lambda} \varphi_{V U \Sigma} \varphi^{T {S_{1}} \Delta} - \frac{1}{32}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi_{{S_{1}}}\,^{S \Lambda} \varphi_{W V \Sigma} \varphi^{T {S_{1}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Delta} \varphi^{V U \Sigma}%
+ - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{S \Lambda \Delta} \varphi^{V U \Sigma}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Lambda} \phi_{{S_{3}}}\,^{U \Delta} \varphi^{V {S_{3}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{T {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{W {S_{2}} \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \eta^{T {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{W {S_{2}} \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{S W \Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{W {S_{2}} \Sigma} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Sigma \Lambda} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{U {S_{2}} \Sigma} \varphi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \gamma \phi_{{S_{2}} {S_{1}}}\,^{\Lambda} \phi^{V {S_{2}} \Sigma} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{W {S_{2}} \Lambda} \varphi^{T S \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{V {S_{2}}} \phi^{U W \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \eta^{V {S_{1}}} \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{U {S_{2}} \Lambda} \varphi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \eta^{W {S_{1}}} \gamma \phi_{{S_{2}} {S_{1}}}\,^{\Sigma} \phi^{V {S_{2}} \Lambda} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi_{{S_{4}} {S_{3}}}\,^{\Lambda} \phi^{U {S_{4}} \Sigma} \phi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \eta^{V {S_{3}}} \phi_{{S_{4}} {S_{3}}}\,^{\Sigma} \phi^{U {S_{4}} \Lambda} \phi^{W S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi_{{S_{3}} {S_{2}}}\,^{\Lambda} \phi_{{S_{1}}}\,^{S \Delta} \phi^{U {S_{3}} \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{T W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{V {S_{2}}} \phi_{{S_{3}} {S_{2}}}\,^{\Sigma} \phi_{{S_{1}}}\,^{S \Lambda} \phi^{U {S_{3}} \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{3}}}\,^{U \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \varphi^{V {S_{3}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Sigma} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \varphi^{V U \Delta}%
+ - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{{S_{1}} W} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Sigma} \phi_{{S_{2}} {S_{3}}}\,^{\Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta^{W S} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Lambda} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \delta^{{S_{1}} W} \eta^{T {S_{2}}} \phi_{{S_{1}}}\,^{{S_{3}} \Lambda} \phi_{{S_{2}} {S_{3}}}\,^{\Sigma} \varphi^{V U \Delta} - \frac{1}{4}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma} \phi_{{S_{2}}}\,^{S \Lambda} \varphi^{T {S_{2}} \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Lambda \Sigma} \varphi^{T S \Delta}+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \eta^{T {S_{2}}} \phi^{W S \Lambda} \phi_{{S_{1}} {S_{2}}}\,^{\Sigma} \varphi^{V U \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi_{{S_{1}}}\,^{W \Lambda} \varphi_{V U \Delta} \varphi^{T {S_{1}} \Sigma} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Sigma \Lambda} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \delta_{{S_{1}} {S_{2}}} \eta^{T {S_{2}}} \phi^{W S \Lambda \Sigma} \varphi^{V U \Delta} - \frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \phi_{{S_{1}}}\,^{W \Lambda} \varphi_{V {S_{1}} \Sigma} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{S} \phi_{{S_{1}}}\,^{U \Lambda} \varphi_{V {S_{1}} \Sigma} \varphi^{T W \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{T} \phi_{{S_{1}}}\,^{U \Lambda} \varphi_{W S \Delta} \varphi^{V {S_{1}} \Sigma}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{U} \gamma \phi_{{S_{1}}}\,^{V \Lambda} \varphi_{W {S_{1}} \Sigma} \varphi^{T S \Delta}+\frac{1}{8}T_{S T}\,^{\Sigma \Omega} \eta^{V W} c^{\Delta \Lambda \Omega} \Gamma_{U V W}\,^{{S_{1}}} \phi_{{S_{1}}}\,^{U \Sigma \Lambda} \varphi^{T S \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{U T \Lambda} \phi^{W V \Sigma \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{U T \Lambda} \phi^{W V \Delta \Sigma}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{V} \phi^{U T \Lambda} \phi^{S W \Sigma \Delta}-T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{V} \phi^{U T \Lambda} \phi^{S W \Delta \Sigma}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+\frac{27}{8}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{W V \Lambda} \phi^{U T \Sigma \Delta}%
+ - \frac{37}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S W \Lambda} \phi^{V T \Sigma \Delta}+T_{S T}\,^{\Sigma \Omega} \brwrap{(}{1+\frac{27}{8}\gamma}{)} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S V \Lambda} \phi^{W T \Delta \Sigma}+T_{S T}\,^{\Sigma \Omega} c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{S} \phi^{W V \Lambda} \phi^{U T \Delta \Sigma} - \frac{37}{8}T_{S T}\,^{\Sigma \Omega} \gamma c^{\Lambda \Delta \Omega} \Gamma_{U V W}\,^{U} \phi^{S W \Lambda} \phi^{V T \Delta \Sigma}$\end{adjustwidth}
+\begin{python}
+  
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+ 
+\end{python}
+\begin{python}
+\end{python}
+\end{document}

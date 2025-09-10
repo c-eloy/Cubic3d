@@ -1,0 +1,775 @@
+{
+	"cell_id": 15785749210081184446,
+	"cells": [
+		{
+			"cell_id": 15441862222410398106,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "import time \n\n##### Indices #####\n\n{R,S,T,Q,U,V,W,X,Y,A,B,C,D,E,F,G,H,I,J,K,L,M,N,P,R#,RR}::Indices(name=\"SL6\",position=independent).\n{R,S,T,Q,U,V,W,X,Y,A,B,C,D,E,F,G,H,I,J,K,L,M,N,P,R#,RR}::Integer(1..27).\n\n{\\Sigma,\\Omega, \\Lambda, \\Delta, \\Gamma, \\Sigma#}::Indices(name=\"harmonics\",position=independent).\n{\\alpha, \\beta, \\gamma, \\delta, \\Gamma, \\alpha#}::Indices(name=\"adjointnc\",position=fixed).\n{\\alpha, \\beta, \\gamma, \\delta, \\alpha#}::Integer(1..42).\n{i,j,i#}::Indices(name=\"adjointc\",position=independent).\n{i,j,i#}::Integer(1..36).\n\n{\\mu, \\nu, \\rho, \\sigma, \\lambda, \\mu#}::Indices(name=\"fundSL2\",position=fixed, parent=\"Temp\").\n{\\mu, \\nu, \\rho, \\sigma, \\lambda, \\mu#}::Integer(1..2).\n{a,b,c,d,e,f,g,h,k,l,m,n,p,q,r,s,t,u,v,a#}::Indices(name=\"fundSL6\",position=fixed, parent=\"Temp\").\n{a,b,c,d,e,f,g,h,k,l,m,n,p,q,r,s,t,u,v,a#}::Integer(1..6).\n\n{\\phi{#},c{#},\\delta{#}}::SortOrder."
+		},
+		{
+			"cell_id": 931291601467500060,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15241515579883504129,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### Kroneckers and Metrics #####\n\n\\delta_{a?}^{b?}::KroneckerDelta.\n\\delta^{a?}_{b?}::KroneckerDelta.\n\n##### Symmetries #####\n\n\\delta^{a? b?}::Symmetric.\n\\delta_{a? b?}::Symmetric.\n\\phi^{a b \\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\n\\phi^{a b}_{\\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\n\\phi_{a b \\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\n\\phi_{a b}^{\\Sigma}::TableauSymmetry(shape={2},indices={0,1}).\nc^{\\Sigma \\Omega \\Delta}::TableauSymmetry(shape={3},indices={0,1,2}).\nc_{\\Sigma \\Omega \\Delta}::TableauSymmetry(shape={3},indices={0,1,2})."
+		},
+		{
+			"cell_id": 17596655643278804665,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "rlE6toSL6gen_fundind := {t_{\\alpha V}^{U} -> P_{V}^{G H} P^{U}_{I J} t_{\\alpha G H}^{I J},\ntt_{\\alpha \\beta V}^{U} -> P_{V}^{G H} P^{U}_{I J} tt_{\\alpha \\beta G H}^{I J},\nttt_{\\alpha \\beta \\gamma V}^{U} -> P_{V}^{G H} P^{U}_{I J} ttt_{\\alpha \\beta \\gamma G H}^{I J}}.\n\nrlE6toSL6delta := {\\delta^{R V} -> P^{R}_{G H} P^{V}_{I J} \\delta^{G H I J},\n\\delta_{R V} -> P_{R}^{G H} P_{V}^{I J} \\delta_{G H I J}}.\n\nrlE6toSL6phi := {\\phi^{\\alpha \\Sigma} -> P^{\\alpha}_{I}^{J} \\phi^{I}_{J}^{\\Sigma},\n\\phi^{\\alpha}_{\\Sigma} -> P^{\\alpha}_{I}^{J} \\phi^{I}_{J}_{\\Sigma},\n\\phi_{\\alpha}^{\\Sigma} -> P_{\\alpha}^{I}_{J} \\phi_{I}^{J \\Sigma},\n\\phi_{\\alpha \\Sigma} -> P_{\\alpha}^{I}_{J} \\phi_{I}^{J}_{\\Sigma}}.\nrlE6toSL6phi1 := {\\phi^{\\alpha a \\Sigma} -> P^{\\alpha}_{I}^{J} \\phi^{I}_{J}^{a \\Sigma},\n\\phi^{\\alpha}_{a \\Sigma} -> P^{\\alpha}_{I}^{J} \\phi^{I}_{J}_{a \\Sigma},\n\\phi_{\\alpha}^{a \\Sigma} -> P_{\\alpha}^{I}_{J} \\phi_{I}^{J a \\Sigma},\n\\phi_{\\alpha a \\Sigma} -> P_{\\alpha}^{I}_{J} \\phi_{I}^{J}_{a \\Sigma}}.\n\nrlE6toSL6gen_adjind := {t_{\\alpha a b}^{c d} -> P_{\\alpha}^{I}_{J} t_{I}^{J}_{a b}^{c d},\nt_{\\alpha a \\mu}^{c \\nu} -> P_{\\alpha}^{I}_{J} t_{I}^{J}_{a \\mu}^{c \\nu},\ntt_{\\alpha \\beta a b}^{c d} -> P_{\\alpha}^{I}_{J} P_{\\beta}^{M}_{N} tt_{I}^{J}_{M}^{N}_{a b}^{c d},\ntt_{\\alpha \\beta a \\mu}^{c \\nu} -> P_{\\alpha}^{I}_{J} P_{\\beta}^{M}_{N} tt_{I}^{J}_{M}^{N}_{a \\mu}^{c \\nu}}.\n\nrlE6toSL6X := X_{R S}^{Q} -> P_{R}^{G H} P_{S}^{I J} P^{Q}_{K L} X_{G H I J}^{K L}.\n\nrlinvP := {P_{R}^{G H} P^{R}_{I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP^{R}_{G H} P_{R}^{I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP_{\\alpha}^{G}_{H} P^{\\alpha}_{I}^{J} -> \\delta^{G}_{I} \\delta_{H}^{J},\nP^{\\alpha}_{G}^{H} P_{\\alpha}^{I}_{J} -> \\delta_{G}^{I} \\delta^{H}_{J},\nP_{\\alpha}^{G}_{H} P^{\\alpha I}_{J} -> \\delta^{G}_{I} \\delta_{H}^{J},\nP^{\\alpha}_{G}^{H} P_{\\alpha I}^{J} -> \\delta_{G}^{I} \\delta^{H}_{J}}.\nrlinvPnoCareDelta:={P_{R}^{G H} P_{R}_{I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP^{R}_{G H} P^{R}_{I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP_{R}^{G H} P^{R}_{I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP^{R}_{G H} P^{R I J} -> \\delta^{G}_{I} \\delta^{H}_{J},\nP_{R}^{G H} P_{R}^{I J} -> \\delta^{G}_{I} \\delta^{H}_{J}}."
+		},
+		{
+			"cell_id": 14000217545447895068,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 10321460425604641309,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "rlXblocdiag := {X_{\\mu b? c? d?}^{e? f?} -> 0, \nX_{b? \\nu c? d?}^{e? f?} -> 0,\nX_{a b \\mu c?}^{d? e?} -> 0,\nX_{a b c d}^{\\mu e?} -> 0,\nX_{a b c \\mu}^{\\nu d?} -> 0,\nX_{a b c d}^{e \\mu} -> 0,\nX_{a b c \\mu}^{d e} -> 0}.\n\nrlgenblocdiag_fundind := {t_{\\alpha \\mu a?}^{b? c?} -> 0,\nt_{\\alpha a \\mu}^{\\nu c?} -> 0,\nt_{\\alpha a b}^{\\mu c?} -> 0,\nt_{\\alpha a b}^{c \\mu} -> 0,\nt_{\\alpha a \\mu}^{b c} -> 0}.\n\nrldeltablocdiag := {\\delta^{\\mu a? b? c?} -> 0,\n\\delta^{a b \\mu c?} -> 0,\n\\delta^{a \\mu \\nu c?} -> 0,\n\\delta^{a b c \\mu} -> 0,\n\\delta^{a \\mu b c} -> 0,\n\\delta_{\\mu a? b? c?} -> 0,\n\\delta_{a b \\mu c?} -> 0,\n\\delta_{a \\mu \\nu c?} -> 0,\n\\delta_{a b c \\mu} -> 0,\n\\delta_{a \\mu b c} -> 0}.\n\n#rldelta2blocdiag := {\\delta^{\\mu a} -> 0,\n#\\delta^{a \\mu} -> 0,\n#\\delta_{\\mu a} -> 0,\n#\\delta_{a \\mu} -> 0}.\n\n# The next two are true when we are not interested in SL(2) at all \n\nrlgenblocdiag_adjind := {t_{a?}^{\\mu}_{d? e?}^{f? g?} -> 0,\nt_{\\mu}^{a?}_{d? e?}^{f? g?} -> 0}.\n\nrlphiblocdiag := {\\phi^{a? \\mu \\Sigma} -> 0,\n\\phi^{a? \\mu}_{\\Sigma} -> 0,\n\\phi^{\\mu a? \\Sigma} -> 0,\n\\phi^{\\mu a?}_{\\Sigma} -> 0,\n\\phi_{a? \\mu \\Sigma} -> 0,\n\\phi_{a? \\mu}^{\\Sigma} -> 0,\n\\phi_{\\mu a? \\Sigma} -> 0,\n\\phi_{\\mu a?}^{\\Sigma} -> 0}."
+		},
+		{
+			"cell_id": 2991894957152878168,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 18349660702350489729,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 17406832695146648633,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{\\delta^{a b c d} ->  1/2 \\delta^{a c} \\delta^{b d} -  1/2 \\delta^{a d} \\delta^{b c}, \\delta_{a b c d} ->  1/2 \\delta_{a c} \\delta_{b d} -  1/2 \\delta_{a d} \\delta_{b c}, \\delta^{a \\mu c \\nu} -> \\delta^{a c} \\delta^{\\mu \\nu}, \\delta_{a \\mu c \\nu} -> \\delta_{a c} \\delta_{\\mu \\nu}}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[\\delta^{a b c d} \\rightarrow \\frac{1}{2}\\delta^{a c} \\delta^{b d} - \\frac{1}{2}\\delta^{a d} \\delta^{b c},~\\discretionary{}{}{} \\delta_{a b c d} \\rightarrow \\frac{1}{2}\\delta_{a c} \\delta_{b d} - \\frac{1}{2}\\delta_{a d} \\delta_{b c},~\\discretionary{}{}{} \\delta^{a \\mu c \\nu} \\rightarrow \\delta^{a c} \\delta^{\\mu \\nu},~\\discretionary{}{}{} \\delta_{a \\mu c \\nu} \\rightarrow \\delta_{a c} \\delta_{\\mu \\nu}\\right]\\end{dmath*}"
+				}
+			],
+			"source": "rlmvindicesX := {X_{a b c \\mu}^{d \\nu} -> X_{a b}^{c \\mu}_{d \\nu}.\nrlmvindicesgen := {t_{e}^{f}_{a \\mu}^{b \\nu} -> t_{e}^{f a \\mu}_{b \\nu},\ntt_{\\alpha \\beta a \\mu}^{b \\nu} -> tt_{\\alpha \\beta}^{a \\mu}_{b \\nu}}.\nrlmvindicesdelta4 := {\\delta_{a \\mu b \\nu} -> \\delta^{a \\mu b \\nu},\n\\delta^{a \\mu b \\nu} -> \\delta_{a \\mu b \\nu}}.\nrlmvindicesphi := {\\phi^{K}_{L}^{\\Sigma} -> \\delta_{L I} \\phi^{K I \\Sigma},\n\\phi^{K}_{L \\Sigma} -> \\delta_{L I} \\phi^{K I}_{\\Sigma},\n\\phi_{K}^{L \\Sigma} -> \\delta^{L I} \\phi_{K I}^{\\Sigma},\n\\phi_{K}^{L}_{\\Sigma} -> \\delta^{L I} \\phi_{K I \\Sigma}}.\nrlmvindicesphi1 := {\\phi^{K}_{L}^{a \\Sigma} -> \\delta_{L I} \\phi^{K I a \\Sigma},\n\\phi^{K}_{L a \\Sigma} -> \\delta_{L I} \\phi^{K I}_{a \\Sigma},\n\\phi_{K}^{L a \\Sigma} -> \\delta^{L I} \\phi_{K I}^{a \\Sigma},\n\\phi_{K}^{L}_{a \\Sigma} -> \\delta^{L I} \\phi_{K I a \\Sigma}}.\nrlmvindicesT := T_{a b}^{c \\Sigma}_{e \\Omega} -> T_{a b c \\Sigma}^{e \\Omega}.\n\nrlXSL6SL2 := {X_{a b c d}^{e f} -> 2**(1/2)/4 (\\delta_{a}^{e} \\delta_{b c} \\delta_{d}^{f} - \n\\delta_{a}^{f} \\delta_{b c} \\delta_{d}^{e} - \\delta_{b}^{e} \\delta_{a c} \\delta_{d}^{f} +\n\\delta_{b}^{f} \\delta_{a c} \\delta_{d}^{e} - \\delta_{a}^{e} \\delta_{b d} \\delta_{c}^{f} +\n\\delta_{a}^{f} \\delta_{b d} \\delta_{c}^{e} + \\delta_{b}^{e} \\delta_{a d} \\delta_{c}^{f} - \n\\delta_{b}^{f} \\delta_{a d} \\delta_{c}^{e}),\nX_{a b}^{c \\mu}_{d \\nu} -> - 2**(1/2)/2 (\\delta_{a}^{c} \\delta_{b d} \\delta_{\\nu}^{\\mu} -\n\\delta_{b}^{c} \\delta_{a d} \\delta_{\\nu}^{\\mu})}.\n\nrldeltaSL6SL2 := {\\delta^{a b c d} -> 1/2 (\\delta^{a c} \\delta^{b d} - \\delta^{a d} \\delta^{b c}),\n\\delta_{a b c d} -> 1/2(\\delta_{a c} \\delta_{b d} - \\delta_{a d} \\delta_{b c}),\n\\delta^{a \\mu c \\nu} -> \\delta^{a c} \\delta^{\\mu \\nu},\n\\delta_{a \\mu c \\nu} -> \\delta_{a c} \\delta_{\\mu \\nu}};\n\nrlgenSL6SL2 := {t_{a}^{b}_{e f}^{c d} -> \n1/2((\\delta_{a}^{c} \\delta_{e}^{b} - 1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta_{f}^{d}\n-(\\delta_{a}^{d} \\delta_{e}^{b} - 1/6 \\delta_{a}^{b} \\delta_{e}^{d}) \\delta_{f}^{c}\n-(\\delta_{a}^{c} \\delta_{f}^{b} - 1/6 \\delta_{a}^{b} \\delta_{f}^{c}) \\delta_{e}^{d}\n+(\\delta_{a}^{d} \\delta_{f}^{b} - 1/6 \\delta_{a}^{b} \\delta_{f}^{d}) \\delta_{e}^{c}),\nt_{a}^{b c \\mu}_{e \\nu} -> -(\\delta_{a}^{c} \\delta_{e}^{b} - 1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta^{\\mu}_{\\nu},\nt^{a}_{b c d}^{e f} -> \n1/2((\\delta^{a}_{c} \\delta^{e}_{b} - 1/6 \\delta^{a}_{b} \\delta^{e}_{c}) \\delta^{f}_{d}\n-(\\delta^{a}_{d} \\delta^{e}_{b} - 1/6 \\delta^{a}_{b} \\delta^{e}_{d}) \\delta^{f}_{c}\n-(\\delta^{a}_{c} \\delta^{f}_{b} - 1/6 \\delta^{a}_{b} \\delta^{f}_{c}) \\delta^{e}_{d}\n+(\\delta^{a}_{d} \\delta^{f}_{b} - 1/6 \\delta^{a}_{b} \\delta^{f}_{d}) \\delta^{e}_{c}),\nt^{a}_{b c \\mu}^{e \\nu} -> -(\\delta^{a}_{c} \\delta^{e}_{b} - 1/6 \\delta^{a}_{b} \\delta_{c}^{e}) \\delta_{\\mu}^{\\nu}}.\n\nrldeltametric := {\\delta_{a b} \\delta^{b c} -> \\delta_{a}^{c},\n\\delta_{b a} \\delta^{b c} -> \\delta_{a}^{c},\n\\delta_{a b} \\delta^{c b} -> \\delta_{a}^{c},\n\\delta_{b a} \\delta^{c b} -> \\delta_{a}^{c},\n\\delta_{\\mu \\nu} \\delta^{\\nu \\rho} -> \\delta_{\\mu}^{\\rho},\n\\delta_{\\nu \\mu} \\delta^{\\nu \\rho} -> \\delta_{\\mu}^{\\rho},\n\\delta_{\\mu \\nu} \\delta^{\\rho \\nu} -> \\delta_{\\mu}^{\\rho},\n\\delta^{\\nu \\mu} \\delta_{\\rho \\nu} -> \\delta^{\\mu}_{\\rho}}.\n\nrlsplittt := tt_{\\alpha \\beta R}^{S} -> t_{\\alpha R}^{Q} t_{\\beta Q}^{S},\nttt_{\\alpha \\beta \\gamma R}^{S} -> t_{\\alpha R}^{Q} t_{\\beta Q}^{U} t_{\\gamma U}^{S}.\n\nrldttodeltat := {dtt_{\\beta \\gamma X Q}-> \\delta_{R Q} tt_{\\beta \\gamma X}^{R},\ndtt_{\\beta \\gamma}^{X Q}-> \\delta^{R X} tt_{\\beta \\gamma R}^{Q},\ndttt_{\\beta \\gamma \\alpha Q X} -> \\delta_{R X} ttt_{\\beta \\gamma \\alpha Q}^{R},\ndttt_{\\beta \\gamma \\alpha}^{Q X} -> \\delta^{R Q} ttt_{\\beta \\gamma \\alpha R}^{X},\ndt_{\\gamma X Q}-> \\delta_{R Q} t_{\\gamma X}^{R},\ndt_{\\gamma}^{X Q}-> \\delta^{R X} t_{\\gamma R}^{Q}}."
+		},
+		{
+			"cell_id": 11784715168286460575,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "rlraiseindphi := {\\phi_{a b}^{\\Sigma} -> \\phi^{a b \\Sigma},\n\\phi_{a}^{b \\Sigma} -> \\phi^{a b \\Sigma},\n\\phi^{a}_{b}^{\\Sigma} -> \\phi^{a b \\Sigma},\n\\phi_{a b \\Sigma} -> \\phi^{a b \\Sigma},\n\\phi_{a}^{b}_{\\Sigma} -> \\phi^{a b \\Sigma},\n\\phi^{a}_{b \\Sigma} -> \\phi^{a b \\Sigma}}."
+		},
+		{
+			"cell_id": 13336376641773325626,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "XX := \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} (X_{A B}^{C} X_{D C}^{B} dttt_{\\alpha \\beta \\gamma}^{A D}\n+ \\gamma (\\frac{1}{2} \\delta^{B E} X_{A B}^{C} X_{D E}^{F} dt_{\\alpha}^{A D} dtt_{\\beta \\gamma F C}\n+ X_{A B}^{C} X_{D E}^{F} (- \\frac{1}{2}\\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha C F} \n- \\frac{1}{2} \\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{E B} \n- \\frac{1}{2} \\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{B E}\n+ 2 \\delta^{E B} dt_{\\beta}^{A D} dtt_{\\alpha \\gamma C F} \n- \\frac{1}{2} \\delta^{E B} dt_{\\alpha C F} dtt_{\\beta \\gamma}^{A D} \n- \\frac{1}{2} \\delta^{B E} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{A D} \n- 2 \\delta^{E B} dt_{\\beta F C} dtt_{\\alpha \\gamma}^{A D} \n- 2 \\delta^{A D} dt_{\\beta C F} dtt_{\\alpha \\gamma}^{E B}\n+ \\frac{1}{2} \\delta^{B E} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}^{A D}\n+ \\frac{1}{2} \\delta^{A D} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}^{B E} \n+ \\frac{1}{2} \\delta^{B E} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}^{D A} \n+ \\frac{1}{2} \\delta^{A D} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}^{E B} \n- \\frac{7}{2} \\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha F C} \n+ \\frac{1}{2} \\delta^{A D} dt_{\\beta}^{E B} dtt_{\\gamma \\alpha C F} \n+ \\frac{5}{2} \\delta^{A D} dt_{\\alpha}^{B E} dtt_{\\beta \\gamma F C}\n- 6 dt_{\\alpha}^{A D} dt_{\\gamma}^{E B} dt_{\\beta C F}\n+ 3 \\delta^{A D} \\delta^{B E} dttt_{\\gamma \\alpha \\beta C F} \n+ 3\\delta_{C F} dt_{\\beta}^{A D} dtt_{\\alpha \\gamma}^{B E} \n+ 3\\delta_{C F} dt_{\\beta}^{B E} dtt_{\\alpha \\gamma}^{A D})))\n+ \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi_{\\alpha}^{\\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} ( X_{A B}^{C} X_{D C}^{B} dt_{\\beta}^{A D}\n+ \\gamma ( X_{A B}^{C} X_{D E}^{F} \\delta^{A D} \\delta_{C F} dt_{\\beta}^{B E}\n+ X_{A B}^{C} X_{D E}^{F} (\\delta^{B E} \\delta_{C F} dt_{\\beta}^{A D}\n- \\delta^{A D} \\delta^{B E} dt_{\\beta F C})))\n+ \\frac{1}{2} \\gamma \\alpha^{-1} \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\delta^{B E} X_{A B}^{C} X_{D E}^{F} dt_{\\alpha}^{A D} dtt_{\\beta \\gamma C F}.\n\n# XX1 are new terms added when introducing \\Pi matrices in the calculation . \n\nXX1 := 1/\\alpha**2 X_{R U}^{V} X_{S T}^{X} t_{\\alpha V}^{U} t_{\\beta X}^{T} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Lambda} c^{\\Delta \\Gamma \\Lambda} t_{\\gamma Q}^{R} \\delta^{Q S} \n+ 1/(2\\alpha**2) (X_{R U}^{T} X_{S V}^{X} t_{\\alpha T}^{U} t_{\\beta X}^{V} \\phi^{\\alpha \\Omega} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c^{\\Delta \\Gamma \\Omega} t_{\\gamma Q}^{R} \\delta^{Q S}.\n\n\n#\n\nXXS5 := - 1/\\alpha \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} X_{A B}^{C} X_{D C}^{B} dttt_{\\beta \\gamma \\alpha}^{A D}.\n\n\n#XX := @(XX) + @(XX1).\n#XX := @(XXS5).\n#XX := @(XX);"
+		},
+		{
+			"cell_id": 16418255170492378879,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 6967210344534469315,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10538498905472205973,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} (X_{A B}^{C} X_{D C}^{B} dttt_{\\alpha \\beta \\gamma}^{A D} + \\gamma ( 1/2 \\delta^{B E} X_{A B}^{C} X_{D E}^{F} dt_{\\alpha}^{A D} dtt_{\\beta \\gamma F C} + X_{A B}^{C} X_{D E}^{F} ( -  1/2 \\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha C F} -  1/2 \\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{E B} -  1/2 \\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{B E} + 2\\delta^{E B} dt_{\\beta}^{A D} dtt_{\\alpha \\gamma C F} -  1/2 \\delta^{E B} dt_{\\alpha C F} dtt_{\\beta \\gamma}^{A D} -  1/2 \\delta^{B E} dt_{\\alpha F C} dtt_{\\beta \\gamma}^{A D}-2\\delta^{E B} dt_{\\beta F C} dtt_{\\alpha \\gamma}^{A D}-2\\delta^{A D} dt_{\\beta C F} dtt_{\\alpha \\gamma}^{E B} +  1/2 \\delta^{B E} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}^{A D} +  1/2 \\delta^{A D} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}^{B E} +  1/2 \\delta^{B E} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}^{D A} +  1/2 \\delta^{A D} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}^{E B} -  7/2 \\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha F C} +  1/2 \\delta^{A D} dt_{\\beta}^{E B} dtt_{\\gamma \\alpha C F} +  5/2 \\delta^{A D} dt_{\\alpha}^{B E} dtt_{\\beta \\gamma F C}-6dt_{\\alpha}^{A D} dt_{\\gamma}^{E B} dt_{\\beta C F} + 3\\delta^{A D} \\delta^{B E} dttt_{\\gamma \\alpha \\beta C F} + 3\\delta_{C F} dt_{\\beta}^{A D} dtt_{\\alpha \\gamma}^{B E} + 3\\delta_{C F} dt_{\\beta}^{B E} dtt_{\\alpha \\gamma}^{A D}))) + \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi_{\\alpha}^{\\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} (X_{A B}^{C} X_{D C}^{B} dt_{\\beta}^{A D} + \\gamma (X_{A B}^{C} X_{D E}^{F} \\delta^{A D} \\delta_{C F} dt_{\\beta}^{B E} + X_{A B}^{C} X_{D E}^{F} (\\delta^{B E} \\delta_{C F} dt_{\\beta}^{A D}-\\delta^{A D} \\delta^{B E} dt_{\\beta F C}))) +  1/2 \\gamma \\alpha^{-1} \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\delta^{B E} X_{A B}^{C} X_{D E}^{F} dt_{\\alpha}^{A D} dtt_{\\beta \\gamma C F}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} \\left(X_{A B}\\,^{C} X_{D C}\\,^{B} dttt_{\\alpha \\beta \\gamma}\\,^{A D}+\\gamma \\left(\\frac{1}{2}\\delta^{B E} X_{A B}\\,^{C} X_{D E}\\,^{F} dt_{\\alpha}\\,^{A D} dtt_{\\beta \\gamma F C}+X_{A B}\\,^{C} X_{D E}\\,^{F} \\left( - \\frac{1}{2}\\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha C F} - \\frac{1}{2}\\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}\\,^{E B} - \\frac{1}{2}\\delta^{A D} dt_{\\alpha F C} dtt_{\\beta \\gamma}\\,^{B E}+2\\delta^{E B} dt_{\\beta}\\,^{A D} dtt_{\\alpha \\gamma C F} - \\frac{1}{2}\\delta^{E B} dt_{\\alpha C F} dtt_{\\beta \\gamma}\\,^{A D} - \\frac{1}{2}\\delta^{B E} dt_{\\alpha F C} dtt_{\\beta \\gamma}\\,^{A D}-2\\delta^{E B} dt_{\\beta F C} dtt_{\\alpha \\gamma}\\,^{A D}-2\\delta^{A D} dt_{\\beta C F} dtt_{\\alpha \\gamma}\\,^{E B}+\\frac{1}{2}\\delta^{B E} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}\\,^{A D}+\\frac{1}{2}\\delta^{A D} \\delta_{C F} dttt_{\\alpha \\beta \\gamma}\\,^{B E}+\\frac{1}{2}\\delta^{B E} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}\\,^{D A}+\\frac{1}{2}\\delta^{A D} \\delta_{C F} dttt_{\\beta \\alpha \\gamma}\\,^{E B} - \\frac{7}{2}\\delta^{A D} \\delta^{B E} dttt_{\\beta \\gamma \\alpha F C}+\\frac{1}{2}\\delta^{A D} dt_{\\beta}\\,^{E B} dtt_{\\gamma \\alpha C F}+\\frac{5}{2}\\delta^{A D} dt_{\\alpha}\\,^{B E} dtt_{\\beta \\gamma F C}-6dt_{\\alpha}\\,^{A D} dt_{\\gamma}\\,^{E B} dt_{\\beta C F}+3\\delta^{A D} \\delta^{B E} dttt_{\\gamma \\alpha \\beta C F}+3\\delta_{C F} dt_{\\beta}\\,^{A D} dtt_{\\alpha \\gamma}\\,^{B E}+3\\delta_{C F} dt_{\\beta}\\,^{B E} dtt_{\\alpha \\gamma}\\,^{A D}\\right)\\right)\\right)+\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi_{\\alpha}\\,^{\\Delta} c_{\\Sigma \\Omega \\Delta} \\alpha^{-1} \\left(X_{A B}\\,^{C} X_{D C}\\,^{B} dt_{\\beta}\\,^{A D}+\\gamma \\left(X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta^{A D} \\delta_{C F} dt_{\\beta}\\,^{B E}+X_{A B}\\,^{C} X_{D E}\\,^{F} \\left(\\delta^{B E} \\delta_{C F} dt_{\\beta}\\,^{A D}-\\delta^{A D} \\delta^{B E} dt_{\\beta F C}\\right)\\right)\\right)+\\frac{1}{2}\\gamma \\alpha^{-1} \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Omega} \\phi^{\\gamma \\Delta} c_{\\Sigma \\Omega \\Delta} \\delta^{B E} X_{A B}\\,^{C} X_{D E}\\,^{F} dt_{\\alpha}\\,^{A D} dtt_{\\beta \\gamma C F}\\end{dmath*}"
+				}
+			],
+			"source": "XX;"
+		},
+		{
+			"cell_id": 10271335659145105177,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 15842136321966990461,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 492306753318959271,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " 1/6 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D C}^{B} ttt_{\\beta \\gamma \\alpha A}^{D} +  1/6 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D C}^{B} \\eta_{\\gamma \\alpha} t_{\\beta A}^{D} +  3/8 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{B E} t_{\\alpha A}^{D} tt_{\\beta \\gamma F}^{C} +  37/72 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{A D} t_{\\alpha B}^{E} tt_{\\beta \\gamma F}^{C} +  19/24 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta_{C F} t_{\\beta B}^{E} tt_{\\alpha \\gamma A}^{D} +  97/72 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{A D} t_{\\alpha F}^{C} tt_{\\beta \\gamma E}^{B} -  23/18 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{A D} \\delta^{B E} ttt_{\\beta \\gamma \\alpha C}^{F}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\frac{1}{6}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D C}\\,^{B} ttt_{\\beta \\gamma \\alpha A}\\,^{D}+\\frac{1}{6}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D C}\\,^{B} \\eta_{\\gamma \\alpha} t_{\\beta A}\\,^{D}+\\frac{3}{8}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta^{B E} t_{\\alpha A}\\,^{D} tt_{\\beta \\gamma F}\\,^{C}+\\frac{37}{72}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta^{A D} t_{\\alpha B}\\,^{E} tt_{\\beta \\gamma F}\\,^{C}+\\frac{19}{24}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta_{C F} t_{\\beta B}\\,^{E} tt_{\\alpha \\gamma A}\\,^{D}+\\frac{97}{72}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta^{A D} t_{\\alpha F}\\,^{C} tt_{\\beta \\gamma E}\\,^{B} - \\frac{23}{18}\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}\\,^{C} X_{D E}\\,^{F} \\delta^{A D} \\delta^{B E} ttt_{\\beta \\gamma \\alpha C}\\,^{F}\\end{dmath*}"
+				}
+			],
+			"source": "XXafterSimpE6 := 1/6(\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C}X_{D C}^{B} ttt_{\\beta \\gamma \\alpha A}^{D} \n+ \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C}X_{D C}^{B} \\eta_{\\gamma \\alpha} t_{\\beta A}^{D}\n+ 9/4 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{B E} t_{\\alpha A}^{D} tt_{\\beta \\gamma F}^{C}\n+ 37/12 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C} X_{D E}^{F} \\delta^{A D} t_{\\alpha B}^{E} tt_{\\beta \\gamma F}^{C}\n+ 19/4\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma}c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C}X_{D E}^{F} \\delta_{C F} t_{\\beta B}^{E} tt_{\\alpha \\gamma A}^{D} \n+ 97/12\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C}X_{D E}^{F} \\delta^{A D} t_{\\alpha F}^{C} tt_{\\beta \\gamma E}^{B}\n- 23/3 \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} c_{\\Sigma \\Delta \\Gamma} X_{A B}^{C}X_{D E}^{F} \\delta^{A D} \\delta^{B E} ttt_{\\beta \\gamma \\alpha C}^{F})).\nXX:=@(XXafterSimpE6);"
+		},
+		{
+			"cell_id": 5156338057519220532,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 2416169114296028299,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 2590394914534202104,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#XXcheck := c_{\\Sigma \\Delta \\Gamma}/6\\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} (X_{A B}^{C}X_{D C}^{B} ttt_{\\beta \\gamma \\alpha A}^{D}\n#+ X_{A B}^{C}X_{D C}^{B} \\eta_{\\gamma \\alpha} t_{\\beta A}^{D}  \n#+ 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{B E}  t_{\\alpha A}^{D} tt_{\\beta \\gamma F}^{C}  \n#+ 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{A D} t_{\\alpha B}^{E} tt_{\\beta \\gamma F}^{C} \n#+ 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta_{C F} t_{\\beta A}^{D} tt_{\\alpha \\gamma B}^{E}\n#+ 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta_{C F} t_{\\beta B}^{E} tt_{\\alpha \\gamma A}^{D} \n#- 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta_{B E} t_{\\alpha F}^{C} tt_{\\beta \\gamma A}^{D} \n#- 3 \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{A D} t_{\\alpha F}^{C} tt_{\\beta \\gamma E}^{B} \n#- \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{A D} \\delta^{B E} ttt_{\\beta \\gamma \\alpha C}^{F}\n#+ \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{B E} \\delta_{C F} ttt_{\\beta \\gamma \\alpha D}^{A}\n#+ \\gamma X_{A B}^{C}X_{D E}^{F} \\delta^{A D} \\delta_{C F} ttt_{\\beta \\gamma \\alpha E}^{B}\n#+ \\gamma X_{A B}^{C}X_{D E}^{F} \\eta_{\\gamma \\alpha} \\delta^{A D} \\delta_{C F} t_{\\beta B}^{E}\n#+ \\gamma X_{A B}^{C}X_{D E}^{F} \\eta_{\\gamma \\alpha} \\delta^{B E} \\delta_{C F} t_{\\beta A}^{D} \n#- \\gamma X_{A B}^{C}X_{D E}^{F} \\eta_{\\gamma \\alpha} \\delta^{A D} \\delta^{B E} t_{\\beta F}^{C}\n#- \\gamma X_{A B}^{C}X_{D E}^{F} 6 t_{\\alpha A}^{D} t_{\\gamma E}^{B} t_{\\beta C}^{F}\n#+ a /(\\alpha) X_{A B}^{C}X_{D E}^{F} t_{\\beta C}^{A} t_{\\alpha F}^{E} t_{\\gamma G}^{B} \\delta^{D G})).\n#XX:=@(XXcheck);"
+		},
+		{
+			"cell_id": 6744662647656766989,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "# the original calculation leads to the first XX in this file. This is the raw result from \n# expanding the potential. Then one can use symmetries in order to identify terms, this is \n# XXcheck. XX1 are contributions coming from Pi matrices. \n# Finally, from Usp(8) counting, we see that only 10 terms were allowed. So using mathematica\n# we identified the same terms, and this is XXafterSimpE6."
+		},
+		{
+			"cell_id": 4116819643171418263,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 3889990214674375409,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$\\phi_{\\alpha}^{\\Delta} -> \\phi^{\\gamma \\Delta} \\eta_{\\gamma \\alpha}$)"
+		},
+		{
+			"cell_id": 7932780760066613397,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$\\gamma->1/5$)\nsubstitute(XX,$\\alpha->6$)"
+		},
+		{
+			"cell_id": 3788472134912298512,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rldttodeltat)\nsubstitute(XX,rlsplittt)"
+		},
+		{
+			"cell_id": 13152958852408532239,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rldttodeltat)\nsubstitute(XX,rlsplittt)\nsubstitute(XX,$\\eta_{\\alpha \\beta} -> t_{\\alpha R}^{Q} t_{\\beta Q}^{R}$)\ndistribute(XX)\nrename_dummies(XX)\nsort_product(XX)\nmeld(XX)"
+		},
+		{
+			"cell_id": 17512100033807501985,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 12968782267663340865,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rlE6toSL6gen_fundind)\nsubstitute(XX,rlE6toSL6delta)\nsubstitute(XX,rlE6toSL6gen_adjind)\nsubstitute(XX,rlE6toSL6X)\ndistribute(XX)\nsubstitute(XX,rlinvP,repeat=True)\nsubstitute(XX,rlinvPnoCareDelta,repeat=True)\neliminate_kronecker(XX,repeat=True)"
+		},
+		{
+			"cell_id": 2419706978802997355,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "sort_product(XX)"
+		},
+		{
+			"cell_id": 13742029056373892012,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 10401017608238727555,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 15456167672596292092,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}16\\end{verbatim}"
+				}
+			],
+			"source": "for i in range(18):\n\tsplit_index(XX,$G,a,\\mu$)\n\tsubstitute(XX,rlXblocdiag)\n\tsubstitute(XX,rlgenblocdiag_fundind)\n\tsubstitute(XX,rldeltablocdiag)\nlen(XX); "
+		},
+		{
+			"cell_id": 2129231585191316924,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 5949839268824670013,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rlE6toSL6phi)\nsubstitute(XX,rlE6toSL6gen_adjind)\nsubstitute(XX,rlinvP,repeat=True)\nsort_product(XX)\neliminate_kronecker(XX,repeat=True)"
+		},
+		{
+			"cell_id": 9932990654089679436,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rlmvindicesphi)"
+		},
+		{
+			"cell_id": 9872536052630807135,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 947070422162553427,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "XXsave := @(XX)."
+		},
+		{
+			"cell_id": 6676955219508561091,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "XX := @(XXsave)."
+		},
+		{
+			"cell_id": 8134979788599836423,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 4141123005200861580,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}16\\end{verbatim}"
+				}
+			],
+			"source": "for i in range(10):\n\tsplit_index(XX,$G,a,\\mu$)\n\tsubstitute(XX,rlgenblocdiag_adjind)\n\tsubstitute(XX,rlphiblocdiag)\nlen(XX);"
+		},
+		{
+			"cell_id": 10139344955324394820,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15263525963490910193,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rlmvindicesgen)\nsubstitute(XX,rlmvindicesX)\n#substitute(XX,rlmvindicesdelta4)"
+		},
+		{
+			"cell_id": 15332912965235042612,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,rldeltaSL6SL2)\ndistribute(XX)\n#eliminate_kronecker(XX,repeat=True)\nsubstitute(XX,rldeltametric,repeat=True)\n#eliminate_kronecker(XX,repeat=True)"
+		},
+		{
+			"cell_id": 16343935498095543916,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1215472271152699198,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}26\\end{verbatim}"
+				}
+			],
+			"source": "len(XX);"
+		},
+		{
+			"cell_id": 15934265762600410103,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 3591228385244496676,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$X^{a b}_{d}^{\\mu c}_{\\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X_{a b d \\mu c \\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X^{a b d \\mu c \\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X^{a b d \\mu}_{c \\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X^{a b d \\mu c}_{\\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X^{a b}_{d}^{\\mu c \\nu}->X_{a b}^{d \\mu}_{c \\nu}$)\nsubstitute(XX,$X^{a b}_{c}^{d e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c d e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c d}_{e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c d e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a b c d e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b}_{c}^{d}_{e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c d}_{e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b}_{c}^{d e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b}_{c}^{d e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b c}_{d}^{e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b c}^{d e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b c}_{d}^{e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b}^{c}_{d}^{e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b c}_{d}^{e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c}_{d}^{e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c}_{d e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b}_{c}^{d e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b}^{c}_{d e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b}_{c}^{d}_{e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b}_{c}^{d e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a b c}_{d}^{e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b}^{c}_{d}^{e f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b}_{c}^{d}_{e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b c}^{d e}_{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X^{a}_{b c}^{d}_{e}^{f}->X_{a b c d}^{e f}$)\nsubstitute(XX,$X_{a}^{b c}_{d e}^{f}->X_{a b c d}^{e f}$)"
+		},
+		{
+			"cell_id": 11112237181571680569,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 18437808791478350552,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}1\\end{verbatim}"
+				},
+				{
+					"cell_id": 16476130526510039871,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}2\\end{verbatim}"
+				},
+				{
+					"cell_id": 15117923274295705953,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}1004\\end{verbatim}"
+				}
+			],
+			"source": "substitute(XX,rlXSL6SL2)\n1;\ndistribute(XX)\n2;\nlen(XX);"
+		},
+		{
+			"cell_id": 13513713653763091496,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 7367619421999328448,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 2907229761020455718,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11271449828229702473,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 17786698831003414865,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{t_{a}^{b}_{e f}^{c d} ->  1/2 (\\delta_{a}^{c} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta_{f}^{d} -  1/2 (\\delta_{a}^{d} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{d}) \\delta_{f}^{c} -  1/2 (\\delta_{a}^{c} \\delta_{f}^{b} -  1/6 \\delta_{a}^{b} \\delta_{f}^{c}) \\delta_{e}^{d} +  1/2 (\\delta_{a}^{d} \\delta_{f}^{b} -  1/6 \\delta_{a}^{b} \\delta_{f}^{d}) \\delta_{e}^{c}, t_{a}^{b c \\mu}_{e \\nu} -> -(\\delta_{a}^{c} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta^{\\mu}_{\\nu}, t^{a}_{b c d}^{e f} ->  1/2 (\\delta^{a}_{c} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta^{e}_{c}) \\delta^{f}_{d} -  1/2 (\\delta^{a}_{d} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta^{e}_{d}) \\delta^{f}_{c} -  1/2 (\\delta^{a}_{c} \\delta^{f}_{b} -  1/6 \\delta^{a}_{b} \\delta^{f}_{c}) \\delta^{e}_{d} +  1/2 (\\delta^{a}_{d} \\delta^{f}_{b} -  1/6 \\delta^{a}_{b} \\delta^{f}_{d}) \\delta^{e}_{c}, t^{a}_{b c \\mu}^{e \\nu} -> -(\\delta^{a}_{c} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta_{c}^{e}) \\delta_{\\mu}^{\\nu}}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[t_{a}\\,^{b}\\,_{e f}\\,^{c d} \\rightarrow \\frac{1}{2}\\left(\\delta_{a}\\,^{c} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{c}\\right) \\delta_{f}\\,^{d} - \\frac{1}{2}\\left(\\delta_{a}\\,^{d} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{d}\\right) \\delta_{f}\\,^{c} - \\frac{1}{2}\\left(\\delta_{a}\\,^{c} \\delta_{f}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{f}\\,^{c}\\right) \\delta_{e}\\,^{d}+\\frac{1}{2}\\left(\\delta_{a}\\,^{d} \\delta_{f}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{f}\\,^{d}\\right) \\delta_{e}\\,^{c},~\\discretionary{}{}{} t_{a}\\,^{b c \\mu}\\,_{e \\nu} \\rightarrow -\\left(\\delta_{a}\\,^{c} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{c}\\right) \\delta^{\\mu}\\,_{\\nu},~\\discretionary{}{}{} t^{a}\\,_{b c d}\\,^{e f} \\rightarrow \\frac{1}{2}\\left(\\delta^{a}\\,_{c} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{e}\\,_{c}\\right) \\delta^{f}\\,_{d} - \\frac{1}{2}\\left(\\delta^{a}\\,_{d} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{e}\\,_{d}\\right) \\delta^{f}\\,_{c} - \\frac{1}{2}\\left(\\delta^{a}\\,_{c} \\delta^{f}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{f}\\,_{c}\\right) \\delta^{e}\\,_{d}+\\frac{1}{2}\\left(\\delta^{a}\\,_{d} \\delta^{f}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{f}\\,_{d}\\right) \\delta^{e}\\,_{c},~\\discretionary{}{}{} t^{a}\\,_{b c \\mu}\\,^{e \\nu} \\rightarrow -\\left(\\delta^{a}\\,_{c} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta_{c}\\,^{e}\\right) \\delta_{\\mu}\\,^{\\nu}\\right]\\end{dmath*}"
+				}
+			],
+			"source": "rlgenSL6SL2; "
+		},
+		{
+			"cell_id": 11878118865116718252,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(XX,repeat=True)"
+		},
+		{
+			"cell_id": 11140540474603284946,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$t_{a b c \\mu d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}_{b}_{c}^{\\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}_{b}_{c}^{\\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b}^{c}_{\\mu d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b c}^{\\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b c}^{\\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b c}^{\\mu d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t^{a}_{b}^{c \\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t^{a}_{b}^{c}_{\\mu}^{d}_{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}^{b}_{c}^{\\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}^{b}_{c}^{\\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b}^{c \\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b c \\mu d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}^{b}_{c}^{\\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b}^{c \\mu}_{d}^{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}^{b c \\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b}^{c \\mu d}_{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a}^{b}_{c}^{\\mu d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b c}^{\\mu d}_{\\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t_{a b}^{c d}_{e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c}^{d e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c d e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c d}^{e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b}^{c}_{d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b}^{c}_{d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c}^{d}_{e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c}^{d}_{e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b c}^{d}_{e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b}^{c}_{d e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b c}^{d}_{e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b c}_{d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b c}_{d}^{e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b}^{c}_{d e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b}_{c}^{d}_{e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b c d}^{e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b}_{c}^{d e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b}_{c}^{d}_{e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a b c}_{d e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b c}^{d e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b}^{c}_{d}^{e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b}^{c}_{d e}^{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t_{a b}^{c}_{d}^{e}_{f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b c d e f}->t_{a}^{b}_{c d}^{e f}$)\nsubstitute(XX,$t^{a}_{b c}^{\\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)\nsubstitute(XX,$t^{a}_{b}^{c \\mu}_{d \\nu} -> t_{a}^{b c \\mu}_{d \\nu}$)"
+		},
+		{
+			"cell_id": 5659669460684934758,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 12910922003855226099,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 3148117132987199612,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " -  17/36 \\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma} +  8/9 \\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{d e \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{d}^{e}_{f b}^{c f} -  25/8 \\phi^{a b \\Lambda} \\phi^{c d \\Omega} \\phi^{e f \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{a}^{b}_{c e}^{d f} +  25/8 \\phi^{a b \\Lambda} \\phi^{c d \\Omega} \\phi^{e f \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{a}^{b}_{c e}^{f d} +  97/72 \\phi^{a b \\Lambda} \\phi^{a b \\Omega} \\phi^{c d \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{c}^{d e \\mu}_{e \\mu}"
+						}
+					],
+					"source": "\\begin{dmath*}{} - \\frac{17}{36}\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}+\\frac{8}{9}\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{d e \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{d}\\,^{e}\\,_{f b}\\,^{c f} - \\frac{25}{8}\\phi^{a b \\Lambda} \\phi^{c d \\Omega} \\phi^{e f \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{a}\\,^{b}\\,_{c e}\\,^{d f}+\\frac{25}{8}\\phi^{a b \\Lambda} \\phi^{c d \\Omega} \\phi^{e f \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{a}\\,^{b}\\,_{c e}\\,^{f d}+\\frac{97}{72}\\phi^{a b \\Lambda} \\phi^{a b \\Omega} \\phi^{c d \\Sigma} c_{\\Lambda \\Omega \\Sigma} t_{c}\\,^{d e \\mu}\\,_{e \\mu}\\end{dmath*}"
+				}
+			],
+			"source": "XX; "
+		},
+		{
+			"cell_id": 14178793714523614085,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 14549263996802853289,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 3461033473858692845,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "{t_{a}^{b}_{e f}^{c d} ->  1/2 (\\delta_{a}^{c} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta_{f}^{d} -  1/2 (\\delta_{a}^{d} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{d}) \\delta_{f}^{c} -  1/2 (\\delta_{a}^{c} \\delta_{f}^{b} -  1/6 \\delta_{a}^{b} \\delta_{f}^{c}) \\delta_{e}^{d} +  1/2 (\\delta_{a}^{d} \\delta_{f}^{b} -  1/6 \\delta_{a}^{b} \\delta_{f}^{d}) \\delta_{e}^{c}, t_{a}^{b c \\mu}_{e \\nu} -> -(\\delta_{a}^{c} \\delta_{e}^{b} -  1/6 \\delta_{a}^{b} \\delta_{e}^{c}) \\delta^{\\mu}_{\\nu}, t^{a}_{b c d}^{e f} ->  1/2 (\\delta^{a}_{c} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta^{e}_{c}) \\delta^{f}_{d} -  1/2 (\\delta^{a}_{d} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta^{e}_{d}) \\delta^{f}_{c} -  1/2 (\\delta^{a}_{c} \\delta^{f}_{b} -  1/6 \\delta^{a}_{b} \\delta^{f}_{c}) \\delta^{e}_{d} +  1/2 (\\delta^{a}_{d} \\delta^{f}_{b} -  1/6 \\delta^{a}_{b} \\delta^{f}_{d}) \\delta^{e}_{c}, t^{a}_{b c \\mu}^{e \\nu} -> -(\\delta^{a}_{c} \\delta^{e}_{b} -  1/6 \\delta^{a}_{b} \\delta_{c}^{e}) \\delta_{\\mu}^{\\nu}}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\left[t_{a}\\,^{b}\\,_{e f}\\,^{c d} \\rightarrow \\frac{1}{2}\\left(\\delta_{a}\\,^{c} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{c}\\right) \\delta_{f}\\,^{d} - \\frac{1}{2}\\left(\\delta_{a}\\,^{d} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{d}\\right) \\delta_{f}\\,^{c} - \\frac{1}{2}\\left(\\delta_{a}\\,^{c} \\delta_{f}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{f}\\,^{c}\\right) \\delta_{e}\\,^{d}+\\frac{1}{2}\\left(\\delta_{a}\\,^{d} \\delta_{f}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{f}\\,^{d}\\right) \\delta_{e}\\,^{c},~\\discretionary{}{}{} t_{a}\\,^{b c \\mu}\\,_{e \\nu} \\rightarrow -\\left(\\delta_{a}\\,^{c} \\delta_{e}\\,^{b} - \\frac{1}{6}\\delta_{a}\\,^{b} \\delta_{e}\\,^{c}\\right) \\delta^{\\mu}\\,_{\\nu},~\\discretionary{}{}{} t^{a}\\,_{b c d}\\,^{e f} \\rightarrow \\frac{1}{2}\\left(\\delta^{a}\\,_{c} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{e}\\,_{c}\\right) \\delta^{f}\\,_{d} - \\frac{1}{2}\\left(\\delta^{a}\\,_{d} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{e}\\,_{d}\\right) \\delta^{f}\\,_{c} - \\frac{1}{2}\\left(\\delta^{a}\\,_{c} \\delta^{f}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{f}\\,_{c}\\right) \\delta^{e}\\,_{d}+\\frac{1}{2}\\left(\\delta^{a}\\,_{d} \\delta^{f}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta^{f}\\,_{d}\\right) \\delta^{e}\\,_{c},~\\discretionary{}{}{} t^{a}\\,_{b c \\mu}\\,^{e \\nu} \\rightarrow -\\left(\\delta^{a}\\,_{c} \\delta^{e}\\,_{b} - \\frac{1}{6}\\delta^{a}\\,_{b} \\delta_{c}\\,^{e}\\right) \\delta_{\\mu}\\,^{\\nu}\\right]\\end{dmath*}"
+				}
+			],
+			"source": "rlgenSL6SL2;"
+		},
+		{
+			"cell_id": 10465213729226424182,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8237999531795262094,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}1\\end{verbatim}"
+				},
+				{
+					"cell_id": 12279498029969575671,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}2\\end{verbatim}"
+				},
+				{
+					"cell_id": 3954532584816466885,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}19\\end{verbatim}"
+				}
+			],
+			"source": "substitute(XX,rlgenSL6SL2)\n1;\ndistribute(XX)\n2;\n#eliminate_kronecker(XX,repeat=True)\n#substitute(XX,rldeltametric,repeat=True)\n#eliminate_kronecker(XX,repeat=True)\nlen(XX);"
+		},
+		{
+			"cell_id": 10709240457364617345,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 7772358587595631491,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6551271723670388961,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10714071493977744868,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}12\\end{verbatim}"
+				}
+			],
+			"source": "eliminate_kronecker(XX,repeat=True)\nlen(XX);"
+		},
+		{
+			"cell_id": 11921796566923182966,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8470247753964217422,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 14142465087378883453,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": " -  17/36 \\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}"
+						}
+					],
+					"source": "\\begin{dmath*}{} - \\frac{17}{36}\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}\\end{dmath*}"
+				}
+			],
+			"source": "XX[0];"
+		},
+		{
+			"cell_id": 1086133450541079979,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "XXsave := @(XX)."
+		},
+		{
+			"cell_id": 14431802991427064089,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6149270118621675141,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#XX:=@(XXsave)."
+		},
+		{
+			"cell_id": 10494393052447395152,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$2**(1/2) 2**(1/2) -> 2$)"
+		},
+		{
+			"cell_id": 11636495910432967520,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#canonicalise(XX)\n#sort_product(XX)\n#rename_dummies(XX)"
+		},
+		{
+			"cell_id": 1776519135092057402,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\delta_{a b}::KroneckerDelta.\n\\delta^{a b}::KroneckerDelta.\n\\delta_{\\mu \\nu}::KroneckerDelta.\n\\delta^{\\mu \\nu}::KroneckerDelta."
+		},
+		{
+			"cell_id": 14137641039839363490,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(XX,repeat=True)\nsubstitute(XX,rldeltametric)\neliminate_kronecker(XX,repeat=True)\nsubstitute(XX,rldeltametric)\neliminate_kronecker(XX,repeat=True)\nsort_product(XX)\nrename_dummies(XX)"
+		},
+		{
+			"cell_id": 11328129356287309623,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8050828437733959403,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$\\phi_{a b}^{\\Sigma}->\\phi^{a b \\Sigma}$)\nsubstitute(XX,$\\phi^{a}_{b}^{\\Sigma}->\\phi^{a b \\Sigma}$)\nsubstitute(XX,$\\phi_{a}^{b \\Sigma}->\\phi^{a b \\Sigma}$)\nsubstitute(XX,$\\phi^{a a \\Sigma}->0$)"
+		},
+		{
+			"cell_id": 12670188824719092478,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(XX,$\\sqrt{2}*\\sqrt{2}->2$)\nsubstitute(XX,$6**{-2}->1/36$)"
+		},
+		{
+			"cell_id": 10370776747353988883,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "canonicalise(XX)"
+		},
+		{
+			"cell_id": 10405212485563998511,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 12530942338122944083,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 6904310249190417482,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}\\end{dmath*}"
+				}
+			],
+			"source": "XXsave1:=@(XX);"
+		},
+		{
+			"cell_id": 10025985670847641361,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 17648709126203113399,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10198388285633603132,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}\\end{dmath*}"
+				}
+			],
+			"source": "XX:=@(XXsave1);"
+		},
+		{
+			"cell_id": 977547733551218400,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15848957238439199023,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 16220165356825969200,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 7480842679216285676,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}\\end{dmath*}"
+				}
+			],
+			"source": "XX;"
+		},
+		{
+			"cell_id": 6538524378432446834,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "##### This part is for sss terms "
+		},
+		{
+			"cell_id": 4693980845731372895,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "XXsss := @(XX)."
+		},
+		{
+			"cell_id": 7782740751077893858,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13676147903174622377,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 7462007563608478218,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\phi^{a b \\Sigma} \\phi^{a c \\Omega} \\phi^{b c \\Lambda} c_{\\Sigma \\Omega \\Lambda}"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\phi^{a b \\Sigma} \\phi^{a c \\Omega} \\phi^{b c \\Lambda} c_{\\Sigma \\Omega \\Lambda}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(XXsss,$\\phi^{a}_{b}^{\\Sigma} -> \\phi^{a b \\Sigma}$)\nsubstitute(XXsss,$\\phi_{a}^{b \\Sigma} -> \\phi^{a b \\Sigma}$)\nsubstitute(XXsss,$\\phi_{a b}^{\\Sigma} -> \\phi^{a b \\Sigma}$)\nsubstitute(XXsss,$\\phi^{a a \\Sigma} -> 0$)\nrename_dummies(XXsss);\n"
+		},
+		{
+			"cell_id": 17283379749599051787,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10469009473906560965,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 3056359453760672133,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\phi^{a b \\Lambda} \\phi^{a c \\Omega} \\phi^{b c \\Sigma} c_{\\Lambda \\Omega \\Sigma}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(XXsss,$\\alpha^{-1} -> 1/6$)\nsubstitute(XXsss,$\\gamma -> 1/5$)\ncanonicalise(XXsss);"
+		},
+		{
+			"cell_id": 11625078197189159519,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#Surprisingly, the XX1 part does give any contribution for the sss part of the couplings. \n#There might be something to understand here. (XX1 = part added when introducing \\Pi matrices)"
+		},
+		{
+			"cell_id": 6289933991697282823,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 16399472081075081661,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 16370470916035598442,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 5219180142230046842,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8630093634264957783,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15255332109885715105,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8613531925998912356,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 8647382190716873808,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 18354529391852728933,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 14535420654026727817,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 15210620066752646576,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 4574319182024035229,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 7230719422734419058,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		}
+	],
+	"description": "Cadabra JSON notebook format",
+	"version": 1.0
+}
