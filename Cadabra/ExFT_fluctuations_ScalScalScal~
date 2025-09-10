@@ -109,12 +109,12 @@
 			"cell_type": "input",
 			"cells": [
 				{
-					"cell_id": 14012981423258764189,
+					"cell_id": 8513880341462519171,
 					"cell_origin": "server",
 					"cell_type": "latex_view",
 					"cells": [
 						{
-							"cell_id": 188842433583416917,
+							"cell_id": 15930762368940721146,
 							"cell_origin": "server",
 							"cell_type": "input_form",
 							"source": "\\int{e ( -  1/8 \\partial_{K L}(cM_{M N}) \\partial_{P Q}(cM^{M N}) cM^{K P} cM^{L Q}-\\partial_{M K}(cM^{N P}) \\partial_{N L}(cM^{M Q}) cM_{P Q} cM^{K L} +  1/4 \\partial_{M N}(cM^{P K}) \\partial_{K L}(cM^{M Q}) cM_{P}^{L} cM_{Q}^{N} + \\partial_{M K}(cM^{N K}) \\partial_{N L}(cM^{M L})-(e)**(-1) \\partial_{M N}(e) \\partial_{K L}(cM^{M K}) cM^{N L} -  1/4 (e)**(-2) \\partial_{M N}(e) \\partial_{K L}(e) cM^{N L} cM^{M K} -  1/4 (e)**(-2) \\partial_{M N}(cg^{\\mu \\nu}) \\partial_{K L}(cg_{\\mu \\nu}) cM^{N L} cM^{M K})}"
@@ -245,12 +245,12 @@
 			"cell_type": "input",
 			"cells": [
 				{
-					"cell_id": 4467461126384834199,
+					"cell_id": 4878134842918557038,
 					"cell_origin": "server",
 					"cell_type": "latex_view",
 					"cells": [
 						{
-							"cell_id": 15119560625911833274,
+							"cell_id": 14724498182241595640,
 							"cell_origin": "server",
 							"cell_type": "input_form",
 							"source": " 1/2 \\phi^{X Y \\Gamma} Y^{\\Gamma} U_{X}^{M} U_{K}^{S} U_{U}^{L} U_{G}^{V} (\\rho)**5 Y^{\\Sigma} Y^{\\Omega} \\delta_{Y S} \\delta^{U S1} (\\gamma)**2 \\Gamma_{W S1 S2}^{W} \\Gamma_{S3 V S4}^{S3} \\phi^{S2 S5 \\Sigma} \\phi_{S5}^{S4 \\Omega} (g)**(-1) g^{\\mu \\nu} g_{\\mu \\nu} t^{\\alpha}_{M}^{K} t_{\\alpha L}^{G}"
@@ -267,12 +267,12 @@
 			"cell_type": "input",
 			"cells": [
 				{
-					"cell_id": 9294401922771562533,
+					"cell_id": 8330698916312496325,
 					"cell_origin": "server",
 					"cell_type": "latex_view",
 					"cells": [
 						{
-							"cell_id": 18306356706002385719,
+							"cell_id": 17362202357155432760,
 							"cell_origin": "server",
 							"cell_type": "input_form",
 							"source": "U_{K}^{S} U_{X}^{M} t^{\\alpha}_{M}^{K} -> t^{\\alpha}_{X}^{S}"
@@ -301,7 +301,7 @@
 			"cell_type": "input",
 			"cells": [
 				{
-					"cell_id": 13261536380768498170,
+					"cell_id": 11857625927009508990,
 					"cell_origin": "server",
 					"cell_type": "verbatim",
 					"source": "\\begin{verbatim}2215\\end{verbatim}"
@@ -435,7 +435,7 @@
 			"cell_type": "input",
 			"cells": [
 				{
-					"cell_id": 657303608126244263,
+					"cell_id": 8181088587191830329,
 					"cell_origin": "server",
 					"cell_type": "verbatim",
 					"source": "\\begin{verbatim}38\\end{verbatim}"
@@ -459,14 +459,6 @@
 			"cell_id": 7089371231391993333,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 11034454881943275543,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}30\\end{verbatim}"
-				}
-			],
 			"source": "len(TTtemp);"
 		},
 		{
@@ -485,14 +477,6 @@
 			"cell_id": 8932660208414412349,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 14516566436936085552,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}30\\end{verbatim}"
-				}
-			],
 			"source": "len(TT);"
 		},
 		{
@@ -505,14 +489,6 @@
 			"cell_id": 7203848726874702002,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 16912435900075722411,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}12\\end{verbatim}"
-				}
-			],
 			"source": "len(TT);"
 		},
 		{
@@ -549,22 +525,6 @@
 			"cell_id": 11889478415365946064,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 11260553079488289937,
-					"cell_origin": "server",
-					"cell_type": "latex_view",
-					"cells": [
-						{
-							"cell_id": 2057843853887360766,
-							"cell_origin": "server",
-							"cell_type": "input_form",
-							"source": "{T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Gamma} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}, T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Gamma \\Delta} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}, T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Omega \\Gamma} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}, T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Gamma \\Omega \\Delta} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}, T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}, T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Gamma \\Delta \\Omega} -> -T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}}"
-						}
-					],
-					"source": "\\begin{dmath*}{}\\left[T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Gamma} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},~\\discretionary{}{}{} T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Gamma \\Delta} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},~\\discretionary{}{}{} T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Delta \\Omega \\Gamma} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},~\\discretionary{}{}{} T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Gamma \\Omega \\Delta} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},~\\discretionary{}{}{} T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},~\\discretionary{}{}{} T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Gamma \\Delta \\Omega} \\rightarrow -T_{S T}\\,^{\\Delta \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}\\,^{\\Gamma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}\\right]\\end{dmath*}"
-				}
-			],
 			"source": "rlTc1:={T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Gamma}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},\nT_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Gamma \\Delta}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},\nT_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Omega \\Gamma}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},\nT_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Gamma \\Omega \\Delta}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},\nT_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma},\nT_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Gamma \\Delta \\Omega}->-T_{S T}^{\\Delta \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Sigma \\Gamma}-T_{S T}^{\\Gamma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Omega \\Delta \\Sigma}};"
 		},
 		{
@@ -577,14 +537,6 @@
 			"cell_id": 538729768777583148,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 9733919170994003606,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}17\\end{verbatim}"
-				}
-			],
 			"source": "len(TTtemp);"
 		},
 		{
@@ -603,14 +555,6 @@
 			"cell_id": 12235000337589608178,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 6737112191724484503,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}10\\end{verbatim}"
-				}
-			],
 			"source": "len(TTtemp);"
 		},
 		{
@@ -629,14 +573,6 @@
 			"cell_id": 17011831449667179681,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 174685587624189366,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}10\\end{verbatim}"
-				}
-			],
 			"source": "len(TTtemp);"
 		},
 		{
@@ -655,14 +591,6 @@
 			"cell_id": 11748605376500051550,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 12606670110247458185,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}10\\end{verbatim}"
-				}
-			],
 			"source": "len(TTtemp);"
 		},
 		{
@@ -681,22 +609,6 @@
 			"cell_id": 13137528824929154878,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 8384421869522129286,
-					"cell_origin": "server",
-					"cell_type": "latex_view",
-					"cells": [
-						{
-							"cell_id": 4310634927744014029,
-							"cell_origin": "server",
-							"cell_type": "input_form",
-							"source": " 1/32 T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{S U} \\delta^{W T} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} t_{\\gamma W}^{V} -  1/8 T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} \\delta^{T V} \\delta^{W S} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Gamma} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Lambda} t_{\\gamma W}^{U} +  1/32 T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} \\delta^{T V} \\delta^{W S} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Lambda} \\phi^{\\gamma \\Gamma} t_{\\gamma W}^{U} + 2T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{W S} \\delta^{S1 V} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} t_{\\alpha W}^{S2} t_{\\beta S1}^{T} t_{\\gamma S2}^{U}-T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} c^{\\Gamma \\Delta \\Omega} \\delta^{W T} \\delta^{S1 U} \\phi^{\\alpha \\Gamma} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Lambda} t_{\\alpha W}^{V} t_{\\beta S1}^{S2} t_{\\gamma S2}^{S} +  1/4 T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Omega \\Lambda} \\eta^{T W} \\eta^{S1 V} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} c^{\\Gamma \\Delta \\Lambda} t_{\\alpha W}^{S} t_{\\beta S1}^{S2} t_{\\gamma S2}^{U} +  1/2 T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Delta} \\eta^{T W} \\eta^{S1 V} \\phi^{\\alpha \\Lambda} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} c^{\\Delta \\Gamma \\Omega} t_{\\alpha W}^{S} t_{\\beta S1}^{S2} t_{\\gamma S2}^{U}-T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Lambda \\Sigma} c^{\\Omega \\Delta \\Gamma} \\delta^{W S} \\delta^{S1 U} \\phi^{\\alpha \\Lambda} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} t_{\\alpha W}^{V} t_{\\beta S2}^{T} t_{\\gamma S1}^{S2} + 2T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{V T} \\delta^{W S1} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} t_{\\alpha S1}^{S2} t_{\\beta W}^{S} t_{\\gamma S2}^{U}-2T_{S T}^{\\Sigma \\Omega} T_{U V}^{\\Omega \\Lambda} \\delta^{W U} \\delta^{S1 S2} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} c^{\\Gamma \\Delta \\Lambda} t_{\\alpha S2}^{V} t_{\\beta W}^{T} t_{\\gamma S1}^{S}"
-						}
-					],
-					"source": "\\begin{dmath*}{}\\frac{1}{32}T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{S U} \\delta^{W T} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} t_{\\gamma W}\\,^{V} - \\frac{1}{8}T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} \\delta^{T V} \\delta^{W S} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Gamma} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Lambda} t_{\\gamma W}\\,^{U}+\\frac{1}{32}T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Delta \\Gamma \\Omega} \\delta^{T V} \\delta^{W S} \\kappa_{\\alpha \\beta} \\phi^{\\alpha \\Sigma} \\phi^{\\beta \\Lambda} \\phi^{\\gamma \\Gamma} t_{\\gamma W}\\,^{U}+2T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{W S} \\delta^{{S_{1}} V} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} t_{\\alpha W}\\,^{{S_{2}}} t_{\\beta {S_{1}}}\\,^{T} t_{\\gamma {S_{2}}}\\,^{U}-T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} c^{\\Gamma \\Delta \\Omega} \\delta^{W T} \\delta^{{S_{1}} U} \\phi^{\\alpha \\Gamma} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Lambda} t_{\\alpha W}\\,^{V} t_{\\beta {S_{1}}}\\,^{{S_{2}}} t_{\\gamma {S_{2}}}\\,^{S}+\\frac{1}{4}T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Omega \\Lambda} \\eta^{T W} \\eta^{{S_{1}} V} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} c^{\\Gamma \\Delta \\Lambda} t_{\\alpha W}\\,^{S} t_{\\beta {S_{1}}}\\,^{{S_{2}}} t_{\\gamma {S_{2}}}\\,^{U}+\\frac{1}{2}T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Delta} \\eta^{T W} \\eta^{{S_{1}} V} \\phi^{\\alpha \\Lambda} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} c^{\\Delta \\Gamma \\Omega} t_{\\alpha W}\\,^{S} t_{\\beta {S_{1}}}\\,^{{S_{2}}} t_{\\gamma {S_{2}}}\\,^{U}-T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Lambda \\Sigma} c^{\\Omega \\Delta \\Gamma} \\delta^{W S} \\delta^{{S_{1}} U} \\phi^{\\alpha \\Lambda} \\phi^{\\beta \\Delta} \\phi^{\\gamma \\Gamma} t_{\\alpha W}\\,^{V} t_{\\beta {S_{2}}}\\,^{T} t_{\\gamma {S_{1}}}\\,^{{S_{2}}}+2T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Omega \\Lambda} c^{\\Gamma \\Delta \\Lambda} \\delta^{V T} \\delta^{W {S_{1}}} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Gamma} \\phi^{\\gamma \\Sigma} t_{\\alpha {S_{1}}}\\,^{{S_{2}}} t_{\\beta W}\\,^{S} t_{\\gamma {S_{2}}}\\,^{U}-2T_{S T}\\,^{\\Sigma \\Omega} T_{U V}\\,^{\\Omega \\Lambda} \\delta^{W U} \\delta^{{S_{1}} {S_{2}}} \\phi^{\\alpha \\Delta} \\phi^{\\beta \\Sigma} \\phi^{\\gamma \\Gamma} c^{\\Gamma \\Delta \\Lambda} t_{\\alpha {S_{2}}}\\,^{V} t_{\\beta W}\\,^{T} t_{\\gamma {S_{1}}}\\,^{S}\\end{dmath*}"
-				}
-			],
 			"source": "TT;"
 		},
 		{

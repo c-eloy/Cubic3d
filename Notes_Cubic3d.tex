@@ -304,6 +304,56 @@ Representations to which no shape has been assigned may belong to multiple multi
   \label{tab:multi20}
 \end{table}
 
+
+\paragraph{ExFT cubic Couplings}
+
+TT term obtained from Cadabra + hand massaging
+\begin{equation}
+	\begin{split}
+		TT = & - \frac{5}{32}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Sigma} \phi_{W}\,^{W \Gamma \Lambda}
+		+T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{S U \Lambda \Sigma \Gamma}\\
+		& +\frac{3}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} c^{\Omega \Delta \Gamma} \delta^{T V} \phi^{U S \Delta \Gamma \Lambda} 
+		+\frac{5}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T V \Delta} \phi^{S U \Lambda \Gamma} c^{\Omega \Delta \Gamma}
+		-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi^{S V \Gamma} \phi^{U T \Lambda \Sigma} c^{\Omega \Delta \Gamma} \\
+		&-T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi^{T U \Delta} \phi^{S V \Gamma \Lambda} c^{\Omega \Delta \Gamma} 
+		- \frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{U \Delta} \varphi^{S T \Lambda} \varphi^{V W \Gamma} c^{\Omega \Delta \Gamma} \\
+		&+\frac{1}{2}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Delta} \phi_{W}\,^{S \Sigma} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}
+		+\frac{1}{4}T_{S T}\,^{\Sigma \Omega} T_{U V}\,^{\Lambda \Sigma} \phi_{W}\,^{S \Delta} \varphi^{T W \Lambda} \varphi^{U V \Gamma} c^{\Omega \Delta \Gamma}
+	\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+TTCamille:=c^{\Sigma \Omega \Gamma}
+&(\gamma T_{X Y}\,^{\Delta \Omega} T_{W V}\,^{\Lambda \Sigma}(\frac34 \Delta^{X W} j\,^{S T \Lambda} j_{S T}\,^{\Delta} j^{Y V \Gamma}
++\Delta^{X W} j^{Y S \Lambda} j_{S U}\,^{\Gamma} j^{U V \Delta} \\
+&-j^{X U \Lambda} \Delta_{U}\,^{Y} j^{W S \Delta} j_{S}\,^{V \Gamma}
++\frac32 j^{X U \Lambda} \Delta_{U}\,^{Y} j^{W S \Gamma} j_{S}\,^{V \Delta}
+-j^{Y V \Gamma} j^{X S \Lambda} \Delta_{S U} j^{U W \Delta})\\
+&+\gamma T_{X Y}\,^{\Delta \Lambda} T_{W V}\,^{\Lambda \Sigma}(\Delta^{X W} j^{Y S \Gamma} j_{S U}\,^{\Delta} j^{U V \Omega}
+-\Delta^{X W} j^{Y S \Delta} j_{S U}\,^{\Omega} j^{U V \Gamma}\\
+&-2\Delta_{S U} j^{Y V \Omega} j^{X S \Gamma} j^{U W \Delta}
++2\Delta^{X W} j^{Y S \Omega} j_{S U}\,^{\Gamma} j^{U V \Delta}
+-2\Delta_{S U} j^{Y V \Delta} j^{X S \Omega} j^{U W \Gamma}));
+\end{split}
+\end{equation}
+
+XT terms 
+
+\begin{equation}
+	\begin{split}
+		XTheta=c^{\Sigma \Omega \Gamma}&(-3 \Theta_{K L M N} \Delta^{K P} T_{P Q}\,^{\Delta \Sigma} j^{M U \Delta} \Delta_{U}\,^{N} j^{L R \Omega} \Delta_{R S} j^{S Q \Gamma}
+		+6 \Theta_{K L M N} \Delta^{K P} T_{P Q}\,^{\Delta \Sigma} j^{M U \Gamma} j_{U}\,^{N \Delta} j^{L Q \Omega} \\
+		&+2 \Theta_{K L M N} T_{P Q}\,^{\Delta \Sigma} j^{M U \Gamma} \Delta_{U}\,^{N} j^{K P \Delta} j^{L Q \Omega}
+		-2 \Theta_{K L M N} T_{P Q}\,^{\Delta \Sigma} j^{M U \Delta} \Delta_{U}\,^{N} j^{K P \Gamma} j^{L Q \Omega}\\
+		&-3 (\Theta_{K L}+\Theta \eta_{K L}) T_{P Q}\,^{\Delta \Sigma} j^{L Q \Delta} j^{K R \Omega} \Delta_{R S} j^{S P \Gamma}\\ 
+		&+3 \Theta_{K L M N} (\eta^{K P} \eta^{L Q}- \Delta^{K P} \Delta^{L Q}) T_{P Q}\,^{\Delta \Sigma} \Delta_{R S} j^{M U \Delta} j_{U}\,^{R \Omega} j^{S N \Gamma});
+	\end{split}
+\end{equation}
+
+XX terms ($\Theta \Theta$)
+
+
 \bibliography{references}
 
 
