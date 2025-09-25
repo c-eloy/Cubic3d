@@ -1,0 +1,1041 @@
+{
+	"cell_id": 13213888275348833243,
+	"cells": [
+		{
+			"cell_id": 9021910434820800036,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "{K,L,M,N,P,M,Q,R,S,T,U,V,Q#}::Indices(name=\"FlatExFT\",position=independent).\n{A,B,C,D,E,F,A#}::Indices(name=\"SO441\",position=independent).\n{a,b,c,d,e,f,a#}::Indices(name=\"SO442\",position=independent).\n{Z,Z#}::Indices(name=\"SO44temp\",position=independent).\n{\\alpha,\\beta,\\alpha#}::Indices(name=\"SOm\",position=independent).\n{\\mu,\\nu,\\mu#}::Indices(name=\"spacetime\",position=independent).\n{\\Sigma,\\Delta,\\Lambda,\\Omega,\\Gamma,\\Sigma#}::Indices(name=\"harmonic\",position=independent)."
+		},
+		{
+			"cell_id": 16360043715847932753,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\partial{#}::Derivative.\n\\partial{#}::WeightInherit(label=all, type=multiplicative).\nj{#}::Depends(\\partial{#}).\n\\phi{#}::Depends(\\partial{#})."
+		},
+		{
+			"cell_id": 16811349131561092677,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 7798082832091757680,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\delta_{M}^{N}::KroneckerDelta.\n\\delta^{M}_{N}::KroneckerDelta."
+		},
+		{
+			"cell_id": 13290548749669639574,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "c^{\\Sigma \\Delta \\Lambda}::Symmetric.\nc_{\\Sigma \\Delta \\Lambda}::Symmetric.\n\n\\phi^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).\n\\phi^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={0,1}).\n\n\\eta^{M?? N??}::Symmetric.\n\\eta_{M?? N??}::Symmetric.\n\n\\delta^{M?? N??}::Symmetric.\n\\delta_{M?? N??}::Symmetric.\n\n\\Delta^{M?? N??}::Symmetric.\n\\Delta_{M?? N??}::Symmetric.\n\nT_{M?? N??}^{\\Sigma \\Omega}::TableauSymmetry(shape={1,1},indices={0,1}).\n\nA_{\\mu}^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA_{\\mu}^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2})."
+		},
+		{
+			"cell_id": 14936955665585331206,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#\\Theta_{M N P Q}::TableauSymmetry(shape={1,1,1},indices={0,1,2})."
+		},
+		{
+			"cell_id": 15014775962878470663,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "### D_\\mu cM_{M N} ###"
+		},
+		{
+			"cell_id": 8595055787317857682,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "  "
+		},
+		{
+			"cell_id": 6355648195228124003,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13752400573509203438,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 18076714482542200233,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "8A_{\\mu}^{K L \\Delta} \\partial^{\\mu}(j_{P}^{S \\Lambda} j_{Q S}^{\\Omega}) c^{\\Sigma \\Lambda \\Omega} \\Delta_{N}^{R} \\eta^{P M} \\eta^{N Q} (\\Theta_{K L M R} \\delta^{\\Sigma \\Delta}-2\\eta_{K M} T_{R L}^{\\Delta \\Sigma} + 2\\eta_{K R} T_{M L}^{\\Delta \\Sigma})"
+						}
+					],
+					"source": "\\begin{dmath*}{}8A_{\\mu}\\,^{K L \\Delta} \\partial^{\\mu}\\left(j_{P}\\,^{S \\Lambda} j_{Q S}\\,^{\\Omega}\\right) c^{\\Sigma \\Lambda \\Omega} \\Delta_{N}\\,^{R} \\eta^{P M} \\eta^{N Q} \\left(\\Theta_{K L M R} \\delta^{\\Sigma \\Delta}-2\\eta_{K M} T_{R L}\\,^{\\Delta \\Sigma}+2\\eta_{K R} T_{M L}\\,^{\\Delta \\Sigma}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "temp1:=8 A_\\mu^{K L \\Delta} \\partial^{\\mu}{j_{P}^{S \\Lambda} j_{Q S}^{\\Omega}} c^{\\Sigma \\Lambda \\Omega} \\Delta_{N}^{R} \\eta^{P M} \\eta^{N Q} (\\Theta_{K L M R} \\delta^{\\Sigma \\Delta}-2\\eta_{K M} T_{R L}^{\\Delta \\Sigma}+2\\eta_{K R} T_{M L}^{\\Delta \\Sigma});"
+		},
+		{
+			"cell_id": 7434677339673721664,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 9618914519429649047,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 4824242194238824244,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "4\\partial_{\\mu}(j_{M N}^{\\Sigma}) \\eta^{Q N} j_{Q}^{R \\Gamma} A^{\\mu K L \\Delta} c^{\\Sigma \\Lambda \\Omega} (\\Theta_{K L P R} \\eta^{P M} \\delta^{\\Lambda \\Delta} \\delta^{\\Gamma \\Omega} -  1/2 \\delta^{\\Gamma \\Omega} (\\delta^{M}_{K} T_{R L}^{\\Delta \\Lambda}-\\eta_{K R}   \\eta^{P M} T_{P L}^{\\Delta \\Lambda}) + 2\\delta_{R}^{M} T_{K L}^{\\Gamma \\Omega} \\delta^{\\Lambda \\Delta})"
+						}
+					],
+					"source": "\\begin{dmath*}{}4\\partial_{\\mu}{j_{M N}\\,^{\\Sigma}} \\eta^{Q N} j_{Q}\\,^{R \\Gamma} A^{\\mu K L \\Delta} c^{\\Sigma \\Lambda \\Omega} \\left(\\Theta_{K L P R} \\eta^{P M} \\delta^{\\Lambda \\Delta} \\delta^{\\Gamma \\Omega} - \\frac{1}{2}\\delta^{\\Gamma \\Omega} \\left(\\delta^{M}\\,_{K} T_{R L}\\,^{\\Delta \\Lambda}-\\eta_{K R}   \\eta^{P M} T_{P L}\\,^{\\Delta \\Lambda}\\right)+2\\delta_{R}\\,^{M} T_{K L}\\,^{\\Gamma \\Omega} \\delta^{\\Lambda \\Delta}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "temp2:=4 \\partial_{\\mu}{j_{M N}^{\\Sigma}} \\eta^{Q N} j_{Q}^{R \\Gamma} A^{\\mu}^{K L \\Delta} c^{\\Sigma \\Lambda \\Omega} (\\Theta_{K L P R} \\eta^{P M} \\delta^{\\Lambda \\Delta} \\delta^{\\Gamma \\Omega} - 1/2 \\delta^{\\Gamma \\Omega} (\\delta^{M}_{K} T_{R L}^{\\Delta \\Lambda} - \\eta_{K R} \\eta^{P M} T_{P L}^{\\Delta \\Lambda}) + 2 \\delta_{R}^{M} T_{K L}^{\\Gamma \\Omega} \\delta^{\\Lambda \\Delta});"
+		},
+		{
+			"cell_id": 9464830412592047262,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "Ajj=temp1+temp2\nproduct_rule(Ajj)\ndistribute(Ajj)"
+		},
+		{
+			"cell_id": 3208253312375336210,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(Ajj)"
+		},
+		{
+			"cell_id": 13428764244653613028,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$j_{M}^{N \\Sigma}->j_{M K \\Sigma} \\eta^{K N}$)\nsubstitute(Ajj,$j^{M N \\Sigma}->j_{K L}^{\\Sigma} \\eta^{K M} \\eta^{R L}$)"
+		},
+		{
+			"cell_id": 13832457957515512407,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "product_rule(Ajj)\ndistribute(Ajj)\nunwrap(Ajj)"
+		},
+		{
+			"cell_id": 3306614266452406474,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\eta_{M N} \\eta^{N P}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{N M} \\eta^{N P}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{M N} \\eta^{P N}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{N M} \\eta^{P N}->\\delta_{M}^{P}$)"
+		},
+		{
+			"cell_id": 1565925620998277826,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 18388977077368078109,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 14391895811368577684,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 14759125517113873268,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "8A_{\\mu}^{K L \\Sigma} \\Delta_{M}^{N} \\Theta_{K L P N} \\delta^{\\Delta \\Sigma} \\eta^{M Q} \\eta^{R P} \\eta^{S T} \\partial^{\\mu}(\\phi^{Q2 Q3}_{\\Lambda} (t_{Q2 Q3 R}^{Q4} \\delta_{S Q4} + t_{Q2 Q3 S}^{Q4} \\delta_{R Q4})) c^{\\Delta \\Lambda \\Omega} \\phi^{U V \\Omega} (t_{U V Q}^{Q1} \\delta_{T Q1} + t_{U V T}^{Q1} \\delta_{Q Q1})-16A_{\\mu}^{K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\Delta_{N}^{M} \\eta^{N P} \\eta^{Q R} \\partial^{\\mu}(\\phi^{Q1 V}_{\\Lambda} (t_{Q1 V K}^{Q2} \\delta_{Q Q2} + t_{Q1 V Q}^{Q2} \\delta_{K Q2})) c^{\\Delta \\Lambda \\Omega} \\phi^{S T \\Omega} (t_{S T P}^{U} \\delta_{R U} + t_{S T R}^{U} \\delta_{P U}) + 16A_{\\mu}^{K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\Delta_{N}^{P} \\eta^{N Q} \\eta^{R M} \\eta^{S T} \\eta_{K P} \\partial^{\\mu}(\\phi^{Q2 Q3}_{\\Lambda} (t_{Q2 Q3 R}^{Q4} \\delta_{S Q4} + t_{Q2 Q3 S}^{Q4} \\delta_{R Q4})) c^{\\Delta \\Lambda \\Omega} \\phi^{U V \\Omega} (t_{U V Q}^{Q1} \\delta_{T Q1} + t_{U V T}^{Q1} \\delta_{Q Q1}) + 8A_{\\mu}^{K L \\Sigma} \\Delta_{M}^{N} \\Theta_{K L P N} \\delta^{\\Delta \\Sigma} \\eta^{M Q} \\eta^{R P} \\eta^{S T} \\partial^{\\mu}(\\phi^{U V \\Omega} (t_{U V Q}^{Q1} \\delta_{T Q1} + t_{U V T}^{Q1} \\delta_{Q Q1})) c^{\\Delta \\Lambda \\Omega} \\phi^{Q2 Q3}_{\\Lambda} (t_{Q2 Q3 R}^{Q4} \\delta_{S Q4} + t_{Q2 Q3 S}^{Q4} \\delta_{R Q4})-16A_{\\mu}^{K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\Delta_{N}^{M} \\eta^{N P} \\eta^{Q R} \\partial^{\\mu}(\\phi^{S T \\Omega} (t_{S T P}^{U} \\delta_{R U} + t_{S T R}^{U} \\delta_{P U})) c^{\\Delta \\Lambda \\Omega} \\phi^{Q1 V}_{\\Lambda} (t_{Q1 V K}^{Q2} \\delta_{Q Q2} + t_{Q1 V Q}^{Q2} \\delta_{K Q2}) + 16A_{\\mu}^{K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\Delta_{N}^{P} \\eta^{N Q} \\eta^{R M} \\eta^{S T} \\eta_{K P} \\partial^{\\mu}(\\phi^{U V \\Omega} (t_{U V Q}^{Q1} \\delta_{T Q1} + t_{U V T}^{Q1} \\delta_{Q Q1})) c^{\\Delta \\Lambda \\Omega} \\phi^{Q2 Q3}_{\\Lambda} (t_{Q2 Q3 R}^{Q4} \\delta_{S Q4} + t_{Q2 Q3 S}^{Q4} \\delta_{R Q4}) + 4A^{\\mu K L \\Sigma} \\Theta_{K L M N} \\delta^{\\Delta \\Lambda} \\delta^{\\Omega \\Sigma} \\eta^{M P} \\eta^{Q R} \\eta^{S N} \\partial_{\\mu}(\\phi^{T U \\Gamma} (t_{T U P}^{V} \\delta_{R V} + t_{T U R}^{V} \\delta_{P V})) c^{\\Gamma \\Omega \\Lambda} \\phi^{Q1 Q2}_{\\Delta} (t_{Q1 Q2 Q}^{Q3} \\delta_{S Q3} + t_{Q1 Q2 S}^{Q3} \\delta_{Q Q3})-2A^{\\mu K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\eta^{N M} \\eta^{P Q} \\partial_{\\mu}(\\phi^{S R \\Gamma} (t_{S R K}^{T} \\delta_{Q T} + t_{S R Q}^{T} \\delta_{K T})) c^{\\Gamma \\Delta \\Omega} \\phi^{U V}_{\\Lambda} (t_{U V P}^{Q1} \\delta_{N Q1} + t_{U V N}^{Q1} \\delta_{P Q1}) + 2A^{\\mu K L \\Sigma} T_{M L}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\eta^{M N} \\eta^{P Q} \\partial_{\\mu}(\\phi^{R S \\Gamma} (t_{R S N}^{T} \\delta_{Q T} + t_{R S Q}^{T} \\delta_{N T})) c^{\\Gamma \\Delta \\Omega} \\phi^{V U}_{\\Lambda} (t_{V U P}^{Q1} \\delta_{K Q1} + t_{V U K}^{Q1} \\delta_{P Q1})   + 8A^{\\mu K L \\Sigma} T_{K L}^{\\Delta \\Lambda} \\delta^{\\Omega \\Sigma} \\eta^{M N} \\eta^{P Q} \\partial_{\\mu}(\\phi^{R S \\Gamma} (t_{R S N}^{T} \\delta_{Q T} + t_{R S Q}^{T} \\delta_{N T})) c^{\\Gamma \\Omega \\Lambda} \\phi^{U V}_{\\Delta} (t_{U V P}^{Q1} \\delta_{M Q1} + t_{U V M}^{Q1} \\delta_{P Q1})"
+						}
+					],
+					"source": "\\begin{dmath*}{}8A_{\\mu}\\,^{K L \\Sigma} \\Delta_{M}\\,^{N} \\Theta_{K L P N} \\delta^{\\Delta \\Sigma} \\eta^{M Q} \\eta^{R P} \\eta^{S T} \\partial^{\\mu}\\left(\\phi^{{Q_{2}} {Q_{3}}}\\,_{\\Lambda} \\left(t_{{Q_{2}} {Q_{3}} R}\\,^{{Q_{4}}} \\delta_{S {Q_{4}}}+t_{{Q_{2}} {Q_{3}} S}\\,^{{Q_{4}}} \\delta_{R {Q_{4}}}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{U V \\Omega} \\left(t_{U V Q}\\,^{{Q_{1}}} \\delta_{T {Q_{1}}}+t_{U V T}\\,^{{Q_{1}}} \\delta_{Q {Q_{1}}}\\right)-16A_{\\mu}\\,^{K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\Delta_{N}\\,^{M} \\eta^{N P} \\eta^{Q R} \\partial^{\\mu}\\left(\\phi^{{Q_{1}} V}\\,_{\\Lambda} \\left(t_{{Q_{1}} V K}\\,^{{Q_{2}}} \\delta_{Q {Q_{2}}}+t_{{Q_{1}} V Q}\\,^{{Q_{2}}} \\delta_{K {Q_{2}}}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{S T \\Omega} \\left(t_{S T P}\\,^{U} \\delta_{R U}+t_{S T R}\\,^{U} \\delta_{P U}\\right)+16A_{\\mu}\\,^{K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\Delta_{N}\\,^{P} \\eta^{N Q} \\eta^{R M} \\eta^{S T} \\eta_{K P} \\partial^{\\mu}\\left(\\phi^{{Q_{2}} {Q_{3}}}\\,_{\\Lambda} \\left(t_{{Q_{2}} {Q_{3}} R}\\,^{{Q_{4}}} \\delta_{S {Q_{4}}}+t_{{Q_{2}} {Q_{3}} S}\\,^{{Q_{4}}} \\delta_{R {Q_{4}}}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{U V \\Omega} \\left(t_{U V Q}\\,^{{Q_{1}}} \\delta_{T {Q_{1}}}+t_{U V T}\\,^{{Q_{1}}} \\delta_{Q {Q_{1}}}\\right)+8A_{\\mu}\\,^{K L \\Sigma} \\Delta_{M}\\,^{N} \\Theta_{K L P N} \\delta^{\\Delta \\Sigma} \\eta^{M Q} \\eta^{R P} \\eta^{S T} \\partial^{\\mu}\\left(\\phi^{U V \\Omega} \\left(t_{U V Q}\\,^{{Q_{1}}} \\delta_{T {Q_{1}}}+t_{U V T}\\,^{{Q_{1}}} \\delta_{Q {Q_{1}}}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{{Q_{2}} {Q_{3}}}\\,_{\\Lambda} \\left(t_{{Q_{2}} {Q_{3}} R}\\,^{{Q_{4}}} \\delta_{S {Q_{4}}}+t_{{Q_{2}} {Q_{3}} S}\\,^{{Q_{4}}} \\delta_{R {Q_{4}}}\\right)-16A_{\\mu}\\,^{K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\Delta_{N}\\,^{M} \\eta^{N P} \\eta^{Q R} \\partial^{\\mu}\\left(\\phi^{S T \\Omega} \\left(t_{S T P}\\,^{U} \\delta_{R U}+t_{S T R}\\,^{U} \\delta_{P U}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{{Q_{1}} V}\\,_{\\Lambda} \\left(t_{{Q_{1}} V K}\\,^{{Q_{2}}} \\delta_{Q {Q_{2}}}+t_{{Q_{1}} V Q}\\,^{{Q_{2}}} \\delta_{K {Q_{2}}}\\right)+16A_{\\mu}\\,^{K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\Delta_{N}\\,^{P} \\eta^{N Q} \\eta^{R M} \\eta^{S T} \\eta_{K P} \\partial^{\\mu}\\left(\\phi^{U V \\Omega} \\left(t_{U V Q}\\,^{{Q_{1}}} \\delta_{T {Q_{1}}}+t_{U V T}\\,^{{Q_{1}}} \\delta_{Q {Q_{1}}}\\right)\\right) c^{\\Delta \\Lambda \\Omega} \\phi^{{Q_{2}} {Q_{3}}}\\,_{\\Lambda} \\left(t_{{Q_{2}} {Q_{3}} R}\\,^{{Q_{4}}} \\delta_{S {Q_{4}}}+t_{{Q_{2}} {Q_{3}} S}\\,^{{Q_{4}}} \\delta_{R {Q_{4}}}\\right)+4A^{\\mu K L \\Sigma} \\Theta_{K L M N} \\delta^{\\Delta \\Lambda} \\delta^{\\Omega \\Sigma} \\eta^{M P} \\eta^{Q R} \\eta^{S N} \\partial_{\\mu}\\left(\\phi^{T U \\Gamma} \\left(t_{T U P}\\,^{V} \\delta_{R V}+t_{T U R}\\,^{V} \\delta_{P V}\\right)\\right) c^{\\Gamma \\Omega \\Lambda} \\phi^{{Q_{1}} {Q_{2}}}\\,_{\\Delta} \\left(t_{{Q_{1}} {Q_{2}} Q}\\,^{{Q_{3}}} \\delta_{S {Q_{3}}}+t_{{Q_{1}} {Q_{2}} S}\\,^{{Q_{3}}} \\delta_{Q {Q_{3}}}\\right)-2A^{\\mu K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\eta^{N M} \\eta^{P Q} \\partial_{\\mu}\\left(\\phi^{S R \\Gamma} \\left(t_{S R K}\\,^{T} \\delta_{Q T}+t_{S R Q}\\,^{T} \\delta_{K T}\\right)\\right) c^{\\Gamma \\Delta \\Omega} \\phi^{U V}\\,_{\\Lambda} \\left(t_{U V P}\\,^{{Q_{1}}} \\delta_{N {Q_{1}}}+t_{U V N}\\,^{{Q_{1}}} \\delta_{P {Q_{1}}}\\right)+2A^{\\mu K L \\Sigma} T_{M L}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\eta^{M N} \\eta^{P Q} \\partial_{\\mu}\\left(\\phi^{R S \\Gamma} \\left(t_{R S N}\\,^{T} \\delta_{Q T}+t_{R S Q}\\,^{T} \\delta_{N T}\\right)\\right) c^{\\Gamma \\Delta \\Omega} \\phi^{V U}\\,_{\\Lambda} \\left(t_{V U P}\\,^{{Q_{1}}} \\delta_{K {Q_{1}}}+t_{V U K}\\,^{{Q_{1}}} \\delta_{P {Q_{1}}}\\right)  +8A^{\\mu K L \\Sigma} T_{K L}\\,^{\\Delta \\Lambda} \\delta^{\\Omega \\Sigma} \\eta^{M N} \\eta^{P Q} \\partial_{\\mu}\\left(\\phi^{R S \\Gamma} \\left(t_{R S N}\\,^{T} \\delta_{Q T}+t_{R S Q}\\,^{T} \\delta_{N T}\\right)\\right) c^{\\Gamma \\Omega \\Lambda} \\phi^{U V}\\,_{\\Delta} \\left(t_{U V P}\\,^{{Q_{1}}} \\delta_{M {Q_{1}}}+t_{U V M}\\,^{{Q_{1}}} \\delta_{P {Q_{1}}}\\right)\\end{dmath*}"
+				}
+			],
+			"source": "substitute(Ajj,$j_{M N}^{\\Sigma}->\\phi^{K L \\Sigma} (t_{K L M}^{P} \\delta_{N P} + t_{K L N}^{P} \\delta_{M P})$)\nsubstitute(Ajj,$j_{M N \\Sigma}->\\phi^{K L}_{\\Sigma} (t_{K L M}^{P} \\delta_{N P} + t_{K L N}^{P} \\delta_{M P})$);"
+		},
+		{
+			"cell_id": 7620678310140961645,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "distribute(Ajj)\nproduct_rule(Ajj)\ndistribute(Ajj)\nunwrap(Ajj)"
+		},
+		{
+			"cell_id": 10077046117392045107,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "sort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 8488254518409610227,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\Delta_{M}^{N}-> \\Delta_{M P} \\eta^{P N}$)"
+		},
+		{
+			"cell_id": 6233710279803308601,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "################ Projection to 3d ################"
+		},
+		{
+			"cell_id": 8994086238248147477,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10983194712126485019,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11063950649351757853,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "t_{M N P}^{Q} -> \\eta_{P M} \\delta_{N}^{Q}-\\eta_{P N} \\delta_{M}^{Q}"
+						}
+					],
+					"source": "\\begin{dmath*}{}t_{M N P}\\,^{Q} \\rightarrow \\eta_{P M} \\delta_{N}\\,^{Q}-\\eta_{P N} \\delta_{M}\\,^{Q}\\end{dmath*}"
+				}
+			],
+			"source": "rlt=$t_{M N P}^{Q} -> \\eta_{P M} \\delta_{N}^{Q} - \\eta_{P N} \\delta_{M}^{Q}$;"
+		},
+		{
+			"cell_id": 11163659776091640997,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 14933319507764138616,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 13848540575673208291,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C D} -> 2\\epsilon_{A B C D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C D} \\rightarrow 2\\epsilon_{A B C D}\\end{dmath*}"
+				},
+				{
+					"cell_id": 1860981223188667859,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 555184046198826445,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C d} -> \\epsilon_{A B C D} \\delta^{d D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C d} \\rightarrow \\epsilon_{A B C D} \\delta^{d D}\\end{dmath*}"
+				}
+			],
+			"source": "rlThetaABCD:=\\Theta_{A B C D}->2 \\epsilon_{A B C D};\nrlThetaABCDup:=\\Theta_{A B C d}-> \\epsilon_{A B C D} \\delta^{d D};"
+		},
+		{
+			"cell_id": 12249285536795556831,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,rlt)\ndistribute(Ajj)\neliminate_kronecker(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 3890521207102236117,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 1239151151890654253,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "canonicalise(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 3568361740739550610,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\eta_{M N} \\eta^{N P}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{N M} \\eta^{N P}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{M N} \\eta^{P N}->\\delta_{M}^{P}$)\nsubstitute(Ajj,$\\eta_{N M} \\eta^{P N}->\\delta_{M}^{P}$)"
+		},
+		{
+			"cell_id": 14868491839736100175,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(Ajj)\ncanonicalise(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 10886946416239990335,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$c^{\\Sigma}_{\\Omega}_{\\Delta}->c^{\\Sigma \\Omega \\Delta}$)\nsubstitute(Ajj,$c^{\\Sigma \\Omega}_{\\Delta}->c^{\\Sigma \\Omega \\Delta}$)"
+		},
+		{
+			"cell_id": 363238047385637003,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 14241363362292307695,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "split_index(Ajj,$M,Z,\\alpha$,repeat=True)"
+		},
+		{
+			"cell_id": 3159148454029372195,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 745195834931494845,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}55808\\end{verbatim}"
+				}
+			],
+			"source": "len(Ajj);"
+		},
+		{
+			"cell_id": 8883696520969978457,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\phi^{A?? \\alpha \\Sigma}->0$)\nsubstitute(Ajj,$\\phi^{\\alpha A?? \\Sigma}->0$)"
+		},
+		{
+			"cell_id": 7348604061788748843,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 17890176797458021965,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}3872\\end{verbatim}"
+				}
+			],
+			"source": "len(Ajj);"
+		},
+		{
+			"cell_id": 5442711621828171589,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 9987527550086264157,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$c^{\\Sigma \\Omega}_{\\Delta}->c^{\\Sigma \\Omega \\Delta}$)\nsubstitute(Ajj,$c^{\\Sigma}_{\\Omega}^{\\Delta}->c^{\\Sigma \\Omega \\Delta}$)\nsubstitute(Ajj,$c_{\\Sigma}^{\\Omega \\Delta}->c^{\\Sigma \\Omega \\Delta}$)"
+		},
+		{
+			"cell_id": 2311158255167405760,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1651024731855639321,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 6529973928469718206,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-32A_{\\mu}^{Z Z1 \\Sigma} \\Delta_{Z2 Z3} \\Theta_{Z Z1 Z4 Z5} \\delta_{Z7 Z8} \\delta_{Z9 Z10} \\delta_{\\Sigma}^{\\Delta} \\eta^{Z3 Z5} \\eta^{Z4 \\alpha} \\eta^{Z7 Z9} \\eta_{\\alpha Z6} \\partial^{\\mu}(\\phi^{Z8 Z6 \\Lambda}) \\phi^{Z2 Z10 \\Omega} c^{\\Delta \\Lambda \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-32A_{\\mu}\\,^{Z {Z_{1}} \\Sigma} \\Delta_{{Z_{2}} {Z_{3}}} \\Theta_{Z {Z_{1}} {Z_{4}} {Z_{5}}} \\delta_{{Z_{7}} {Z_{8}}} \\delta_{{Z_{9}} {Z_{10}}} \\delta_{\\Sigma}\\,^{\\Delta} \\eta^{{Z_{3}} {Z_{5}}} \\eta^{{Z_{4}} \\alpha} \\eta^{{Z_{7}} {Z_{9}}} \\eta_{\\alpha {Z_{6}}} \\partial^{\\mu}{\\phi^{{Z_{8}} {Z_{6}} \\Lambda}} \\phi^{{Z_{2}} {Z_{10}} \\Omega} c^{\\Delta \\Lambda \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj[1];"
+		},
+		{
+			"cell_id": 2966942981616054056,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13942390692123419059,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}500\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\eta^{Z \\alpha}->0$)\nsubstitute(Ajj,$\\eta^{\\alpha Z}->0$)\nsubstitute(Ajj,$\\eta_{Z \\alpha}->0$)\nsubstitute(Ajj,$\\eta_{\\alpha Z}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 10165894879532693798,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2147601068144410295,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}184\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\delta^{Z \\alpha}->0$)\nsubstitute(Ajj,$\\delta^{\\alpha Z}->0$)\nsubstitute(Ajj,$\\delta_{Z \\alpha}->0$)\nsubstitute(Ajj,$\\delta_{\\alpha Z}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 2355788346870734782,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 475418515219158977,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}116\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\Theta_{\\alpha A?? B?? C??}->0$)\nsubstitute(Ajj,$\\Theta_{A?? \\alpha B?? C??}->0$)\nsubstitute(Ajj,$\\Theta_{A?? B?? \\alpha C??}->0$)\nsubstitute(Ajj,$\\Theta_{A?? B?? C?? \\alpha}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 13421040353964971215,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11941946408488541616,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}64\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$T_{\\alpha Z}^{\\Sigma \\Delta}->0$)\nsubstitute(Ajj,$T_{Z \\alpha}^{\\Sigma \\Delta}->0$)\nsubstitute(Ajj,$T_{\\alpha Z \\Sigma}^{\\Delta}->0$)\nsubstitute(Ajj,$T_{Z \\alpha \\Sigma}^{\\Delta}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 13705194685918191072,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2453668076668623589,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}38\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$A_{\\mu}^{\\alpha Z \\Sigma}->0$)\nsubstitute(Ajj,$A_{\\mu}^{Z \\alpha \\Sigma}->0$)\nsubstitute(Ajj,$A^{\\mu \\alpha Z \\Sigma}->0$)\nsubstitute(Ajj,$A^{\\mu Z \\alpha \\Sigma}->0$)\nsubstitute(Ajj,$A^{\\mu \\beta \\alpha \\Sigma}->0$)\nsubstitute(Ajj,$A_{\\mu}^{\\beta \\alpha \\Sigma}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 2472819629435681012,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 16338933589890566215,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "split_index(Ajj,$Z,A,a$,repeat=True)"
+		},
+		{
+			"cell_id": 12627490920907659308,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 6757812483201248908,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}55808\\end{verbatim}"
+				}
+			],
+			"source": "len(Ajj);"
+		},
+		{
+			"cell_id": 3524173985465131746,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 3922923486258988129,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 7056361786366414666,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-32A_{\\mu}^{A B \\Sigma} \\Delta_{E F} \\Theta_{A B A1 A2} \\delta_{A4 A5} \\delta_{a C} \\delta_{\\Sigma}^{\\Delta} \\eta^{F A2} \\eta^{A1 D} \\eta^{A4 a} \\eta_{D A3} \\partial^{\\mu}(\\phi^{A5 A3 \\Lambda}) \\phi^{E C \\Omega} c^{\\Delta \\Lambda \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{E F} \\Theta_{A B {A_{1}} {A_{2}}} \\delta_{{A_{4}} {A_{5}}} \\delta_{a C} \\delta_{\\Sigma}\\,^{\\Delta} \\eta^{F {A_{2}}} \\eta^{{A_{1}} D} \\eta^{{A_{4}} a} \\eta_{D {A_{3}}} \\partial^{\\mu}{\\phi^{{A_{5}} {A_{3}} \\Lambda}} \\phi^{E C \\Omega} c^{\\Delta \\Lambda \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj[1];"
+		},
+		{
+			"cell_id": 2495514957086421827,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13915001056862325530,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}5248\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\eta_{A B}->0$)\nsubstitute(Ajj,$\\eta_{a b}->0$)\nsubstitute(Ajj,$\\eta^{A B}->0$)\nsubstitute(Ajj,$\\eta^{a b}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 8905178046884953461,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 12878193164226365209,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}1440\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\phi^{A B \\Sigma}->0$)\nsubstitute(Ajj,$\\phi^{a b \\Sigma}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 5157479763554168738,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13160832189968166781,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 13945128125441815802,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-32A_{\\mu}^{A B \\Sigma} \\Delta_{a E} \\Theta_{A B b c} \\delta_{e F} \\delta_{A1 C} \\delta_{\\Sigma}^{\\Delta} \\eta^{E c} \\eta^{b D} \\eta^{e A1} \\eta_{D d} \\partial^{\\mu}(\\phi^{F d \\Lambda}) \\phi^{a C \\Omega} c^{\\Delta \\Lambda \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a E} \\Theta_{A B b c} \\delta_{e F} \\delta_{{A_{1}} C} \\delta_{\\Sigma}\\,^{\\Delta} \\eta^{E c} \\eta^{b D} \\eta^{e {A_{1}}} \\eta_{D d} \\partial^{\\mu}{\\phi^{F d \\Lambda}} \\phi^{a C \\Omega} c^{\\Delta \\Lambda \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj[1];"
+		},
+		{
+			"cell_id": 941605550439712063,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 16190942878381782576,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}1000\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\Theta_{A B a b}->0$)\nsubstitute(Ajj,$\\Theta_{A a B b}->0$)\nsubstitute(Ajj,$\\Theta_{a A B b}->0$)\nsubstitute(Ajj,$\\Theta_{A a b B}->0$)\nsubstitute(Ajj,$\\Theta_{a A b B}->0$)\nsubstitute(Ajj,$\\Theta_{a b A B}->0$)\nsubstitute(Ajj,$\\Theta_{a b c A}->0$)\nsubstitute(Ajj,$\\Theta_{a b A c}->0$)\nsubstitute(Ajj,$\\Theta_{a A b c}->0$)\nsubstitute(Ajj,$\\Theta_{A a b c}->0$)\nsubstitute(Ajj,$\\Theta_{a b c d}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 7969171296793283426,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1368247498987320516,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 14388654834416254029,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\Theta_{A B c E} \\delta_{e F} \\delta_{A1 C} \\delta_{\\Sigma}^{\\Delta} \\eta^{b E} \\eta^{c D} \\eta^{e A1} \\eta_{D d} \\partial^{\\mu}(\\phi^{F d \\Lambda}) \\phi^{a C \\Omega} c^{\\Delta \\Lambda \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\Theta_{A B c E} \\delta_{e F} \\delta_{{A_{1}} C} \\delta_{\\Sigma}\\,^{\\Delta} \\eta^{b E} \\eta^{c D} \\eta^{e {A_{1}}} \\eta_{D d} \\partial^{\\mu}{\\phi^{F d \\Lambda}} \\phi^{a C \\Omega} c^{\\Delta \\Lambda \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj[1];"
+		},
+		{
+			"cell_id": 14352370579896932327,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 17767669093009550995,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}664\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$\\Delta_{A a}->0$)\nsubstitute(Ajj,$\\Delta_{a A}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 11484413268901660604,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#substitute(Ajj,$\\delta_{A a}->0$)\n#substitute(Ajj,$\\delta_{a A}->0$)\n#substitute(Ajj,$\\delta^{A a}->0$)\n#substitute(Ajj,$\\delta^{a A}->0$)\n#len(Ajj);"
+		},
+		{
+			"cell_id": 1777657716850731157,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11477841705302579,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}256\\end{verbatim}"
+				}
+			],
+			"source": "substitute(Ajj,$T_{A a}^{\\Sigma \\Delta}->0$)\nsubstitute(Ajj,$T_{a A}^{\\Sigma \\Delta}->0$)\nsubstitute(Ajj,$T_{a b}^{\\Sigma \\Delta}->0$)\nsubstitute(Ajj,$T_{A a \\Sigma}^{\\Delta}->0$)\nsubstitute(Ajj,$T_{a A \\Sigma}^{\\Delta}->0$)\nsubstitute(Ajj,$T_{a b \\Sigma}^{\\Delta}->0$)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 8401976899620783265,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 4327800024316220268,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\Theta_{a A B C}->\\Theta_{A B C a}$)\nsubstitute(Ajj,$\\Theta_{A a B C}->\\Theta_{B C A a}$)\nsubstitute(Ajj,$\\Theta_{A B a C}->\\Theta_{C A B a}$)"
+		},
+		{
+			"cell_id": 3170807630735042817,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2771374162128776531,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}256\\end{verbatim}"
+				}
+			],
+			"source": "canonicalise(Ajj)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 4507486349223881852,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\Theta_{A B C D}->2 \\epsilon_{A B C D}$)\nsubstitute(Ajj,$\\Theta_{A B C d}->\\epsilon_{A B C d}$)"
+		},
+		{
+			"cell_id": 12177041271152151158,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\eta^{A a}->\\delta^{A a}$)\nsubstitute(Ajj,$\\eta_{A a}->\\delta^{A a}$)\nsubstitute(Ajj,$\\eta^{a A}->\\delta^{A a}$)\nsubstitute(Ajj,$\\eta_{a A}->\\delta^{a A}$)"
+		},
+		{
+			"cell_id": 15288341185528401371,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "#with open(\"Ajj.txt\", \"w\") as file:\n#   file.write( Ajj.input_form()+\"\\n\" )\nwith open(\"Ajj.txt\", \"r\") as file:\n   Ajj=Ex(file.readline())"
+		},
+		{
+			"cell_id": 8302812553649010183,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 381519076923894278,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 17125194066623256260,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13481070188266383099,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 15732605656102696310,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C c} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{D c} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E e} \\delta^{F b} \\delta^{C d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{D a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{c d} \\delta_{C D} \\delta^{\\Sigma \\Delta} \\delta^{E e} \\delta^{F b} \\delta^{C c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{D a \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F e} \\delta^{E b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 a \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F e} \\delta^{E a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 b \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}(\\phi^{F d \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}(\\phi^{F d \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{A1 c} \\delta^{A1 d} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{D d \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{A1 d} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B A1 d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{F e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B A1 E} \\delta_{C D} \\delta_{c d} \\delta^{\\Sigma \\Delta} \\delta^{E b} \\delta^{C a} \\delta^{F c} \\delta^{F e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B A1 d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{E e} \\delta^{F e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{F b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B A1 E} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E b} \\delta^{C a} \\delta^{D e} \\delta^{F e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C f \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C f \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{D a \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C d} \\delta^{A1 c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{c d} \\delta_{C D} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{C e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{D a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C d} \\delta^{D e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F a} \\delta^{A1 b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F a} \\delta^{E e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 b \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}(\\phi^{B f \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}(\\phi^{B f \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{A1 b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{D a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C D} \\delta_{c d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{C a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{E d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}(\\phi^{B f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C f \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}(\\phi^{B f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{C f \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D c} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{E c} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{F a \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C e} \\delta^{E a} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{d e} \\delta_{C D} \\delta^{B c} \\delta^{C d} \\delta^{E a} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}(\\phi^{F d \\Lambda}) \\phi^{E c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{D d \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{F c} \\delta^{F d} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D d} \\delta^{F d} \\partial^{\\mu}(\\phi^{F c \\Lambda}) \\phi^{E a \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D a} \\delta^{F d} \\partial^{\\mu}(\\phi^{F c \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{E b} \\delta^{F d} \\partial^{\\mu}(\\phi^{C a \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C d} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}(\\phi^{B c \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{C c} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}(\\phi^{B d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}(\\phi^{C c \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}(\\phi^{C c \\Lambda}) \\phi^{F b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C b} \\delta^{E c} \\delta^{E e} \\partial^{\\mu}(\\phi^{B d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C b} \\delta^{D e} \\delta^{E e} \\partial^{\\mu}(\\phi^{B d \\Lambda}) \\phi^{E c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}(\\phi^{F b \\Lambda}) \\phi^{D c \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D b \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D b} \\delta^{F d} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D c} \\delta^{F d} \\partial^{\\mu}(\\phi^{F b \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}(\\phi^{C e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda}_{\\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda}_{\\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C c} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{D c} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C a \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{F e} \\delta^{E b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C a \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{F e} \\delta^{E a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E e} \\delta^{F b} \\delta^{C c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E e} \\delta^{F b} \\delta^{C d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E c} \\delta^{F b} \\delta^{A1 d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C d} \\delta^{A1 c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E a \\Lambda}) \\phi^{D e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{c d} \\delta_{C D} \\delta^{E c} \\delta^{F b} \\delta^{C e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C d} \\delta^{D e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E a \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{F a} \\delta^{A1 b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C c \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{F a} \\delta^{E e} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{C c \\Lambda}) \\phi^{A1 b \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{d e} \\delta_{B C} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{d e} \\delta_{B C} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}(\\phi^{C b \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C a} \\delta^{A1 c} \\delta^{A1 d} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{A1 d} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B A1 d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{F e} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B A1 E} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E b} \\delta^{C a} \\delta^{F c} \\delta^{F e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B A1 d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D d} \\delta^{E e} \\delta^{F e} \\partial^{\\mu}(\\phi^{F b \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B A1 E} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E b} \\delta^{C a} \\delta^{D e} \\delta^{F e} \\partial^{\\mu}(\\phi^{F c \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}(\\phi^{C f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}(\\phi^{C f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D d} \\delta^{F c} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 b \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E c} \\delta^{F b} \\delta^{D a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 d \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{A1 c \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{E e \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E c} \\delta^{F b} \\delta^{C a} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{A1 d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C a} \\delta^{E d} \\delta^{A1 e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{A1 c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}(\\phi^{C f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}(\\phi^{F e \\Lambda}) \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega} + 32A_{\\mu}^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}(\\phi^{C f \\Lambda}) \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D c} \\partial^{\\mu}(\\phi^{E a \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{E c} \\partial^{\\mu}(\\phi^{D a \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C d} \\delta^{E a} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C e} \\delta^{E a} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{F c} \\delta^{F d} \\partial^{\\mu}(\\phi^{E a \\Lambda}) \\phi^{D d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D d} \\delta^{F d} \\partial^{\\mu}(\\phi^{E a \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}(\\phi^{E c \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}(\\phi^{E c \\Lambda}) \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}(\\phi^{D d \\Lambda}) \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}(\\phi^{F c \\Lambda}) \\phi^{D d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D a} \\delta^{F d} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F c \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{E b} \\delta^{F d} \\partial^{\\mu}(\\phi^{F a \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}(\\phi^{F b \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C c} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C d} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{B c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}(\\phi^{D c \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}(\\phi^{D c \\Lambda}) \\phi^{F b \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}(\\phi^{D b \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}(\\phi^{F b \\Lambda}) \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C b} \\delta^{E c} \\delta^{E e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega} + 64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C b} \\delta^{D e} \\delta^{E e} \\partial^{\\mu}(\\phi^{E c \\Lambda}) \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D b} \\delta^{F d} \\partial^{\\mu}(\\phi^{F c \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D c} \\delta^{F d} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{F b \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}(\\phi^{E d \\Lambda}) \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}^{A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}(\\phi^{D e \\Lambda}) \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{E d} \\partial_{\\mu}(\\phi^{F c \\Gamma}) \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{C d} \\delta^{E d} \\partial_{\\mu}(\\phi^{F c \\Gamma}) \\phi^{E b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{C c} \\delta^{E a} \\delta^{E d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C c} \\delta^{D d} \\delta^{E d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{E a \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{F b} \\delta^{F c} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{C c \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F c} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}(\\phi^{E d \\Gamma}) \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}(\\phi^{E d \\Gamma}) \\phi^{D c \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}(\\phi^{E d \\Gamma}) \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}(\\phi^{E d \\Gamma}) \\phi^{D c \\Lambda} c^{\\Delta \\Omega \\Gamma} + 32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D d} \\delta^{C b} \\delta^{E d} \\partial_{\\mu}(\\phi^{F a \\Gamma}) \\phi^{E c \\Lambda} c^{\\Delta \\Omega \\Gamma} + 32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D d} \\delta^{C a} \\delta^{E d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{E c \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\delta^{E d} \\partial_{\\mu}(\\phi^{F a \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{C a} \\delta^{E c} \\delta^{E d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{E c} \\delta^{C a} \\delta^{F c} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E c} \\delta^{C b} \\delta^{F c} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{F a \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C e} \\delta^{B c} \\delta^{D e} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C e} \\delta^{B b} \\delta^{D e} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C e} \\delta^{B c} \\delta^{D e} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C e} \\delta^{B b} \\delta^{D e} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D E} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{F d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D E} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{E c} \\delta^{F d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{D c} \\delta^{F d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{E a} \\delta^{C c} \\delta^{F d} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{D c} \\delta^{F d} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C D A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{E e} \\partial_{\\mu}(\\phi^{B e \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C D A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{D d} \\delta^{E e} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{A C D a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{E e} \\partial_{\\mu}(\\phi^{B e \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{A C D a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{D d} \\delta^{E e} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D F} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{E d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma} + 32A^{\\mu A B \\Sigma} \\epsilon_{A B D F} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{C d} \\delta^{E d} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A B \\Sigma} \\epsilon_{A B E d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{F b} \\delta^{F c} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F c} \\partial_{\\mu}(\\phi^{F b \\Gamma}) \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{F A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{C c} \\delta^{E a} \\delta^{E d} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A B \\Sigma} \\epsilon_{F A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C c} \\delta^{D d} \\delta^{E d} \\partial_{\\mu}(\\phi^{E a \\Gamma}) \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C E A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}(\\phi^{B e \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{C E A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma} + 16A^{\\mu A a \\Sigma} \\epsilon_{A C E a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}(\\phi^{B e \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A C E a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E F} \\delta^{B b} \\delta^{C a} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{D b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{b c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{C D}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{C d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}(\\phi^{D d \\Gamma}) \\phi^{C c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{d e} \\delta^{B b} \\delta^{C a} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{c e}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D E} \\delta_{F a} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{C F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D E} \\delta_{a b} \\delta^{B c} \\delta^{D a} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{C b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E F} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{C F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{D b} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{C a}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{C c} \\delta^{E a} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{B D}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{C c} \\delta^{D a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{B d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{C b} \\delta^{E a} \\partial_{\\mu}(\\phi^{E c \\Gamma}) \\phi^{B D}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{C b} \\delta^{D a} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{B d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{C a} \\delta^{F b} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{E F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}(\\phi^{E a \\Gamma}) \\phi^{D c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{C b} \\delta^{D d} \\partial_{\\mu}(\\phi^{D a \\Gamma}) \\phi^{c d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{B b} \\delta^{E c} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{B b} \\delta^{D d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{D c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{B c} \\delta^{D d} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{C d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{B c} \\delta^{C e} \\partial_{\\mu}(\\phi^{C b \\Gamma}) \\phi^{d e}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{F a} \\delta^{F b} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{C E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{C b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D E} \\delta^{D b} \\delta^{F b} \\partial_{\\mu}(\\phi^{F a \\Gamma}) \\phi^{C E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}(\\phi^{E a \\Gamma}) \\phi^{C b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E b} \\delta^{E c} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{B D}_{\\Lambda} c^{\\Delta \\Omega \\Gamma} + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{B c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{B D}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{C d} \\delta^{D d} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{B c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{E b} \\delta^{F b} \\partial_{\\mu}(\\phi^{C a \\Gamma}) \\phi^{D F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}(\\phi^{C b \\Gamma}) \\phi^{D c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}(\\phi^{C b \\Gamma}) \\phi^{E a}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{a d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}(\\phi^{B b \\Gamma}) \\phi^{C E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}(\\phi^{B c \\Gamma}) \\phi^{C d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{C d} \\delta^{D d} \\partial_{\\mu}(\\phi^{B c \\Gamma}) \\phi^{D b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{C c} \\delta^{C e} \\partial_{\\mu}(\\phi^{B d \\Gamma}) \\phi^{b e}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{D b} \\partial_{\\mu}(\\phi^{C a \\Gamma}) \\phi^{E c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{b c} \\delta^{B d} \\delta^{D b} \\partial_{\\mu}(\\phi^{C a \\Gamma}) \\phi^{c d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{D a} \\partial_{\\mu}(\\phi^{C b \\Gamma}) \\phi^{E c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{D a} \\partial_{\\mu}(\\phi^{C b \\Gamma}) \\phi^{c d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{C c} \\delta^{E a} \\partial_{\\mu}(\\phi^{B b \\Gamma}) \\phi^{D E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{C c} \\delta^{D a} \\partial_{\\mu}(\\phi^{B b \\Gamma}) \\phi^{D d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{C b} \\delta^{E a} \\partial_{\\mu}(\\phi^{B c \\Gamma}) \\phi^{D E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{C b} \\delta^{D a} \\partial_{\\mu}(\\phi^{B c \\Gamma}) \\phi^{D d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{C a} \\delta^{F b} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D F}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E a}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{C b} \\delta^{D d} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{a d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{B b} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{C E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{B b} \\delta^{D d} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{C d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{B c} \\delta^{D d} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{D b}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{B c} \\delta^{C e} \\partial_{\\mu}(\\phi^{C d \\Gamma}) \\phi^{b e}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{E c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{b c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{c d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{E c}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}(\\phi^{D b \\Gamma}) \\phi^{c d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D E}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}   + 8A^{\\mu A a \\Sigma} T_{A B}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D d}_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C D} \\delta_{a b} \\delta^{\\Sigma \\Omega} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}(\\phi^{E a \\Gamma}) \\phi^{D b \\Delta} c^{\\Lambda \\Omega \\Gamma} + 64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D a \\Delta} c^{\\Lambda \\Omega \\Gamma} + 64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{C b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{a b} \\delta_{C D} \\delta^{\\Sigma \\Omega} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}(\\phi^{C c \\Gamma}) \\phi^{D b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C D} \\delta_{a b} \\delta^{\\Sigma \\Omega} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}(\\phi^{E a \\Gamma}) \\phi^{D c \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}(\\phi^{D c \\Gamma}) \\phi^{E a \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta_{a b} \\delta_{C D} \\delta^{\\Sigma \\Omega} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}(\\phi^{E b \\Gamma}) \\phi^{D c \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C c} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{D c} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E e} \\delta^{F b} \\delta^{C d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{D a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{c d} \\delta_{C D} \\delta^{\\Sigma \\Delta} \\delta^{E e} \\delta^{F b} \\delta^{C c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{D a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F e} \\delta^{E b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} a \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F e} \\delta^{E a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} b \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}{\\phi^{F d \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}{\\phi^{F d \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{{A_{1}} c} \\delta^{{A_{1}} d} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{D d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{{A_{1}} d} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B {A_{1}} d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{F e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B {A_{1}} E} \\delta_{C D} \\delta_{c d} \\delta^{\\Sigma \\Delta} \\delta^{E b} \\delta^{C a} \\delta^{F c} \\delta^{F e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B {A_{1}} d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{E e} \\delta^{F e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{F b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B {A_{1}} E} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E b} \\delta^{C a} \\delta^{D e} \\delta^{F e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C f \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C f \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}%\n-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{D a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C d} \\delta^{{A_{1}} c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{c d} \\delta_{C D} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{C e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{D a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C d} \\delta^{D e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F a} \\delta^{{A_{1}} b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{F a} \\delta^{E e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} b \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}{\\phi^{B f \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}{\\phi^{B f \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{d e} \\delta_{B C} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{a b} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{{A_{1}} b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C c} \\delta_{D d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{D a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C c} \\delta_{D E} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta_{E a} \\delta_{b c} \\delta^{\\Sigma \\Delta} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta_{C D} \\delta_{c d} \\delta^{\\Sigma \\Delta} \\delta^{E c} \\delta^{F b} \\delta^{C a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta_{C D} \\delta_{E c} \\delta^{\\Sigma \\Delta} \\delta^{F b} \\delta^{C a} \\delta^{E d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}{\\phi^{B f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C f \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B d} \\delta_{C e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}{\\phi^{B f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}%\n+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta_{B C} \\delta_{d e} \\delta^{\\Sigma \\Delta} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{C f \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D c} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{E c} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{F a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C e} \\delta^{E a} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{d e} \\delta_{C D} \\delta^{B c} \\delta^{C d} \\delta^{E a} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}{\\phi^{F d \\Lambda}} \\phi^{E c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{D d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{F c} \\delta^{F d} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D d} \\delta^{F d} \\partial^{\\mu}{\\phi^{F c \\Lambda}} \\phi^{E a \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D a} \\delta^{F d} \\partial^{\\mu}{\\phi^{F c \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{E b} \\delta^{F d} \\partial^{\\mu}{\\phi^{C a \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C d} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}{\\phi^{B c \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}%\n-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{C c} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}{\\phi^{B d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}{\\phi^{C c \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}{\\phi^{C c \\Lambda}} \\phi^{F b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C b} \\delta^{E c} \\delta^{E e} \\partial^{\\mu}{\\phi^{B d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C b} \\delta^{D e} \\delta^{E e} \\partial^{\\mu}{\\phi^{B d \\Lambda}} \\phi^{E c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}{\\phi^{F b \\Lambda}} \\phi^{D c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D b \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D b} \\delta^{F d} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D c} \\delta^{F d} \\partial^{\\mu}{\\phi^{F b \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}{\\phi^{C e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda}\\,_{\\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C c} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{D c} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C a \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{F e} \\delta^{E b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C a \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{F e} \\delta^{E a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E e} \\delta^{F b} \\delta^{C c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E e} \\delta^{F b} \\delta^{C d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}%\n-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D f} \\delta^{E c} \\delta^{B d} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D f} \\delta^{E c} \\delta^{B e} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E c} \\delta^{F b} \\delta^{{A_{1}} d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C d} \\delta^{{A_{1}} c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E a \\Lambda}} \\phi^{D e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{c d} \\delta_{C D} \\delta^{E c} \\delta^{F b} \\delta^{C e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C d} \\delta^{D e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E a \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{F a} \\delta^{{A_{1}} b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C c \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{F a} \\delta^{E e} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{C c \\Lambda}} \\phi^{{A_{1}} b \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{d e} \\delta_{B C} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{F e} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{d e} \\delta_{B C} \\delta^{D d} \\delta^{E c} \\delta^{B f} \\delta^{F f} \\partial^{\\mu}{\\phi^{C b \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C a} \\delta^{{A_{1}} c} \\delta^{{A_{1}} d} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B e} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{{A_{1}} d} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B {A_{1}} d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{F e} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B {A_{1}} E} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E b} \\delta^{C a} \\delta^{F c} \\delta^{F e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B {A_{1}} d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D d} \\delta^{E e} \\delta^{F e} \\partial^{\\mu}{\\phi^{F b \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B {A_{1}} E} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E b} \\delta^{C a} \\delta^{D e} \\delta^{F e} \\partial^{\\mu}{\\phi^{F c \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}{\\phi^{C f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}%\n+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{F D A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D c} \\delta^{B b} \\delta^{E d} \\delta^{E f} \\partial^{\\mu}{\\phi^{C f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A F D a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D c} \\delta^{B b} \\delta^{C f} \\delta^{E f} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D d} \\delta^{F c} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} b \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D d} \\delta^{E c} \\delta^{F b} \\delta^{D a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} d \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C c} \\delta_{D E} \\delta^{F b} \\delta^{C a} \\delta^{D d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{{A_{1}} c \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{C D} \\epsilon_{A B F d} \\delta^{\\Sigma \\Delta} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D d} \\delta^{F b} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{E e \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{A B E F} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{c d} \\delta^{E c} \\delta^{F b} \\delta^{C a} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{{A_{1}} d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A B \\Sigma} \\Delta_{a b} \\epsilon_{F A B d} \\delta^{\\Sigma \\Delta} \\delta_{C D} \\delta_{E c} \\delta^{F b} \\delta^{C a} \\delta^{E d} \\delta^{{A_{1}} e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{{A_{1}} c \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}-32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{D E A a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}{\\phi^{C f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B d} \\delta_{C e} \\delta^{D d} \\delta^{E c} \\delta^{C b} \\delta^{F f} \\partial^{\\mu}{\\phi^{F e \\Lambda}} \\phi^{B f \\Omega} c^{\\Delta \\Lambda \\Omega}+32A_{\\mu}\\,^{A a \\Sigma} \\Delta_{b c} \\epsilon_{A D E a} \\delta^{\\Sigma \\Delta} \\delta_{B C} \\delta_{d e} \\delta^{D d} \\delta^{E c} \\delta^{B b} \\delta^{F f} \\partial^{\\mu}{\\phi^{C f \\Lambda}} \\phi^{F e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D c} \\partial^{\\mu}{\\phi^{E a \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{E c} \\partial^{\\mu}{\\phi^{D a \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C d} \\delta^{E a} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C e} \\delta^{E a} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{F c} \\delta^{F d} \\partial^{\\mu}{\\phi^{E a \\Lambda}} \\phi^{D d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D d} \\delta^{F d} \\partial^{\\mu}{\\phi^{E a \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}%\n+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D E} \\delta_{F c} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}{\\phi^{E c \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{D c} \\delta_{E F} \\delta^{B d} \\delta^{C b} \\delta^{D a} \\partial^{\\mu}{\\phi^{E c \\Lambda}} \\phi^{F d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C D} \\delta_{d e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C d} \\delta_{D e} \\delta^{B c} \\delta^{C b} \\delta^{E a} \\partial^{\\mu}{\\phi^{D d \\Lambda}} \\phi^{E e \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B D} \\delta_{E c} \\delta^{C b} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}{\\phi^{F c \\Lambda}} \\phi^{D d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{a b} \\delta_{B c} \\delta_{D E} \\delta^{C b} \\delta^{D a} \\delta^{F d} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F c \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{C a} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b c} \\delta_{a d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D d} \\delta^{E b} \\delta^{F d} \\partial^{\\mu}{\\phi^{F a \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D d} \\delta^{E a} \\delta^{F d} \\partial^{\\mu}{\\phi^{F b \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C c} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C d} \\delta^{E b} \\delta^{E e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{B c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}{\\phi^{D c \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}{\\phi^{D c \\Lambda}} \\phi^{F b \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{E d} \\delta^{E e} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C e} \\delta^{E e} \\partial^{\\mu}{\\phi^{D b \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{D a} \\delta^{F b} \\delta^{F d} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}+64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{D a} \\delta^{E d} \\delta^{F d} \\partial^{\\mu}{\\phi^{F b \\Lambda}} \\phi^{C c \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C D} \\delta_{c d} \\delta^{C b} \\delta^{E c} \\delta^{E e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega}%\n+64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{C b} \\delta^{D e} \\delta^{E e} \\partial^{\\mu}{\\phi^{E c \\Lambda}} \\phi^{B d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{E a} \\delta_{b c} \\delta^{C a} \\delta^{D b} \\delta^{F d} \\partial^{\\mu}{\\phi^{F c \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\Delta_{D B} \\delta_{a b} \\delta_{E c} \\delta^{C a} \\delta^{D c} \\delta^{F d} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{F b \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{C c} \\delta_{D d} \\delta^{B c} \\delta^{D b} \\delta^{E e} \\partial^{\\mu}{\\phi^{E d \\Lambda}} \\phi^{C e \\Omega} c^{\\Delta \\Lambda \\Omega}-64A_{\\mu}\\,^{A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\Delta_{b a} \\delta_{c d} \\delta_{C D} \\delta^{B c} \\delta^{C b} \\delta^{E e} \\partial^{\\mu}{\\phi^{D e \\Lambda}} \\phi^{E d \\Omega} c^{\\Delta \\Lambda \\Omega}-32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{E d} \\partial_{\\mu}{\\phi^{F c \\Gamma}} \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma}+32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{C d} \\delta^{E d} \\partial_{\\mu}{\\phi^{F c \\Gamma}} \\phi^{E b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{C c} \\delta^{E a} \\delta^{E d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C c} \\delta^{D d} \\delta^{E d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{E a \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{F b} \\delta^{F c} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{C c \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F c} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}{\\phi^{E d \\Gamma}} \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}{\\phi^{E d \\Gamma}} \\phi^{D c \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}{\\phi^{E d \\Gamma}} \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}{\\phi^{E d \\Gamma}} \\phi^{D c \\Lambda} c^{\\Delta \\Omega \\Gamma}+32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D d} \\delta^{C b} \\delta^{E d} \\partial_{\\mu}{\\phi^{F a \\Gamma}} \\phi^{E c \\Lambda} c^{\\Delta \\Omega \\Gamma}+32A^{\\mu A B \\Sigma} \\epsilon_{A B F D} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D d} \\delta^{C a} \\delta^{E d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{E c \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\delta^{E d} \\partial_{\\mu}{\\phi^{F a \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B F c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{C a} \\delta^{E c} \\delta^{E d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{E c} \\delta^{C a} \\delta^{F c} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}%\n-16A^{\\mu A B \\Sigma} \\epsilon_{E A B d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E c} \\delta^{C b} \\delta^{F c} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{F a \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C e} \\delta^{B c} \\delta^{D e} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{E C A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C e} \\delta^{B b} \\delta^{D e} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C e} \\delta^{B c} \\delta^{D e} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A E C a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C e} \\delta^{B b} \\delta^{D e} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D E} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{F d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D E} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{E c} \\delta^{F d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{D c} \\delta^{F d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{E a} \\delta^{C c} \\delta^{F d} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{E A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{D c} \\delta^{F d} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{C d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C D A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{E e} \\partial_{\\mu}{\\phi^{B e \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C D A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{D d} \\delta^{E e} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{A C D a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{E e} \\partial_{\\mu}{\\phi^{B e \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{A C D a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{D d} \\delta^{E e} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{B e \\Lambda} c^{\\Delta \\Omega \\Gamma}-32A^{\\mu A B \\Sigma} \\epsilon_{A B D F} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D a} \\delta^{E b} \\delta^{E d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma}+32A^{\\mu A B \\Sigma} \\epsilon_{A B D F} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{D a} \\delta^{C d} \\delta^{E d} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{F c \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A B \\Sigma} \\epsilon_{A B E d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E a} \\delta^{F b} \\delta^{F c} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{A B E d} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{E a} \\delta^{C c} \\delta^{F c} \\partial_{\\mu}{\\phi^{F b \\Gamma}} \\phi^{D d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A B \\Sigma} \\epsilon_{F A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C D} \\delta_{a b} \\delta^{C c} \\delta^{E a} \\delta^{E d} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}%\n+16A^{\\mu A B \\Sigma} \\epsilon_{F A B c} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{C c} \\delta^{D d} \\delta^{E d} \\partial_{\\mu}{\\phi^{E a \\Gamma}} \\phi^{F b \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{C E A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}{\\phi^{B e \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{C E A a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}+16A^{\\mu A a \\Sigma} \\epsilon_{A C E a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B b} \\delta_{c d} \\delta^{C b} \\delta^{D c} \\delta^{D e} \\partial_{\\mu}{\\phi^{B e \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-16A^{\\mu A a \\Sigma} \\epsilon_{A C E a} \\delta^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{B d} \\delta^{C b} \\delta^{B e} \\delta^{D e} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E d \\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E F} \\delta^{B b} \\delta^{C a} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{D b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{b c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{C D}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{C d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}{\\phi^{D d \\Gamma}} \\phi^{C c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{d e} \\delta^{B b} \\delta^{C a} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{c e}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D E} \\delta_{F a} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{C F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D E} \\delta_{a b} \\delta^{B c} \\delta^{D a} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{C b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E F} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{C F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{D b} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{C a}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{C c} \\delta^{E a} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{B D}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{C c} \\delta^{D a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{B d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{C b} \\delta^{E a} \\partial_{\\mu}{\\phi^{E c \\Gamma}} \\phi^{B D}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}%\n-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{C b} \\delta^{D a} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{B d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{C a} \\delta^{F b} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{E F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}{\\phi^{E a \\Gamma}} \\phi^{D c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{C b} \\delta^{D d} \\partial_{\\mu}{\\phi^{D a \\Gamma}} \\phi^{c d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{B b} \\delta^{E c} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{B b} \\delta^{D d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{D c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{B c} \\delta^{D d} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{C d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{B c} \\delta^{C e} \\partial_{\\mu}{\\phi^{C b \\Gamma}} \\phi^{d e}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{F a} \\delta^{F b} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{C E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{C b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D E} \\delta^{D b} \\delta^{F b} \\partial_{\\mu}{\\phi^{F a \\Gamma}} \\phi^{C E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}{\\phi^{E a \\Gamma}} \\phi^{C b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{E b} \\delta^{E c} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{B D}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}+8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{B c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C D} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{B D}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{C d} \\delta^{D d} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{B c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{E b} \\delta^{F b} \\partial_{\\mu}{\\phi^{C a \\Gamma}} \\phi^{D F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}{\\phi^{C b \\Gamma}} \\phi^{D c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}{\\phi^{C b \\Gamma}} \\phi^{E a}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  %\n-8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{a d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{D c} \\delta^{E c} \\partial_{\\mu}{\\phi^{B b \\Gamma}} \\phi^{C E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{D b} \\delta^{D d} \\partial_{\\mu}{\\phi^{B c \\Gamma}} \\phi^{C d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{C d} \\delta^{D d} \\partial_{\\mu}{\\phi^{B c \\Gamma}} \\phi^{D b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{C c} \\delta^{C e} \\partial_{\\mu}{\\phi^{B d \\Gamma}} \\phi^{b e}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{D b} \\partial_{\\mu}{\\phi^{C a \\Gamma}} \\phi^{E c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{b c} \\delta^{B d} \\delta^{D b} \\partial_{\\mu}{\\phi^{C a \\Gamma}} \\phi^{c d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{D a} \\partial_{\\mu}{\\phi^{C b \\Gamma}} \\phi^{E c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{D a} \\partial_{\\mu}{\\phi^{C b \\Gamma}} \\phi^{c d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{C c} \\delta^{E a} \\partial_{\\mu}{\\phi^{B b \\Gamma}} \\phi^{D E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{C c} \\delta^{D a} \\partial_{\\mu}{\\phi^{B b \\Gamma}} \\phi^{D d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{C b} \\delta^{E a} \\partial_{\\mu}{\\phi^{B c \\Gamma}} \\phi^{D E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{C b} \\delta^{D a} \\partial_{\\mu}{\\phi^{B c \\Gamma}} \\phi^{D d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{E a} \\delta^{C a} \\delta^{F b} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D F}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B D} \\delta_{a b} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{D b} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E a}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{B a} \\delta_{b c} \\delta^{C b} \\delta^{D d} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{a d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{D b} \\delta^{B b} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{C E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C a} \\delta_{b c} \\delta^{B b} \\delta^{D d} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{C d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{C c} \\delta^{B c} \\delta^{D d} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{D b}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  %\n-8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{c d} \\delta^{B c} \\delta^{C e} \\partial_{\\mu}{\\phi^{C d \\Gamma}} \\phi^{b e}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{E b} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{E c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{D a} \\delta_{b c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{c d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D E} \\delta^{B c} \\delta^{C a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{E c}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{a b} \\delta_{D c} \\delta^{B d} \\delta^{C a} \\partial_{\\mu}{\\phi^{D b \\Gamma}} \\phi^{c d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{D c} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{C b} \\delta_{c d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C D} \\delta^{B b} \\delta^{E a} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D E}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  +8A^{\\mu A a \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\delta_{b c} \\delta_{C d} \\delta^{B b} \\delta^{D a} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D d}\\,_{\\Lambda} c^{\\Delta \\Omega \\Gamma}  -64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C D} \\delta_{a b} \\delta^{\\Sigma \\Omega} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}{\\phi^{E a \\Gamma}} \\phi^{D b \\Delta} c^{\\Lambda \\Omega \\Gamma}+64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C c} \\delta^{E c} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D a \\Delta} c^{\\Lambda \\Omega \\Gamma}+64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{C b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{a b} \\delta_{C D} \\delta^{\\Sigma \\Omega} \\delta^{E a} \\delta^{E c} \\partial_{\\mu}{\\phi^{C c \\Gamma}} \\phi^{D b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C D} \\delta_{a b} \\delta^{\\Sigma \\Omega} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E b \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}{\\phi^{E a \\Gamma}} \\phi^{D c \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{C a} \\delta_{D b} \\delta^{\\Sigma \\Omega} \\delta^{C b} \\delta^{E c} \\partial_{\\mu}{\\phi^{D c \\Gamma}} \\phi^{E a \\Delta} c^{\\Lambda \\Omega \\Gamma}-64A^{\\mu A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta_{a b} \\delta_{C D} \\delta^{\\Sigma \\Omega} \\delta^{C a} \\delta^{E c} \\partial_{\\mu}{\\phi^{E b \\Gamma}} \\phi^{D c \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
+		},
+		{
+			"cell_id": 3447976315993137378,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 2175500395175102342,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6575609650805312913,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6618884580736466226,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 6694443821437431787,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 899874808459502013,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 6462677480601581974,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}256\\end{verbatim}"
+				}
+			],
+			"source": ""
+		},
+		{
+			"cell_id": 12347066155061166439,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 5617503939388038727,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "################################################################################################"
+		},
+		{
+			"cell_id": 17567037763876584975,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "test:=T^M T_M."
+		},
+		{
+			"cell_id": 8379079930655100830,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11305870731915864201,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9534570251270053996,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T^{M} T_{M}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T^{M} T_{M}\\end{dmath*}"
+				}
+			],
+			"source": "test;"
+		},
+		{
+			"cell_id": 479768599809131769,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10223960885812561734,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 11304154072711759841,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T^{A} T_{A} + T^{a} T_{a}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T^{A} T_{A}+T^{a} T_{a}\\end{dmath*}"
+				}
+			],
+			"source": "rename_dummies($T^A T_A + T^a T_a$);"
+		},
+		{
+			"cell_id": 10437866362198058281,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10511208321759767926,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 5042529242701137068,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T^{Z} T_{Z} + T^{\\alpha} T_{\\alpha}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T^{Z} T_{Z}+T^{\\alpha} T_{\\alpha}\\end{dmath*}"
+				},
+				{
+					"cell_id": 5441330112620100710,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 13766167728178112763,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "T^{A} T_{A} + T^{a} T_{a} + T^{\\alpha} T_{\\alpha}"
+						}
+					],
+					"source": "\\begin{dmath*}{}T^{A} T_{A}+T^{a} T_{a}+T^{\\alpha} T_{\\alpha}\\end{dmath*}"
+				}
+			],
+			"source": "split_index(test,$M,Z,\\alpha$);\nsplit_index(test,$Z,A,a$);"
+		},
+		{
+			"cell_id": 3080450087735025929,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 17633603597206030644,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 11426472981820250559,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 2272172821850661499,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C D} -> 2\\epsilon_{A B C D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C D} \\rightarrow 2\\epsilon_{A B C D}\\end{dmath*}"
+				},
+				{
+					"cell_id": 13309772212177975329,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 17274858994248014282,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C d} -> \\epsilon_{A B C D} \\delta_{d D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C d} \\rightarrow \\epsilon_{A B C D} \\delta_{d D}\\end{dmath*}"
+				}
+			],
+			"source": "rlThetaABCD:=\\Theta_{A B C D}->2 \\epsilon_{A B C D};\nrlThetaABCDup:=\\Theta_{A B C d}-> \\epsilon_{A B C D} \\delta_{d D};"
+		},
+		{
+			"cell_id": 14484929887105298435,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 15088662163418071883,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 8767009622358986068,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "0"
+						}
+					],
+					"source": "\\begin{dmath*}{}0\\end{dmath*}"
+				}
+			],
+			"source": "canonicalise($\\Theta_{A B C d}+\\Theta_{A B d C}$);"
+		},
+		{
+			"cell_id": 6831336516340722752,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 5331544858310564594,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 822460499984469601,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Theta_{A B C d}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Theta_{A B C d}\\end{dmath*}"
+				},
+				{
+					"cell_id": 11125857084931493284,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 15171557824271814856,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\epsilon_{A B C D} \\delta_{d D}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\epsilon_{A B C D} \\delta_{d D}\\end{dmath*}"
+				}
+			],
+			"source": "test:=\\Theta_{A B C d};\nsubstitute(test,rlThetaABCDup);"
+		},
+		{
+			"cell_id": 17748544089749583690,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\delta_{A?? B??}::KroneckerDelta."
+		},
+		{
+			"cell_id": 15410275245002638236,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 17940230743760348276,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10106362891820201522,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\epsilon_{A B C d}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\epsilon_{A B C d}\\end{dmath*}"
+				}
+			],
+			"source": "eliminate_kronecker(test);"
+		},
+		{
+			"cell_id": 11660267136136424964,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "rlTheta"
+		},
+		{
+			"cell_id": 18028683723452861173,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\Delta_{M}^{N} -> \\Delta_{M P} \\eta^{P N}  "
+		},
+		{
+			"cell_id": 829770083368500065,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 2775313744946393564,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 10428381361129001490,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Delta_{M P} \\Delta^{P M}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Delta_{M P} \\Delta^{P M}\\end{dmath*}"
+				}
+			],
+			"source": "test1 := \\Delta_{M P} \\Delta^{P M};"
+		},
+		{
+			"cell_id": 10877066927804993268,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 10885447465349134518,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 8371201824142145772,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Delta_{A Z} \\Delta^{Z A} + \\Delta_{A \\alpha} \\Delta^{\\alpha A} + \\Delta_{a Z} \\Delta^{Z a} + \\Delta_{a \\alpha} \\Delta^{\\alpha a} + \\Delta_{\\alpha Z} \\Delta^{Z \\alpha} + \\Delta_{\\alpha \\alpha1} \\Delta^{\\alpha1 \\alpha}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Delta_{A Z} \\Delta^{Z A}+\\Delta_{A \\alpha} \\Delta^{\\alpha A}+\\Delta_{a Z} \\Delta^{Z a}+\\Delta_{a \\alpha} \\Delta^{\\alpha a}+\\Delta_{\\alpha Z} \\Delta^{Z \\alpha}+\\Delta_{\\alpha {\\alpha_{1}}} \\Delta^{{\\alpha_{1}} \\alpha}\\end{dmath*}"
+				},
+				{
+					"cell_id": 2648725646953350387,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 3319795799959770954,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "\\Delta_{A B} \\Delta^{B A} + \\Delta_{A a} \\Delta^{a A} + \\Delta_{A \\alpha} \\Delta^{\\alpha A} + \\Delta_{a A} \\Delta^{A a} + \\Delta_{a b} \\Delta^{b a} + \\Delta_{a \\alpha} \\Delta^{\\alpha a} + \\Delta_{\\alpha A} \\Delta^{A \\alpha} + \\Delta_{\\alpha a} \\Delta^{a \\alpha} + \\Delta_{\\alpha \\alpha1} \\Delta^{\\alpha1 \\alpha}"
+						}
+					],
+					"source": "\\begin{dmath*}{}\\Delta_{A B} \\Delta^{B A}+\\Delta_{A a} \\Delta^{a A}+\\Delta_{A \\alpha} \\Delta^{\\alpha A}+\\Delta_{a A} \\Delta^{A a}+\\Delta_{a b} \\Delta^{b a}+\\Delta_{a \\alpha} \\Delta^{\\alpha a}+\\Delta_{\\alpha A} \\Delta^{A \\alpha}+\\Delta_{\\alpha a} \\Delta^{a \\alpha}+\\Delta_{\\alpha {\\alpha_{1}}} \\Delta^{{\\alpha_{1}} \\alpha}\\end{dmath*}"
+				}
+			],
+			"source": "split_index(test1,$M,Z,\\alpha$);\nsplit_index(test1,$Z,A,a$);"
+		},
+		{
+			"cell_id": 87926352950405472,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\Delta_{A?? B??} -> kronecker "
+		},
+		{
+			"cell_id": 17320915551303949662,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "j_{A b}\nj_{A \\alpha} -> 0 \nJ_{A B} -> 0 (?) "
+		},
+		{
+			"cell_id": 171065392985013703,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "j_{A b} -> j^{A B \\Sigma}\nj^{A A \\Sigma} -> 0 \nj^{A B \\Sigma} = j^{B A \\Sigma}"
+		},
+		{
+			"cell_id": 10357245157496299142,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 13664830795421557705,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		}
+	],
+	"description": "Cadabra JSON notebook format",
+	"version": 1.0
+}

@@ -1,0 +1,231 @@
+{
+	"cell_id": 690286719589917355,
+	"cells": [
+		{
+			"cell_id": 7099835976916810272,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "{A,B,C,D,E,F,A#,a,b,c,d,e,f}::Indices(name=\"SO441\",position=independent).\n{\\mu,\\nu,\\mu#}::Indices(name=\"spacetime\",position=independent).\n{\\Sigma,\\Delta,\\Lambda,\\Omega,\\Gamma,\\Sigma#}::Indices(name=\"harmonic\",position=independent)."
+		},
+		{
+			"cell_id": 18235484615098477615,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\partial{#}::Derivative.\n\\partial{#}::WeightInherit(label=all, type=multiplicative).\n\\phi{#}::Depends(\\partial{#}).\n"
+		},
+		{
+			"cell_id": 13490095881205453185,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "with open(\"Ajj.txt\",\"r\") as f: \n\tAjj = Ex(f.readline())"
+		},
+		{
+			"cell_id": 17779144777663655411,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "sort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 11962114719840761995,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\delta_{A B}::KroneckerDelta.\n\\delta^{A B}::KroneckerDelta.\n\\Delta_{A B}::KroneckerDelta.\n\\Delta^{A B}::KroneckerDelta.\n\\delta_{A}^{B}::KroneckerDelta.\n\\delta^{A}_{B}::KroneckerDelta."
+		},
+		{
+			"cell_id": 6684783777474751079,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "eliminate_kronecker(Ajj)"
+		},
+		{
+			"cell_id": 11685412093304758425,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "\\epsilon_{A B C D}::AntiSymmetric."
+		},
+		{
+			"cell_id": 2849132410363269337,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 17040964877065253986,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\epsilon_{A B C}^{D}->\\epsilon_{A B C D}$)\nsubstitute(Ajj,$\\epsilon_{A B}^{C}_{D}->\\epsilon_{A B C D}$)\nsubstitute(Ajj,$\\epsilon_{A}^{B}_{C D}->\\epsilon_{A B C D}$)\nsubstitute(Ajj,$\\epsilon^{A}_{B C D}->\\epsilon_{A B C D}$)"
+		},
+		{
+			"cell_id": 18063848792125028120,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\phi^{A}_{B}^{\\Sigma}->\\phi^{A B \\Sigma}$)\nsubstitute(Ajj,$\\phi_{A}^{B \\Sigma}->\\phi^{A B \\Sigma}$)"
+		},
+		{
+			"cell_id": 17129944172425514474,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$c^{\\Sigma \\Delta}_{\\Omega}->c^{\\Sigma \\Delta \\Omega}$)\nsubstitute(Ajj,$c^{\\Sigma}_{\\Delta}^{\\Omega}->c^{\\Sigma \\Delta \\Omega}$)\nsubstitute(Ajj,$c_{\\Sigma}^{\\Delta \\Omega}->c^{\\Sigma \\Delta \\Omega}$)\nsubstitute(Ajj,$c_{\\Sigma \\Delta}^{\\Omega}->c^{\\Sigma \\Delta \\Omega}$)\nsubstitute(Ajj,$c^{\\Sigma}_{\\Delta \\Omega}->c^{\\Sigma \\Delta \\Omega}$)\nsubstitute(Ajj,$c_{\\Sigma}^{\\Delta}^{\\Omega}->c^{\\Sigma \\Delta \\Omega}$)"
+		},
+		{
+			"cell_id": 5757204545095047439,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$A_{\\mu A}^{B \\Sigma}->A_{\\mu}^{A B \\Sigma}$)\nsubstitute(Ajj,$A_{\\mu}^{A}_{B}^{\\Sigma}->A_{\\mu}^{A B \\Sigma}$)\nsubstitute(Ajj,$A^{\\mu}_{A}^{B \\Sigma}->A_{\\mu}^{A B \\Sigma}$)\nsubstitute(Ajj,$A^{\\mu A}_{B}^{\\Sigma}->A_{\\mu}^{A B \\Sigma}$)"
+		},
+		{
+			"cell_id": 4374364871098026246,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "substitute(Ajj,$\\phi^{A B}_{\\Sigma}->\\phi^{A B \\Sigma}$)\nsubstitute(Ajj,$\\phi_{A B}^{\\Sigma}->\\phi^{A B \\Sigma}$)"
+		},
+		{
+			"cell_id": 14223755940135711902,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
+		},
+		{
+			"cell_id": 3863498986397044787,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "c^{\\Sigma \\Delta \\Lambda}::Symmetric.\nc_{\\Sigma \\Delta \\Lambda}::Symmetric."
+		},
+		{
+			"cell_id": 18021882621415032877,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "T_{M?? N??}^{\\Sigma \\Omega}::TableauSymmetry(shape={1,1},indices={0,1}).\n\nA_{\\mu}^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA_{\\mu}^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2})."
+		},
+		{
+			"cell_id": 4903001163984097334,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8020916040029217612,
+					"cell_origin": "server",
+					"cell_type": "verbatim",
+					"source": "\\begin{verbatim}14\\end{verbatim}"
+				}
+			],
+			"source": "sort_product(Ajj)\nrename_dummies(Ajj)\nmeld(Ajj)\nlen(Ajj);"
+		},
+		{
+			"cell_id": 10383422246065265793,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "Ajj;"
+		},
+		{
+			"cell_id": 8643703742440453265,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 2576346611952757236,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 14416482320109350209,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 7094234105943178771,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 7540511913195558961,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 11274599983730933354,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 13548959517835324544,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 10678118768017813316,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 7407689652140738966,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 16942942864003388671,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 8697433316702990197,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 4461851866445383669,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 4057465750501331134,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 15076867648277328044,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 13621674890284474943,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 4554347920561492064,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 8272224939684972810,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		},
+		{
+			"cell_id": 3611789051125723647,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": ""
+		}
+	],
+	"description": "Cadabra JSON notebook format",
+	"version": 1.0
+}
