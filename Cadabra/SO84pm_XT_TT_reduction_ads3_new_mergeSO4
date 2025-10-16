@@ -5,7 +5,13 @@
 			"cell_id": 7099835976916810272,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": "{A,B,C,D,E,F,A#,a,b,c,d,e,f}::Indices(name=\"SO441\",position=independent).\n{\\mu,\\nu,\\mu#}::Indices(name=\"spacetime\",position=independent).\n{\\Sigma,\\Delta,\\Lambda,\\Omega,\\Gamma,\\Sigma#}::Indices(name=\"harmonic\",position=independent)."
+			"source": "{A,B,C,D,E,F,G,A#,a,b,c,d,e,f}::Indices(name=\"SO4\",position=independent).\n{\\mu,\\nu,\\mu#}::Indices(name=\"spacetime\",position=independent).\n{\\Sigma,\\Delta,\\Lambda,\\Omega,\\Gamma,\\Sigma#}::Indices(name=\"harmonic\",position=independent)."
+		},
+		{
+			"cell_id": 8895397961836806507,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": "{A,B,C,D,E,F,G,A#,H,I,J}::Indices(name=\"SO4\",position=independent)."
 		},
 		{
 			"cell_id": 18235484615098477615,
@@ -18,6 +24,12 @@
 			"cell_origin": "client",
 			"cell_type": "input",
 			"source": "with open(\"Ajj.txt\",\"r\") as f: \n\tAjj = Ex(f.readline())"
+		},
+		{
+			"cell_id": 16490992724672902867,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
 		},
 		{
 			"cell_id": 17779144777663655411,
@@ -95,139 +107,279 @@
 			"cell_id": 18021882621415032877,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": "T_{M?? N??}^{\\Sigma \\Omega}::TableauSymmetry(shape={1,1},indices={0,1}).\n\nA_{\\mu}^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA_{\\mu}^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\n\n\\phi^{A B \\Sigma}::TableauSymmetry(shape={2},indices={0,1})."
+			"source": "A_{\\mu}^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA_{\\mu}^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nA^{\\mu M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\n\nB_{\\mu}^{M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nB^{\\mu M?? N?? \\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nB_{\\mu}^{M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\nB^{\\mu M?? N??}_{\\Sigma}::TableauSymmetry(shape={1,1},indices={1,2}).\n\n\\phi^{A B \\Sigma}::TableauSymmetry(shape={2},indices={0,1})."
 		},
 		{
 			"cell_id": 4903001163984097334,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 1760367355383336813,
-					"cell_origin": "server",
-					"cell_type": "verbatim",
-					"source": "\\begin{verbatim}3\\end{verbatim}"
-				}
-			],
-			"source": "sort_product(Ajj)\nrename_dummies(Ajj)\nmeld(Ajj)\nlen(Ajj);"
+			"source": "sort_product(Ajj)\nrename_dummies(Ajj)\nmeld(Ajj)"
 		},
 		{
 			"cell_id": 10383422246065265793,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"cells": [
-				{
-					"cell_id": 4482376936692591843,
-					"cell_origin": "server",
-					"cell_type": "latex_view",
-					"cells": [
-						{
-							"cell_id": 6008337436974979636,
-							"cell_origin": "server",
-							"cell_type": "input_form",
-							"source": "32A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\partial_{\\mu}(\\phi^{D B \\Gamma}) \\phi^{C D \\Lambda} c^{\\Delta \\Omega \\Gamma}-96  A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{B D \\Lambda} c^{\\Delta \\Omega \\Gamma}-256A_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{C D \\Delta} c^{\\Lambda \\Omega \\Gamma}"
-						}
-					],
-					"source": "\\begin{dmath*}{}32A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\partial_{\\mu}{\\phi^{D B \\Gamma}} \\phi^{C D \\Lambda} c^{\\Delta \\Omega \\Gamma}-96  A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\delta^{\\Lambda \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{B D \\Lambda} c^{\\Delta \\Omega \\Gamma}-256A_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{C D \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
-				}
-			],
-			"source": "Ajj;"
+			"source": " "
 		},
 		{
 			"cell_id": 8643703742440453265,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": " "
+			"source": "substitute(Ajj,$\\delta_{\\Sigma}^{\\Delta}->\\delta^{\\Sigma \\Delta}$)\nsort_product(Ajj)\nrename_dummies(Ajj)\nmeld(Ajj)"
 		},
 		{
 			"cell_id": 2576346611952757236,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"cells": [
+				{
+					"cell_id": 17707622497874407988,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 324455355097122184,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-256A_{\\mu}^{A B \\Sigma} T_{A C \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256A_{\\mu}^{A B \\Sigma} T_{A C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D B \\Lambda}) \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128A_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}(\\phi^{C E \\Gamma}) \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma} + 512A_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-256A_{\\mu}\\,^{A B \\Sigma} T_{A C \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256A_{\\mu}\\,^{A B \\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D B \\Lambda}} \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128A_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}{\\phi^{C E \\Gamma}} \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma}+512A_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
 		},
 		{
-			"cell_id": 14416482320109350209,
+			"cell_id": 18150846206659908862,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "save:=@(Ajj)."
 		},
 		{
-			"cell_id": 7094234105943178771,
+			"cell_id": 7835238794897866336,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "Ajj:=@(save)."
 		},
 		{
-			"cell_id": 7540511913195558961,
+			"cell_id": 1530920418504161420,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$A_{\\mu}^{A B \\Sigma}->\\epsilon^{A B C D} B_{\\mu}^{C D \\Sigma}$)"
 		},
 		{
 			"cell_id": 11274599983730933354,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$T_{A B}^{\\Sigma \\Delta}->\\epsilon_{A B C D} T_{C D}^{\\Sigma \\Delta}$)"
+		},
+		{
+			"cell_id": 3836366505606012496,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 13719880604937425311,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 16516946227548477135,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-256\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} T_{A C \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} \\epsilon_{A C G A1} T_{G A1}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D B \\Lambda}) \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128\\epsilon^{A B F G} B_{\\mu}^{F G \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}(\\phi^{C E \\Gamma}) \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma} + 512\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} \\epsilon_{A B G A1} T_{G A1}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-256\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} T_{A C \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} \\epsilon_{A C G {A_{1}}} T_{G {A_{1}}}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D B \\Lambda}} \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128\\epsilon^{A B F G} B_{\\mu}\\,^{F G \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}{\\phi^{C E \\Gamma}} \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma}+512\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} \\epsilon_{A B G {A_{1}}} T_{G {A_{1}}}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
 		},
 		{
 			"cell_id": 13548959517835324544,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$T_{A B \\Sigma}^{\\Delta}->\\epsilon_{A B C D} T_{C D \\Sigma}^{\\Delta}$)"
+		},
+		{
+			"cell_id": 10821810591525666248,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 3681820664514912742,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 5197807802104159080,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-256\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} \\epsilon_{A C G A1} T_{G A1 \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} \\epsilon_{A C G A1} T_{G A1}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D B \\Lambda}) \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128\\epsilon^{A B F G} B_{\\mu}^{F G \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}(\\phi^{C E \\Gamma}) \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma} + 512\\epsilon^{A B E F} B_{\\mu}^{E F \\Sigma} \\epsilon_{A B G A1} T_{G A1}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-256\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} \\epsilon_{A C G {A_{1}}} T_{G {A_{1}} \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D B \\Omega} c^{\\Delta \\Lambda \\Omega}-256\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} \\epsilon_{A C G {A_{1}}} T_{G {A_{1}}}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D B \\Lambda}} \\phi^{C D \\Omega} c^{\\Delta \\Lambda \\Omega}-128\\epsilon^{A B F G} B_{\\mu}\\,^{F G \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\epsilon_{A B C D} \\partial_{\\mu}{\\phi^{C E \\Gamma}} \\phi^{D E \\Delta} c^{\\Omega \\Lambda \\Gamma}+512\\epsilon^{A B E F} B_{\\mu}\\,^{E F \\Sigma} \\epsilon_{A B G {A_{1}}} T_{G {A_{1}}}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
 		},
 		{
 			"cell_id": 10678118768017813316,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$\\epsilon^{A B C D} \\epsilon_{A B E F}->2 (\\delta_{C}^{E} \\delta_{D}^{F} - \\delta_{C}^{F} \\delta_{D}^{E})$)"
 		},
 		{
 			"cell_id": 7407689652140738966,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "sort_product(Ajj)\nrename_dummies(Ajj)"
+		},
+		{
+			"cell_id": 18079797702377357065,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
 		},
 		{
 			"cell_id": 16942942864003388671,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$\\epsilon^{A B C D} \\epsilon_{A E F G} -> \\delta_{B E} \\delta_{C F} \\delta_{D G} + \\delta_{B F} \\delta_{C G} \\delta_{D E} + \\delta_{B G} \\delta_{C E} \\delta_{D F} - \\delta_{B F} \\delta_{C E} \\delta_{D G} - \\delta_{B E} \\delta_{C G} \\delta_{D F} - \\delta_{B G} \\delta_{C F} \\delta_{D E}$)\nsubstitute(Ajj,$\\epsilon_{A B C D} \\epsilon_{A E F G} -> \\delta_{B E} \\delta_{C F} \\delta_{D G} + \\delta_{B F} \\delta_{C G} \\delta_{D E} + \\delta_{B G} \\delta_{C E} \\delta_{D F} - \\delta_{B F} \\delta_{C E} \\delta_{D G} - \\delta_{B E} \\delta_{C G} \\delta_{D F} - \\delta_{B G} \\delta_{C F} \\delta_{D E}$)\nsubstitute(Ajj,$\\epsilon_{B A C D} \\epsilon_{A E F G} -> - (\\delta_{B E} \\delta_{C F} \\delta_{D G} + \\delta_{B F} \\delta_{C G} \\delta_{D E} + \\delta_{B G} \\delta_{C E} \\delta_{D F} - \\delta_{B F} \\delta_{C E} \\delta_{D G} - \\delta_{B E} \\delta_{C G} \\delta_{D F} - \\delta_{B G} \\delta_{C F} \\delta_{D E})$)"
+		},
+		{
+			"cell_id": 1538370967749272793,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 8710342008968100016,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 9230747347214030921,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-256B_{\\mu}^{A B \\Sigma} T_{C D \\Sigma}^{\\Delta} (\\delta_{F G} \\delta_{A C} \\delta_{B D} + \\delta_{F C} \\delta_{A D} \\delta_{B G} + \\delta_{F D} \\delta_{A G} \\delta_{B C}-\\delta_{F C} \\delta_{A G} \\delta_{B D}-\\delta_{F G} \\delta_{A D} \\delta_{B C}-\\delta_{F D} \\delta_{A C} \\delta_{B G}) \\partial^{\\mu}(\\phi^{G A1 \\Lambda}) \\phi^{A1 F \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu}^{A B \\Sigma} T_{C D}^{\\Sigma \\Delta} (\\delta_{F G} \\delta_{A C} \\delta_{B D} + \\delta_{F C} \\delta_{A D} \\delta_{B G} + \\delta_{F D} \\delta_{A G} \\delta_{B C}-\\delta_{F C} \\delta_{A G} \\delta_{B D}-\\delta_{F G} \\delta_{A D} \\delta_{B C}-\\delta_{F D} \\delta_{A C} \\delta_{B G}) \\partial^{\\mu}(\\phi^{A1 F \\Lambda}) \\phi^{G A1 \\Omega} c^{\\Delta \\Lambda \\Omega}-128B_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C E \\Gamma}) \\phi^{D E \\Delta} (2\\delta_{A}^{C} \\delta_{B}^{D}-2\\delta_{A}^{D} \\delta_{B}^{C}) c^{\\Omega \\Lambda \\Gamma} + 512B_{\\mu}^{A B \\Sigma} T_{C D}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{E F \\Gamma}) \\phi^{F E \\Delta} (2\\delta_{A}^{C} \\delta_{B}^{D}-2\\delta_{A}^{D} \\delta_{B}^{C}) c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-256B_{\\mu}\\,^{A B \\Sigma} T_{C D \\Sigma}\\,^{\\Delta} \\left(\\delta_{F G} \\delta_{A C} \\delta_{B D}+\\delta_{F C} \\delta_{A D} \\delta_{B G}+\\delta_{F D} \\delta_{A G} \\delta_{B C}-\\delta_{F C} \\delta_{A G} \\delta_{B D}-\\delta_{F G} \\delta_{A D} \\delta_{B C}-\\delta_{F D} \\delta_{A C} \\delta_{B G}\\right) \\partial^{\\mu}{\\phi^{G {A_{1}} \\Lambda}} \\phi^{{A_{1}} F \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu}\\,^{A B \\Sigma} T_{C D}\\,^{\\Sigma \\Delta} \\left(\\delta_{F G} \\delta_{A C} \\delta_{B D}+\\delta_{F C} \\delta_{A D} \\delta_{B G}+\\delta_{F D} \\delta_{A G} \\delta_{B C}-\\delta_{F C} \\delta_{A G} \\delta_{B D}-\\delta_{F G} \\delta_{A D} \\delta_{B C}-\\delta_{F D} \\delta_{A C} \\delta_{B G}\\right) \\partial^{\\mu}{\\phi^{{A_{1}} F \\Lambda}} \\phi^{G {A_{1}} \\Omega} c^{\\Delta \\Lambda \\Omega}-128B_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C E \\Gamma}} \\phi^{D E \\Delta} \\left(2\\delta_{A}\\,^{C} \\delta_{B}\\,^{D}-2\\delta_{A}\\,^{D} \\delta_{B}\\,^{C}\\right) c^{\\Omega \\Lambda \\Gamma}+512B_{\\mu}\\,^{A B \\Sigma} T_{C D}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{E F \\Gamma}} \\phi^{F E \\Delta} \\left(2\\delta_{A}\\,^{C} \\delta_{B}\\,^{D}-2\\delta_{A}\\,^{D} \\delta_{B}\\,^{C}\\right) c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
+		},
+		{
+			"cell_id": 17260058740121721641,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"source": " "
 		},
 		{
 			"cell_id": 8697433316702990197,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "distribute(Ajj)\neliminate_kronecker(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)"
 		},
 		{
 			"cell_id": 4461851866445383669,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"cells": [
+				{
+					"cell_id": 6678365443993349260,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 8392402029876339994,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-256B_{\\mu A B}^{\\Sigma} T_{A B \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi_{C}^{D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}^{\\Sigma} T_{C A \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{B D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}^{\\Sigma} T_{B C \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{A D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{C B \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{A D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{B A \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi_{C}^{D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{A C \\Sigma}^{\\Delta} \\partial^{\\mu}(\\phi^{B D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}^{\\Sigma} T_{A B}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{C}_{D}^{\\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}^{\\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}^{\\Sigma} T_{B C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{C B}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{B A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{C}_{D}^{\\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega} + 256B_{\\mu A B}^{\\Sigma} T_{A C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{A C \\Gamma}) \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma} + 256B_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{B C \\Gamma}) \\phi^{A C \\Delta} c^{\\Omega \\Lambda \\Gamma} + 1024B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}-1024B_{\\mu}^{A B \\Sigma} T_{B A}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-256B_{\\mu A B}\\,^{\\Sigma} T_{A B \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi_{C}\\,^{D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}\\,^{\\Sigma} T_{C A \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{B D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}\\,^{\\Sigma} T_{B C \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{A D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{C B \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{A D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{B A \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi_{C}\\,^{D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{A C \\Sigma}\\,^{\\Delta} \\partial^{\\mu}{\\phi^{B D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}\\,^{\\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{C}\\,_{D}\\,^{\\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}\\,^{\\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu A B}\\,^{\\Sigma} T_{B C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{C B}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{B A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{C}\\,_{D}\\,^{\\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}+256B_{\\mu A B}\\,^{\\Sigma} T_{A C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-256B_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{A C \\Gamma}} \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma}+256B_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{B C \\Gamma}} \\phi^{A C \\Delta} c^{\\Omega \\Lambda \\Gamma}+1024B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}-1024B_{\\mu}\\,^{A B \\Sigma} T_{B A}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "Ajj;"
 		},
 		{
 			"cell_id": 4057465750501331134,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "substitute(Ajj,$B_{\\mu A}^{B \\Sigma}->B_{\\mu}^{A B \\Sigma}$)\nsubstitute(Ajj,$T_{A B \\Sigma}^{\\Delta}->T_{A B}^{\\Sigma \\Delta}$)\nsubstitute(Ajj,$\\phi_{A}^{B \\Sigma}->\\phi^{A B \\Sigma}$)\nsubstitute(Ajj,$\\phi^{A}_{B}^{\\Sigma}->\\phi^{A B \\Sigma}$)"
+		},
+		{
+			"cell_id": 17783924412340981654,
+			"cell_origin": "client",
+			"cell_type": "input",
+			"cells": [
+				{
+					"cell_id": 1941529018254897896,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 5049557028122452951,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-1024B_{\\mu A B}^{\\Sigma} T_{A B}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}^{\\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{B D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}^{\\Sigma} T_{B C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{A D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}^{\\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}^{\\Sigma} T_{B C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{A C \\Gamma}) \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma} + 2048B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-1024B_{\\mu A B}\\,^{\\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}\\,^{\\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{B D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}\\,^{\\Sigma} T_{B C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{A D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}\\,^{\\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu A B}\\,^{\\Sigma} T_{B C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{A C \\Gamma}} \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma}+2048B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "meld(Ajj);"
 		},
 		{
 			"cell_id": 15076867648277328044,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"cells": [
+				{
+					"cell_id": 17076312416882352937,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 1597171968247253183,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-1024B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{B D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} T_{B C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{A D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} T_{B C}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{A C \\Gamma}) \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma} + 2048B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}(\\phi^{C D \\Gamma}) \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-1024B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{B D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} T_{B C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{A D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} T_{B C}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{A D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} \\delta^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{A C \\Gamma}} \\phi^{B C \\Delta} c^{\\Omega \\Lambda \\Gamma}+2048B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\delta^{\\Sigma \\Omega} \\partial_{\\mu}{\\phi^{C D \\Gamma}} \\phi^{D C \\Delta} c^{\\Lambda \\Omega \\Gamma}\\end{dmath*}"
+				}
+			],
+			"source": "substitute(Ajj,$B_{\\mu A B}^{\\Sigma}->B_{\\mu}^{A B \\Sigma}$)\ncollect_terms(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj);"
 		},
 		{
 			"cell_id": 13621674890284474943,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"source": "\\delta^{\\Sigma \\Omega}::KroneckerDelta."
 		},
 		{
 			"cell_id": 4554347920561492064,
 			"cell_origin": "client",
 			"cell_type": "input",
-			"source": ""
+			"cells": [
+				{
+					"cell_id": 3761804375633626865,
+					"cell_origin": "server",
+					"cell_type": "latex_view",
+					"cells": [
+						{
+							"cell_id": 2296286971154963744,
+							"cell_origin": "server",
+							"cell_type": "input_form",
+							"source": "-1024B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{C D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-1024B_{\\mu}^{A B \\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{B D \\Lambda}) \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-1024B_{\\mu}^{A B \\Sigma} T_{C A}^{\\Sigma \\Delta} \\partial^{\\mu}(\\phi^{D C \\Lambda}) \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}^{A B \\Sigma} \\partial_{\\mu}(\\phi^{A C \\Delta}) \\phi^{B C \\Lambda} c^{\\Sigma \\Lambda \\Delta} + 2048B_{\\mu}^{A B \\Sigma} T_{A B}^{\\Delta \\Lambda} \\partial_{\\mu}(\\phi^{C D \\Omega}) \\phi^{D C \\Delta} c^{\\Lambda \\Sigma \\Omega}"
+						}
+					],
+					"source": "\\begin{dmath*}{}-1024B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{C D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-1024B_{\\mu}\\,^{A B \\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{B D \\Lambda}} \\phi^{D C \\Omega} c^{\\Delta \\Lambda \\Omega}-1024B_{\\mu}\\,^{A B \\Sigma} T_{C A}\\,^{\\Sigma \\Delta} \\partial^{\\mu}{\\phi^{D C \\Lambda}} \\phi^{B D \\Omega} c^{\\Delta \\Lambda \\Omega}-512B_{\\mu}\\,^{A B \\Sigma} \\partial_{\\mu}{\\phi^{A C \\Delta}} \\phi^{B C \\Lambda} c^{\\Sigma \\Lambda \\Delta}+2048B_{\\mu}\\,^{A B \\Sigma} T_{A B}\\,^{\\Delta \\Lambda} \\partial_{\\mu}{\\phi^{C D \\Omega}} \\phi^{D C \\Delta} c^{\\Lambda \\Sigma \\Omega}\\end{dmath*}"
+				}
+			],
+			"source": "eliminate_kronecker(Ajj)\nsort_product(Ajj)\nrename_dummies(Ajj)\nmeld(Ajj)\ncollect_terms(Ajj);"
 		},
 		{
 			"cell_id": 8272224939684972810,
